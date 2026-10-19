@@ -101,6 +101,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline
 
 /* Merkkasten */
 .rule{border:2px dashed var(--accent);border-radius:12px;padding:12px 14px;background:var(--soft);font-family:var(--hand);font-size:1.45rem;line-height:1.3;display:grid;gap:2px}
+.cubefig{display:inline-flex;justify-content:center;max-width:100%}.cubefig svg{max-width:100%;height:auto}
 .ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .ladder .rung{display:grid;justify-items:center;border-radius:10px;padding:6px 10px;font-family:var(--body);line-height:1.1}
 .ladder .rung b{font-family:var(--hand);font-weight:400;font-size:1.35rem}
@@ -634,7 +635,7 @@ de:{
   trophy_next:(n,name)=>`Noch ${n} Sterne bis zum Pokal „${name}“.`,
   trophies:['Würfel','Stange','Platte','Großer Würfel','Zahlenprofi','Millionär'],
   areas:{num:'Zahlen und Rechnen',geo:'Formen und Raum',meas:'Größen und Messen',data:'Daten und Zufall'},rule_cap:'Jeder Schritt ist zehnmal so viel wie der davor.',and_:'und',
-  lessons:{'million':'Die Million bauen','bigcalc':'Große Zahlen, leicht gerechnet','numline':'Wo wohnt die Zahl? Der Zahlenstrahl','patterns':'Zahlenmuster und Nachbarn','rounding':'Runden wie ein Profi','mult':'Schriftlich malnehmen','div':'Schriftlich teilen','angles':'Rechte Winkel, parallel und senkrecht','quads':'Vierecke erkennen und zeichnen','area':'Fläche und Umfang','weights':'Gramm, Kilogramm, Tonne','lengths':'Von Millimeter bis Kilometer','volume':'Liter und Milliliter','time':'Uhrzeit und Zeitspannen','charts':'Diagramme lesen und zeichnen','chance':'Zufall und Wahrscheinlichkeit','tiles':'Muster und Parkette'},
+  lessons:{'million':'Die Million bauen','bigcalc':'Große Zahlen, leicht gerechnet','numline':'Wo wohnt die Zahl? Der Zahlenstrahl','patterns':'Zahlenmuster und Nachbarn','rounding':'Runden wie ein Profi','mult':'Schriftlich malnehmen','div':'Schriftlich teilen','angles':'Rechte Winkel, parallel und senkrecht','quads':'Vierecke erkennen und zeichnen','area':'Fläche und Umfang','weights':'Gramm, Kilogramm, Tonne','lengths':'Von Millimeter bis Kilometer','volume':'Liter und Milliliter','time':'Uhrzeit und Zeitspannen','charts':'Diagramme lesen und zeichnen','chance':'Zufall und Wahrscheinlichkeit','tiles':'Muster und Parkette','cubes':'Würfel und Rauminhalt','convert':'Größen umrechnen'},
   trainer_name:'Zahlwort-Trainer',trainer_sub:'Zahlen als Wort schreiben: Deutsch, Englisch, Spanisch',
   back_home:'← Zu Mein Bereich',
   /* lesson static */
@@ -780,7 +781,7 @@ en:{
   trophy_next:(n,name)=>`${n} more stars until the “${name}” trophy.`,
   trophies:['Cube','Rod','Flat','Big cube','Number pro','Millionaire'],
   areas:{num:'Numbers and calculating',geo:'Shapes and space',meas:'Measuring',data:'Data and chance'},rule_cap:'Each step is worth ten times the one before.',and_:'and',
-  lessons:{'million':'Building a million','bigcalc':'Big numbers made easy','numline':'Where does the number live? The number line','patterns':'Number patterns and neighbours','rounding':'Rounding like a pro','mult':'Written multiplication','div':'Long division','angles':'Right angles, parallel and perpendicular','quads':'Quadrilaterals','area':'Area and perimeter','weights':'Grams, kilograms, tonnes','lengths':'From millimetres to kilometres','volume':'Litres and millilitres','time':'Time and durations','charts':'Reading and drawing charts','chance':'Chance and probability','tiles':'Patterns and tilings'},
+  lessons:{'million':'Building a million','bigcalc':'Big numbers made easy','numline':'Where does the number live? The number line','patterns':'Number patterns and neighbours','rounding':'Rounding like a pro','mult':'Written multiplication','div':'Long division','angles':'Right angles, parallel and perpendicular','quads':'Quadrilaterals','area':'Area and perimeter','weights':'Grams, kilograms, tonnes','lengths':'From millimetres to kilometres','volume':'Litres and millilitres','time':'Time and durations','charts':'Reading and drawing charts','chance':'Chance and probability','tiles':'Patterns and tilings','cubes':'Cubes and volume','convert':'Converting measures'},
   trainer_name:'Number Word Trainer',trainer_sub:'Write numbers as words: German, English, Spanish',
   back_home:'← Back to my area',
   grade:'Grade 4',crumb:'Grade 4 · Numbers and calculating',h1:'Building a <span>million</span>',
@@ -918,7 +919,7 @@ es:{
   trophy_next:(n,name)=>`Faltan ${n} estrellas para el trofeo «${name}».`,
   trophies:['Cubo','Barra','Placa','Cubo grande','Experto','Millonario'],
   areas:{num:'Números y cálculo',geo:'Formas y espacio',meas:'Magnitudes y medida',data:'Datos y azar'},rule_cap:'Cada paso vale diez veces el anterior.',and_:'y',
-  lessons:{'million':'Construir un millón','bigcalc':'Números grandes, cálculo fácil','numline':'¿Dónde vive el número? La recta numérica','patterns':'Patrones y números vecinos','rounding':'Redondear como un experto','mult':'Multiplicar por escrito','div':'Dividir por escrito','angles':'Ángulo recto, paralelas y perpendiculares','quads':'Cuadriláteros','area':'Área y perímetro','weights':'Gramos, kilos y toneladas','lengths':'Del milímetro al kilómetro','volume':'Litros y mililitros','time':'La hora y los intervalos de tiempo','charts':'Leer y dibujar gráficos','chance':'Azar y probabilidad','tiles':'Mosaicos y teselados'},
+  lessons:{'million':'Construir un millón','bigcalc':'Números grandes, cálculo fácil','numline':'¿Dónde vive el número? La recta numérica','patterns':'Patrones y números vecinos','rounding':'Redondear como un experto','mult':'Multiplicar por escrito','div':'Dividir por escrito','angles':'Ángulo recto, paralelas y perpendiculares','quads':'Cuadriláteros','area':'Área y perímetro','weights':'Gramos, kilos y toneladas','lengths':'Del milímetro al kilómetro','volume':'Litros y mililitros','time':'La hora y los intervalos de tiempo','charts':'Leer y dibujar gráficos','chance':'Azar y probabilidad','tiles':'Mosaicos y teselados','cubes':'Cubos y volumen','convert':'Convertir medidas'},
   trainer_name:'Entrenador de números',trainer_sub:'Escribir números con letras: alemán, inglés, español',
   back_home:'← Volver a mi zona',
   grade:'4.º de primaria',crumb:'4.º de primaria · Números y cálculo',h1:'Construir un <span>millón</span>',
@@ -1817,7 +1818,7 @@ defLesson('patterns',{
       return {q:tx(t3(`Schreibe die Nachbar-${T('pl')[k]} von <b>${fmt(n)}</b>.`,`Write the neighbouring ${T('pl')[k]} of <b>${fmt(n)}</b>.`,`Escribe las ${T('pl')[k]} vecinas de <b>${fmt(n)}</b>.`)),body:`<div class="eq">${numIn(true)}<span class="op">&lt; ${fmt(n)} &lt;</span>${numIn(true)}</div>`,
         check:v=>parseNum(v[0])===lo&&parseNum(v[1])===lo+p,perField:v=>[parseNum(v[0])===lo,parseNum(v[1])===lo+p],sol:`${fmt(lo)} &lt; ${fmt(n)} &lt; ${fmt(lo+p)}`,
         hint:tx(t3(`Behalte die Ziffern bis zu den ${T('pl')[k]}n und mach den Rest zu Nullen. Das ist der kleinere Nachbar.`,`Keep the digits up to the ${T('pl')[k]} and turn the rest into zeros. That is the smaller neighbour.`,`Conserva las cifras hasta las ${T('pl')[k]} y convierte el resto en ceros. Ese es el vecino menor.`)),a:[String(lo),String(lo+p)]};}},
-    pt_folge:{l:t3('Folge fortsetzen','Continue the sequence','Continuar la secuencia'),f(){const {s,rule}=sequence();
+    pt_folge:{l:t3('Folge fortsetzen','Continue the sequence','Continuar la secuencia'),f(){let q;do{q=sequence();}while(q.s.slice(0,6).some(x=>x<0));const {s,rule}=q;
       return {q:tx(t3('Setze die Folge fort.','Continue the sequence.','Continúa la secuencia.')),body:`<p class="handnum">${s.slice(0,4).map(fmt).join(', ')}, …</p><div class="eq">${numIn(true)}<span class="op">,</span>${numIn(true)}</div>`,
         check:v=>parseNum(v[0])===s[4]&&parseNum(v[1])===s[5],perField:v=>[parseNum(v[0])===s[4],parseNum(v[1])===s[5]],sol:tx(t3(`Regel ${rule.txt}: <b>${fmt(s[4])}, ${fmt(s[5])}</b>`,`Rule ${rule.txt}: <b>${fmt(s[4])}, ${fmt(s[5])}</b>`,`Regla ${rule.txt}: <b>${fmt(s[4])}, ${fmt(s[5])}</b>`)),
         hint:tx(t3('Wie viel kommt von der 1. zur 2. Zahl dazu? Und von der 2. zur 3.?','How much is added from the 1st to the 2nd number? And from the 2nd to the 3rd?','¿Cuánto se suma del 1.º al 2.º número? ¿Y del 2.º al 3.º?')),a:[String(s[4]),String(s[5])]};}},
@@ -2910,18 +2911,18 @@ defLesson('volume',{
        'How many 250-millilitre glasses can you pour from a 2-litre bottle? Leo works out: 2 litres are 2,000 millilitres. 2,000 divided by 250 makes 8 glasses.',
        '¿Cuántos vasos de 250 mililitros salen de una botella de 2 litros? Leo calcula: 2 litros son 2 000 mililitros. 2 000 entre 250 son 8 vasos.')}
   ],
-  remember:()=>({rule:`<span>1 l = ${fmt(1000)} ml</span><br>½ l = 500 ml · ¼ l = 250 ml · ¾ l = 750 ml<br>${fmtDec(1.5,1)} l = 1 l 500 ml = ${fmt(1500)} ml`,p:'',ways:''}),
+  remember:()=>({rule:`<span>1 l = ${fmt(1000)} ml</span><br>½ l = 500 ml · ¼ l = 250 ml · ¾ l = 750 ml<br>⅛ l = 125 ml (${tx(t3('die Hälfte von ¼ l','half of ¼ l','la mitad de ¼ l'))})<br>${fmtDec(1.5,1)} l = 1 l 500 ml = ${fmt(1500)} ml`,p:'',ways:''}),
   quiz:{
     unit(){const [o,u]=pick(VOBJ);return mkQ(tx(t3(`Womit misst man, was in ${tx(o)} passt?`,`Which unit do you use for what fits into ${tx(o)}?`,`¿Con qué unidad se mide lo que cabe en ${tx(o)}?`)),u,['ml','l'],tx(t3('Viel oder wenig?','A lot or a little?','¿Mucho o poco?')));},
     ml(){const l=rnd(2,9);return mkQ(tx(t3(`Wie viele Milliliter sind ${l} l?`,`How many millilitres is ${l} l?`,`¿Cuántos mililitros son ${l} l?`)),fmt(l*1000)+' ml',[l*100,l*10,l*10000].map(x=>fmt(x)+' ml'),`1 l = ${fmt(1000)} ml`);},
-    frac(){const [s,v]=pick([['½',500],['¼',250],['¾',750]]);return mkQ(tx(t3(`Wie viele Milliliter sind ${s} l?`,`How many millilitres is ${s} l?`,`¿Cuántos mililitros son ${s} l?`)),v+' ml',[500,250,750,400].filter(x=>x!==v).map(x=>x+' ml'),'');},
+    frac(){const [s,v]=pick([['½',500],['¼',250],['¾',750],['⅛',125]]);return mkQ(tx(t3(`Wie viele Milliliter sind ${s} l?`,`How many millilitres is ${s} l?`,`¿Cuántos mililitros son ${s} l?`)),v+' ml',[500,250,750,125,400].filter(x=>x!==v).map(x=>x+' ml'),'');},
     glas(){const l=rnd(1,3),g=pick([200,250,500]);return mkQ(tx(t3(`Wie viele Gläser zu ${g} ml bekommt man aus ${l} l?`,`How many ${g} ml glasses do you get from ${l} l?`,`¿Cuántos vasos de ${g} ml salen de ${l} l?`)),String(l*1000/g),[l*1000/g+2,l*1000/g-1,l*10].map(String),`${fmt(l*1000)} : ${g} = ${l*1000/g}`);}
   },
   gen:{
     lt_umr:{l:t3('Umrechnen','Converting','Convertir'),f(){if(Math.random()<.5){const l=rnd(1,9),ml=rnd(1,999);return numTask(tx(t3(`Wie viele Milliliter sind <b>${l} l ${ml} ml</b>?`,`How many millilitres are <b>${l} l ${ml} ml</b>?`,`¿Cuántos mililitros son <b>${l} l ${ml} ml</b>?`)),'',l*1000+ml,`<b>${fmt(l*1000+ml)} ml</b>`,tx(t3('1 l = 1 000 ml.','1 l = 1,000 ml.','1 l = 1 000 ml.')),'ml');}
       const ml=rnd(1,9)*1000+rnd(1,99)*10;return decTask(tx(t3(`Schreibe <b>${fmt(ml)} ml</b> mit Komma in Litern.`,`Write <b>${fmt(ml)} ml</b> in litres with a decimal point.`,`Escribe <b>${fmt(ml)} ml</b> en litros con coma.`)),'',ml/1000,`<b>${fmtDec(ml/1000,3)} l</b>`,tx(t3('Die Tausender werden Liter, die letzten 3 Ziffern kommen hinter das Komma.','The thousands become litres, the last 3 digits go after the point.','Los millares son litros, las 3 últimas cifras van después de la coma.')),'l');}},
-    lt_bruch:{l:t3('Halbe und Viertel','Halves and quarters','Medios y cuartos'),f(){const [s,v]=pick([['½',500],['¼',250],['¾',750]]),w=rnd(0,4),show=(w?w+' ':'')+s+' l';
-      return numTask(tx(t3(`Wie viele Milliliter sind <b>${show}</b>?`,`How many millilitres is <b>${show}</b>?`,`¿Cuántos mililitros son <b>${show}</b>?`)),'',w*1000+v,`<b>${fmt(w*1000+v)} ml</b>`,'½ l = 500 ml, ¼ l = 250 ml, ¾ l = 750 ml.','ml');}},
+    lt_bruch:{l:t3('Halbe, Viertel, Achtel','Halves, quarters, eighths','Medios, cuartos, octavos'),f(){const [s,v]=pick([['½',500],['¼',250],['¾',750],['⅛',125]]),w=rnd(0,4),show=(w?w+' ':'')+s+' l';
+      return numTask(tx(t3(`Wie viele Milliliter sind <b>${show}</b>?`,`How many millilitres is <b>${show}</b>?`,`¿Cuántos mililitros son <b>${show}</b>?`)),'',w*1000+v,`<b>${fmt(w*1000+v)} ml</b>`,'½ l = 500 ml, ¼ l = 250 ml, ¾ l = 750 ml, ⅛ l = 125 ml.','ml');}},
     lt_becher:{l:t3('Messbecher','Measuring jug','Jarra medidora'),f(){const max=pick([1000,500]),v=rnd(1,19)*max/20;return numTask(tx(t3('Wie viele Milliliter sind im Messbecher?','How many millilitres are in the jug?','¿Cuántos mililitros hay en la jarra?')),jugSVG(v,max),v,`<b>${fmt(v)} ml</b>`,
       tx(t3(`Jeder Strich ist ${max/10} ml. Steht das Wasser zwischen zwei Strichen, ist es die Hälfte mehr.`,`Each mark is ${max/10} ml. If the water is between two marks, add half a step.`,`Cada raya son ${max/10} ml. Si el agua está entre dos rayas, suma medio paso.`)),'ml');}},
     lt_glaeser:{l:t3('Gläser füllen','Filling glasses','Llenar vasos'),f(){const l=pick([1,2,3,5]),g=pick([100,200,250,500]),n=l*1000/g;
@@ -3025,6 +3026,227 @@ defLesson('time',{
       hint:tx(t3('Zwischen 1 und 2 Uhr gibt es ein Treffen, zwischen 2 und 3 Uhr auch … Wie ist es zwischen 11 und 12 Uhr?','There is one meeting between 1 and 2, one between 2 and 3 … What about between 11 and 12?','Hay un encuentro entre la 1 y las 2, otro entre las 2 y las 3 … ¿Y entre las 11 y las 12?')),ans:'11',expl:tx(t3('Zwischen 11 und 12 treffen sie sich erst genau um 12 Uhr.','Between 11 and 12 they only meet exactly at 12.','Entre las 11 y las 12 solo se encuentran justo a las 12.'))})
   ]
 });
+}
+
+
+/* =========================================================
+   LESSON: Würfel und Rauminhalt
+   ========================================================= */
+{
+const cubeFig=(W,D,H,col,max)=>{const m=max||220,s=Math.min(30,m/((W+D)*0.866),m*0.85/((W+D)*0.5+H));return `<span class="cubefig">${isoBox(W,D,H,s,col||pick(['g','b','r']))}</span>`;};
+const row=html=>`<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:center">${html}</div>`;
+const lab=(svg,t)=>`<figure style="margin:0;display:grid;justify-items:center;gap:4px">${svg}<figcaption style="font-weight:800">${t}</figcaption></figure>`;
+const dims=()=>{const a=rnd(2,5),b=rnd(1,4),c=rnd(1,4);return [a,b,c];};
+const SCHICHT=t3('Schichten','layers','capas');
+function triples(n){const out=[];for(let a=1;a<=n;a++)for(let b=1;b<=a;b++)for(let c=1;c<=b;c++)if(a*b*c===n&&a<=8)out.push([a,b,c]);return out;}
+defLesson('cubes',{
+  h1:t3('Würfel und <span>Rauminhalt</span>','Cubes and <span>volume</span>','Cubos y <span>volumen</span>'),
+  intro:t3('Hallo! Wie viel passt in eine Kiste? Heute bauen wir Quader aus kleinen Würfeln und zählen sie ganz geschickt.',
+    'Hi! How much fits into a box? Today we build cuboids from small cubes and count them the clever way.',
+    '¡Hola! ¿Cuánto cabe en una caja? Hoy construimos prismas con cubitos y los contamos de forma inteligente.'),
+  steps:[
+    {t:t3('Der kleine Würfel','The small cube','El cubito'),v:()=>cubeFig(1,1,1,'b',90),
+     say:t3('Dieser kleine Würfel ist unser Maß. Wir schauen, wie viele kleine Würfel in einen Körper passen. Diese Zahl nennt man den Rauminhalt.',
+       'This small cube is our unit. We look at how many small cubes fit into a solid. That number is called the volume.',
+       'Este cubito es nuestra unidad. Miramos cuántos cubitos caben en un cuerpo. Ese número se llama volumen.')},
+    {t:t3('Eine Schicht','One layer','Una capa'),eq:()=>'5 · 2 = 10',v:()=>cubeFig(5,2,1,'g'),
+     say:t3('Unten liegt eine Schicht. In einer Reihe sind 5 Würfel, und es gibt 2 Reihen. Also 5 mal 2, das sind 10 Würfel.',
+       'At the bottom there is one layer. One row has 5 cubes, and there are 2 rows. So 5 times 2 makes 10 cubes.',
+       'Abajo hay una capa. En una fila hay 5 cubitos y hay 2 filas. O sea 5 por 2, son 10 cubitos.')},
+    {t:t3('Schicht auf Schicht','Layer on layer','Capa sobre capa'),eq:()=>'5 · 2 · 3 = 30',v:()=>cubeFig(5,2,3,'r'),
+     say:t3('Jetzt stapeln wir 3 solche Schichten übereinander. Jede Schicht hat 10 Würfel. 3 mal 10 sind 30 Würfel. Kurz: Länge mal Breite mal Höhe.',
+       'Now we stack 3 of these layers on top of each other. Each layer has 10 cubes. 3 times 10 makes 30 cubes. In short: length times width times height.',
+       'Ahora apilamos 3 capas iguales. Cada capa tiene 10 cubitos. 3 por 10 son 30 cubitos. En corto: largo por ancho por alto.')},
+    {t:t3('Gleich viel, andere Form','Same amount, different shape','Lo mismo, otra forma'),v:()=>row(lab(cubeFig(6,2,1,'g',130),'6 · 2 · 1')+lab(cubeFig(3,2,2,'b',130),'3 · 2 · 2')+lab(cubeFig(2,1,6,'r',130),'2 · 1 · 6')),
+     say:t3('Aus 12 Würfeln kann Leo ganz verschiedene Quader bauen: flach, würfelig oder hoch wie ein Turm. Alle haben denselben Rauminhalt: 12 Würfel.',
+       'Leo can build very different cuboids from 12 cubes: flat, chunky or tall like a tower. They all have the same volume: 12 cubes.',
+       'Con 12 cubitos Leo puede construir prismas muy distintos: planos, gorditos o altos como una torre. Todos tienen el mismo volumen: 12 cubitos.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('10 cm · 10 cm · 10 cm passt genau 1 l → 1 l Wasser wiegt 1 kg','10 cm · 10 cm · 10 cm holds exactly 1 l → 1 l of water weighs 1 kg','10 cm · 10 cm · 10 cm caben justo 1 l → 1 l de agua pesa 1 kg'),v:()=>card('1 l','b')+arrowSym('⚖')+card('1 kg','r'),
+     say:t3('Ein Würfel, der innen 10 Zentimeter lang, breit und hoch ist, fasst genau 1 Liter. Und 1 Liter Wasser wiegt 1 Kilogramm. Ein halber Liter Wasser wiegt also 500 Gramm.',
+       'A cube that is 10 centimetres long, wide and high on the inside holds exactly 1 litre. And 1 litre of water weighs 1 kilogram. So half a litre of water weighs 500 grams.',
+       'Un cubo que por dentro mide 10 centímetros de largo, ancho y alto contiene justo 1 litro. Y 1 litro de agua pesa 1 kilo. Así que medio litro de agua pesa 500 gramos.')}
+  ],
+  remember:()=>({rule:tx(t3('<span>Rauminhalt = Länge · Breite · Höhe</span><br>(Würfel in einer Reihe · Reihen · Schichten)<br>1 l Wasser wiegt 1 kg',
+    '<span>Volume = length · width · height</span><br>(cubes in a row · rows · layers)<br>1 l of water weighs 1 kg',
+    '<span>Volumen = largo · ancho · alto</span><br>(cubitos por fila · filas · capas)<br>1 l de agua pesa 1 kg')),p:'',ways:''}),
+  quiz:{
+    count(){const [a,b,c]=dims(),n=a*b*c;return mkQ(tx(t3('Wie viele kleine Würfel hat der Quader?','How many small cubes does the cuboid have?','¿Cuántos cubitos tiene el prisma?'))+cubeFig(a,b,c,null,170),n,[...new Set([a*b,a+b+c,n+a*b,n-a].filter(x=>x>0&&x!==n))],`${a} · ${b} · ${c} = ${n}`);},
+    layer(){const l=rnd(4,12),s=rnd(2,5);return mkQ(tx(t3(`Eine Schicht hat ${l} Würfel. Der Quader ist ${s} Schichten hoch. Wie viele Würfel sind es?`,`One layer has ${l} cubes. The cuboid is ${s} layers high. How many cubes is that?`,`Una capa tiene ${l} cubitos. El prisma tiene ${s} capas. ¿Cuántos cubitos son?`)),l*s,[l+s,l*s+l,l*s-s],`${s} · ${l} = ${l*s}`);},
+    water(){const n=pick([2,3,5,10,20]);return mkQ(tx(t3(`Wie schwer sind ${n} l Wasser?`,`How heavy are ${n} l of water?`,`¿Cuánto pesan ${n} l de agua?`)),n+' kg',[`${n} g`,`${n*10} kg`,`${n*100} g`],tx(t3('1 l Wasser wiegt 1 kg.','1 l of water weighs 1 kg.','1 l de agua pesa 1 kg.')));},
+    same(){const n=pick([12,18,24,30,36]),ts=triples(n),c=pick(ts),w=[];while(w.length<3){const t=[rnd(1,6),rnd(1,5),rnd(1,4)],p=t[0]*t[1]*t[2];if(p!==n&&Math.abs(p-n)<=12&&!w.includes(t.join(' · ')))w.push(t.join(' · '));}
+      return mkQ(tx(t3(`Welcher Quader besteht aus ${n} Würfeln?`,`Which cuboid is made of ${n} cubes?`,`¿Qué prisma tiene ${n} cubitos?`)),c.join(' · '),w,`${c.join(' · ')} = ${n}`);}
+  },
+  gen:{
+    wf_zaehlen:{l:t3('Würfel zählen','Counting cubes','Contar cubitos'),f(){const [a,b,c]=dims(),n=a*b*c;return numTask(tx(t3('Wie viele kleine Würfel hat der Quader?','How many small cubes does the cuboid have?','¿Cuántos cubitos tiene el prisma?')),cubeFig(a,b,c),n,`${a} · ${b} · ${c} = <b>${n}</b>`,
+      tx(t3('Zähle eine Reihe, dann die Reihen einer Schicht, dann die Schichten.','Count one row, then the rows in a layer, then the layers.','Cuenta una fila, luego las filas de una capa y luego las capas.')));}},
+    wf_rechnen:{l:t3('Quader berechnen','Working out cuboids','Calcular prismas'),f(){const a=rnd(3,9),b=rnd(2,6),c=rnd(2,5),n=a*b*c;return numTask(tx(t3(`Ein Quader ist <b>${a}</b> Würfel lang, <b>${b}</b> Würfel breit und <b>${c}</b> Würfel hoch. Aus wie vielen Würfeln besteht er?`,`A cuboid is <b>${a}</b> cubes long, <b>${b}</b> cubes wide and <b>${c}</b> cubes high. How many cubes is it made of?`,`Un prisma mide <b>${a}</b> cubitos de largo, <b>${b}</b> de ancho y <b>${c}</b> de alto. ¿Cuántos cubitos tiene?`)),'',n,`${a} · ${b} · ${c} = <b>${n}</b>`,
+      tx(t3(`Eine Schicht: ${a} · ${b}. Dann mal ${c}.`,`One layer: ${a} · ${b}. Then times ${c}.`,`Una capa: ${a} · ${b}. Luego por ${c}.`)));}},
+    wf_hoehe:{l:t3('Wie hoch?','How high?','¿Qué altura?'),f(){const a=rnd(2,6),b=rnd(2,5),c=rnd(2,6),n=a*b*c;return numTask(tx(t3(`Ein Quader besteht aus <b>${n}</b> Würfeln. Unten liegen <b>${a} · ${b}</b> Würfel. Wie viele Schichten ist er hoch?`,`A cuboid is made of <b>${n}</b> cubes. At the bottom there are <b>${a} · ${b}</b> cubes. How many layers high is it?`,`Un prisma tiene <b>${n}</b> cubitos. Abajo hay <b>${a} · ${b}</b> cubitos. ¿Cuántas capas tiene?`)),'',c,`${n} : ${a*b} = <b>${c}</b>`,
+      tx(t3(`Eine Schicht hat ${a*b} Würfel. Wie oft passt ${a*b} in ${n}?`,`One layer has ${a*b} cubes. How many times does ${a*b} go into ${n}?`,`Una capa tiene ${a*b} cubitos. ¿Cuántas veces cabe ${a*b} en ${n}?`)),tx(SCHICHT));}},
+    wf_bauen:{l:t3('Quader bauen','Building cuboids','Construir prismas'),f(){const n=pick([12,16,18,20,24,30,36]),c=pick(triples(n)).join(' · '),w=new Set();while(w.size<3){const t=[rnd(1,6),rnd(1,5),rnd(1,4)],p=t[0]*t[1]*t[2];if(p!==n&&Math.abs(p-n)<=10)w.add(t.join(' · '));}
+      return mcTask(tx(t3(`Leo hat <b>${n}</b> Würfel und baut damit einen Quader. Welche Maße kann der Quader haben?`,`Leo has <b>${n}</b> cubes and builds one cuboid with them. Which measurements can it have?`,`Leo tiene <b>${n}</b> cubitos y construye un prisma. ¿Qué medidas puede tener?`)),'',[c,...w],c,null,`<b>${c} = ${n}</b>`,
+        tx(t3('Rechne bei jeder Antwort das Produkt aus.','Work out the product for each answer.','Calcula el producto de cada respuesta.')));}},
+    wf_wasser:{l:t3('Wasser wiegen','Weighing water','Pesar agua'),f(){if(Math.random()<.5){const [o,l]=pick([[t3('ein Aquarium','A fish tank','Un acuario'),pick([40,60,80,120])],[t3('ein Planschbecken','A paddling pool','Una piscina hinchable'),pick([200,300,450])],[t3('eine Gießkanne','A watering can','Una regadera'),pick([5,8,10])],[t3('ein Eimer','A bucket','Un cubo'),pick([10,12])]]);
+        return numTask(tx(t3(`${tx(o).replace(/^./,c=>c.toUpperCase())} fasst <b>${l} l</b> Wasser. Wie schwer ist das Wasser?`,`${tx(o)} holds <b>${l} l</b> of water. How heavy is the water?`,`${tx(o)} contiene <b>${l} l</b> de agua. ¿Cuánto pesa el agua?`)),'',l,`<b>${l} kg</b>`,tx(t3('1 l Wasser wiegt 1 kg.','1 l of water weighs 1 kg.','1 l de agua pesa 1 kg.')),'kg');}
+      const ml=pick([125,200,250,330,500,750]);return numTask(tx(t3(`Ein Glas mit <b>${ml} ml</b> Wasser. Wie viel wiegt das Wasser?`,`A glass with <b>${ml} ml</b> of water. How much does the water weigh?`,`Un vaso con <b>${ml} ml</b> de agua. ¿Cuánto pesa el agua?`)),'',ml,`<b>${ml} g</b>`,
+        tx(t3('1 l = 1 000 ml wiegt 1 kg = 1 000 g. Also wiegt 1 ml genau 1 g.','1 l = 1,000 ml weighs 1 kg = 1,000 g. So 1 ml weighs exactly 1 g.','1 l = 1 000 ml pesa 1 kg = 1 000 g. Así que 1 ml pesa 1 g.')),'g');}}
+  },
+  riddles:{
+    turm(){const n=rnd(2,5);return {title:tx(t3('Der große Würfel','The big cube','El cubo grande')),text:tx(t3(`Leo baut einen großen Würfel. Er ist ${n} kleine Würfel lang, ${n} breit und ${n} hoch. Wie viele kleine Würfel braucht er?`,`Leo builds a big cube. It is ${n} small cubes long, ${n} wide and ${n} high. How many small cubes does he need?`,`Leo construye un cubo grande de ${n} cubitos de largo, ${n} de ancho y ${n} de alto. ¿Cuántos cubitos necesita?`)),
+      f:[[tx(t3('Würfel','Cubes','Cubitos')),n*n*n]],hint:`${n} · ${n} · ${n}`,ans:String(n*n*n),expl:`${n} · ${n} · ${n} = ${n*n*n}`};},
+    schachtel(){const a=pick([4,5,6]),b=pick([3,4]),c=pick([2,3]),k=pick([2,3,4]);return {title:tx(t3('Die Zuckerdose','The sugar box','La caja de azúcar')),text:tx(t3(`In eine Schachtel passen unten ${a} · ${b} Zuckerwürfel, und es gibt ${c} Lagen. Leo nimmt jeden Tag ${k} Stück für seinen Tee. Für wie viele Tage reicht die volle Schachtel?`,`A box holds ${a} · ${b} sugar cubes on the bottom, and there are ${c} layers. Leo takes ${k} cubes for his tea every day. How many days does a full box last?`,`En una caja caben abajo ${a} · ${b} terrones de azúcar y hay ${c} capas. Leo toma ${k} cada día para su té. ¿Para cuántos días llega la caja llena?`)),
+      f:[[tx(t3('Tage','Days','Días')),Math.floor(a*b*c/k)]],hint:tx(t3(`Erst alle Zuckerwürfel zählen: ${a} · ${b} · ${c}.`,`First count all the sugar cubes: ${a} · ${b} · ${c}.`,`Primero cuenta todos los terrones: ${a} · ${b} · ${c}.`)),ans:String(Math.floor(a*b*c/k)),expl:`${a} · ${b} · ${c} = ${a*b*c}; ${a*b*c} : ${k} = ${Math.floor(a*b*c/k)}${a*b*c%k?` ${tx(t3('Rest','R','resto'))} ${a*b*c%k}`:''}`};},
+    fehlt(){const a=rnd(3,5),b=rnd(2,4),c=rnd(2,4),have=a*b*c-rnd(3,9);return {title:tx(t3('Es fehlen Würfel','Cubes missing','Faltan cubitos')),text:tx(t3(`Leo möchte einen Quader bauen: ${a} lang, ${b} breit, ${c} hoch. Er hat aber nur ${have} Würfel. Wie viele fehlen ihm noch?`,`Leo wants to build a cuboid: ${a} long, ${b} wide, ${c} high. But he only has ${have} cubes. How many more does he need?`,`Leo quiere construir un prisma de ${a} de largo, ${b} de ancho y ${c} de alto. Pero solo tiene ${have} cubitos. ¿Cuántos le faltan?`)),
+      f:[[tx(t3('Würfel','Cubes','Cubitos')),a*b*c-have]],hint:`${a} · ${b} · ${c} = ?`,ans:String(a*b*c-have),expl:`${a*b*c} − ${have} = ${a*b*c-have}`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Der bunte Würfel','The painted cube','El cubo pintado')),text:tx(t3('Leo baut aus 27 kleinen Würfeln einen großen Würfel (3 · 3 · 3) und malt ihn außen rot an. Dann nimmt er ihn wieder auseinander. Wie viele kleine Würfel haben gar keine Farbe abbekommen?','Leo builds a big cube (3 · 3 · 3) from 27 small cubes and paints the outside red. Then he takes it apart again. How many small cubes got no paint at all?','Leo construye un cubo grande (3 · 3 · 3) con 27 cubitos y lo pinta de rojo por fuera. Luego lo desmonta. ¿Cuántos cubitos no tienen nada de pintura?')),f:[[tx(t3('Würfel','Cubes','Cubitos')),1]],
+      hint:tx(t3('Welcher Würfel liegt ganz innen und berührt keine Außenseite?','Which cube lies right inside and touches no outer face?','¿Qué cubito está justo dentro y no toca ninguna cara exterior?')),ans:'1',expl:tx(t3('Nur der Würfel in der Mitte bleibt ohne Farbe.','Only the cube in the very middle stays unpainted.','Solo el cubito del centro queda sin pintar.'))}),
+    ()=>({title:tx(t3('Drei Farben','Three colours','Tres colores')),text:tx(t3('Beim selben bunten Würfel aus 27 Würfeln: Wie viele kleine Würfel haben an genau 3 Seiten Farbe?','With the same painted cube made of 27 cubes: how many small cubes have paint on exactly 3 faces?','Con el mismo cubo pintado de 27 cubitos: ¿cuántos cubitos tienen pintura en exactamente 3 caras?')),f:[[tx(t3('Würfel','Cubes','Cubitos')),8]],
+      hint:tx(t3('Denk an die Ecken.','Think of the corners.','Piensa en las esquinas.')),ans:'8',expl:tx(t3('Ein Würfel hat 8 Ecken.','A cube has 8 corners.','Un cubo tiene 8 esquinas.'))}),
+    ()=>({title:tx(t3('Der größte Würfel','The biggest cube','El cubo más grande')),text:tx(t3('Leo hat 70 kleine Würfel. Er baut daraus den größten Würfel, der geht (gleich lang, breit und hoch). Wie viele kleine Würfel bleiben übrig?','Leo has 70 small cubes. He builds the biggest possible cube (same length, width and height). How many small cubes are left over?','Leo tiene 70 cubitos. Construye el cubo más grande posible (igual de largo, ancho y alto). ¿Cuántos cubitos sobran?')),f:[[tx(t3('Würfel','Cubes','Cubitos')),6]],
+      hint:'3 · 3 · 3 = 27, 4 · 4 · 4 = ?',ans:'6',expl:'4 · 4 · 4 = 64; 70 − 64 = 6'})
+  ]
+});
+}
+
+/* =========================================================
+   LESSON: Größen umrechnen
+   ========================================================= */
+{
+const cap=s=>s.replace(/^./,c=>c.toUpperCase());
+const twoIn=(u1,u2)=>`<div class="eq">${numIn(true)}<span class="op">${u1}</span>${numIn(true)}<span class="op">${u2}</span></div>`;
+const two=(q,pre,a,b,sol,hint,u1,u2)=>({q,body:(pre||'')+twoIn(u1,u2),check:v=>parseNum(v[0])===a&&parseNum(v[1])===b,perField:v=>[parseNum(v[0])===a,parseNum(v[1])===b],sol,hint,a:[String(a),String(b)]});
+const mix=(v,f,big,small)=>Math.floor(v/f)+' '+big+(v%f?' '+fmt(v%f)+' '+small:'');
+/* every kind of measure: base unit, formatters */
+const KINDS={
+  len:{b:'m',gen:()=>rnd(20,60)*50,f:[v=>fmt(v)+' m',v=>fmtDec(v/1000,3)+' km',v=>v%1000&&v>1000?mix(v,1000,'km','m'):null]},
+  wgt:{b:'g',gen:()=>rnd(20,80)*50,f:[v=>fmt(v)+' g',v=>fmtDec(v/1000,3)+' kg',v=>v%1000&&v>1000?mix(v,1000,'kg','g'):null]},
+  vol:{b:'ml',gen:()=>rnd(8,40)*125,f:[v=>fmt(v)+' ml',v=>fmtDec(v/1000,3)+' l',v=>v%1000&&v>1000?mix(v,1000,'l','ml'):null]},
+  mon:{b:'ct',gen:()=>rnd(30,190)*5,f:[v=>fmt(v)+' ct',v=>euro(v),v=>v%100&&v>100?mix(v,100,'€','ct'):null]},
+  tim:{b:'s',gen:()=>rnd(14,60)*5,f:[v=>v+' s',v=>v%60&&v>60?mix(v,60,'min','s'):null,v=>v%60===0?(v/60)+' min':null]}
+};
+function showIn(kind,v){const fs=KINDS[kind].f.map(f=>f(v)).filter(Boolean);return pick(fs);}
+const PL=[
+  [t3('Ein Schulbus ist etwa 12 ___ lang.','A school bus is about 12 ___ long.','Un autobús escolar mide unos 12 ___ de largo.'),'m',['mm','cm','m','km']],
+  [t3('Ein Bleistift ist etwa 17 ___ lang.','A pencil is about 17 ___ long.','Un lápiz mide unos 17 ___.'),'cm',['mm','cm','m','km']],
+  [t3('Eine Ameise ist etwa 5 ___ lang.','An ant is about 5 ___ long.','Una hormiga mide unos 5 ___.'),'mm',['mm','cm','m','km']],
+  [t3('Von Berlin nach Hamburg sind es etwa 300 ___.','From Berlin to Hamburg it is about 300 ___.','De Berlín a Hamburgo hay unos 300 ___.'),'km',['cm','m','km']],
+  [t3('Ein Ei wiegt etwa 60 ___.','An egg weighs about 60 ___.','Un huevo pesa unos 60 ___.'),'g',['g','kg','t']],
+  [t3('Ein Pferd wiegt etwa 500 ___.','A horse weighs about 500 ___.','Un caballo pesa unos 500 ___.'),'kg',['g','kg','t']],
+  [t3('Ein großes Schiff wiegt etwa 20 000 ___.','A big ship weighs about 20,000 ___.','Un barco grande pesa unas 20 000 ___.'),'t',['g','kg','t']],
+  [t3('In eine Tasse passen etwa 200 ___ Kakao.','A cup holds about 200 ___ of cocoa.','En una taza caben unos 200 ___ de cacao.'),'ml',['ml','l']],
+  [t3('In eine Badewanne passen etwa 150 ___ Wasser.','A bathtub holds about 150 ___ of water.','En una bañera caben unos 150 ___ de agua.'),'l',['ml','l']],
+  [t3('Eine Schulstunde dauert 45 ___.','A school lesson lasts 45 ___.','Una clase dura 45 ___.'),'min',['s','min','h']],
+  [t3('Ein 50-m-Sprint dauert etwa 9 ___.','A 50 m sprint takes about 9 ___.','Una carrera de 50 m dura unos 9 ___.'),'s',['s','min','h']],
+  [t3('Eine Nacht Schlaf dauert etwa 10 ___.','A night’s sleep lasts about 10 ___.','Una noche de sueño dura unas 10 ___.'),'h',['s','min','h']],
+  [t3('Ein Fahrrad kostet etwa 300 ___.','A bike costs about 300 ___.','Una bici cuesta unos 300 ___.'),'€',['ct','€']],
+  [t3('Ein Kaugummi kostet etwa 50 ___.','A chewing gum costs about 50 ___.','Un chicle cuesta unos 50 ___.'),'ct',['ct','€']]
+];
+const GR=[
+  [()=>t3('In unserer Stadt wohnen etwa 85 000 Menschen.','About 85,000 people live in our town.','En nuestra ciudad viven unas 85 000 personas.'),'r'],
+  [()=>t3(`Das Busticket kostet ${euro(290)}.`,`The bus ticket costs ${euro(290)}.`,`El billete de autobús cuesta ${euro(290)}.`),'e'],
+  [()=>t3('Zum Fußballspiel kamen rund 40 000 Fans.','Around 40,000 fans came to the football match.','Al partido vinieron unos 40 000 aficionados.'),'r'],
+  [()=>t3('In Leos Klasse sind 24 Kinder.','There are 24 children in Leo’s class.','En la clase de Leo hay 24 niños.'),'e'],
+  [()=>t3('Bis zum Meer sind es ungefähr 300 km.','It is roughly 300 km to the sea.','Hasta el mar hay unos 300 km.'),'r'],
+  [()=>t3(`Die Hose kostet ${euro(1999)}.`,`The trousers cost ${euro(1999)}.`,`El pantalón cuesta ${euro(1999)}.`),'e'],
+  [()=>t3('Ein Blauwal wird fast 30 m lang.','A blue whale grows nearly 30 m long.','Una ballena azul llega a medir casi 30 m.'),'r'],
+  [()=>t3('Leos Hausnummer ist 17.','Leo’s house number is 17.','El número de la casa de Leo es el 17.'),'e'],
+  [()=>t3('Die Fahrt dauert ca. 2 Stunden.','The journey takes approx. 2 hours.','El viaje dura aprox. 2 horas.'),'r'],
+  [()=>t3('Das Spiel endete 3 : 2.','The match ended 3 : 2.','El partido terminó 3 : 2.'),'e'],
+  [()=>t3('Im Glas sind 37 Murmeln.','There are 37 marbles in the jar.','En el bote hay 37 canicas.'),'e'],
+  [()=>t3('Ein Elefant wiegt etwa 5 t.','An elephant weighs about 5 t.','Un elefante pesa unas 5 t.'),'r']
+];
+const EX=()=>tx(t3('genau','exact','exacto')),RO=()=>tx(t3('gerundet','rounded','redondeado'));
+const NW=x=>`<span style="white-space:nowrap">${x}</span>`;
+const TABLE=()=>{const r=(k,a)=>`<div style="display:grid;grid-template-columns:7.5em 1fr;gap:6px;align-items:start;padding:5px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 12%,transparent)"><b>${tx(k)}</b><span>${a.map(NW).join('<br>')}</span></div>`;return `<div style="font-size:1.05rem;line-height:1.35;width:100%;max-width:340px;text-align:left">`+
+  r(t3('Geld','Money','Dinero'),['1 € = 100 ct'])+r(t3('Länge','Length','Longitud'),[`1 km = ${fmt(1000)} m`,'1 m = 100 cm','1 cm = 10 mm'])+
+  r(t3('Gewicht','Weight','Peso'),[`1 t = ${fmt(1000)} kg`,`1 kg = ${fmt(1000)} g`])+r(t3('Rauminhalt','Volume','Capacidad'),[`1 l = ${fmt(1000)} ml`])+
+  r(t3('Zeit','Time','Tiempo'),[`1 ${tx(t3('Tag','day','día'))} = 24 h`,'1 h = 60 min','1 min = 60 s'])+`</div>`;};
+defLesson('convert',{
+  h1:t3('Größen <span>umrechnen</span>','Converting <span>measures</span>','Convertir <span>medidas</span>'),
+  intro:t3('Hallo! Euro, Meter, Kilogramm, Liter und Minuten: Das sind alles Größen. Heute springst du sicher zwischen allen Einheiten hin und her.',
+    'Hi! Euros, metres, kilograms, litres and minutes: these are all measures. Today you learn to jump safely between all the units.',
+    '¡Hola! Euros, metros, kilos, litros y minutos: todo son medidas. Hoy aprendes a saltar con seguridad entre todas las unidades.'),
+  steps:[
+    {t:t3('Alle Größen auf einen Blick','All measures at a glance','Todas las medidas de un vistazo'),v:TABLE,
+     say:t3('Jede Größe hat ihre eigene Umrechnungszahl. Beim Geld ist es 100, bei Kilometer, Kilogramm und Liter meistens 1 000. Bei der Zeit ist es 60 oder 24.',
+       'Every measure has its own conversion number. For money it is 100, for kilometres, kilograms and litres mostly 1,000. For time it is 60 or 24.',
+       'Cada medida tiene su número de conversión. Para el dinero es 100; para kilómetros, kilos y litros casi siempre 1 000. Para el tiempo es 60 o 24.')},
+    {t:t3('Achtung, kleine Reste!','Watch out for small leftovers!','¡Ojo con los restos pequeños!'),eq:()=>`4 € 5 ct = 405 ct · 2 km 30 m = ${fmt(2030)} m`,v:()=>card('4 € 5 ct','b')+arrowSym('=')+card('405 ct','g'),
+     say:t3('4 Euro und 5 Cent sind 405 Cent, nicht 45 Cent! Der Rest braucht die richtigen Stellen. Genauso sind 2 Kilometer und 30 Meter 2 030 Meter.',
+       '4 euros and 5 cents are 405 cents, not 45 cents! The leftover needs the right places. In the same way, 2 kilometres and 30 metres are 2,030 metres.',
+       '4 euros y 5 céntimos son 405 céntimos, ¡no 45! El resto necesita sus cifras. Igual que 2 kilómetros y 30 metros son 2 030 metros.')},
+    {t:t3('Zeit ist anders','Time is different','El tiempo es distinto'),eq:()=>'135 min = 2 h 15 min · 200 s = 3 min 20 s',v:()=>card('135 min','b')+arrowSym('=')+card('2 h 15 min','r'),
+     say:t3('Bei der Zeit bündelt man immer 60. In 135 Minuten stecken zwei volle Stunden, das sind 120 Minuten. Es bleiben 15 Minuten übrig. Also 2 Stunden 15 Minuten.',
+       'With time you always bundle 60. 135 minutes contain two full hours, which is 120 minutes. 15 minutes are left. So 2 hours 15 minutes.',
+       'Con el tiempo siempre se agrupa de 60 en 60. En 135 minutos hay dos horas enteras, que son 120 minutos. Sobran 15 minutos. O sea 2 horas y 15 minutos.')},
+    {t:t3('Größen ordnen','Ordering measures','Ordenar medidas'),eq:()=>`${fmtDec(1.2,1)} km = ${fmt(1200)} m · 1 km 50 m = ${fmt(1050)} m · ${fmt(1300)} m`,v:()=>card(fmt(1050)+' m','g')+arrowSym('&lt;')+card(fmt(1200)+' m','b')+arrowSym('&lt;')+card(fmt(1300)+' m','r'),
+     say:t3('Welche Strecke ist am längsten: 1,2 Kilometer, 1 Kilometer 50 Meter oder 1 300 Meter? Leo schreibt alles in Metern: 1 200, 1 050 und 1 300. Jetzt sieht man es sofort.',
+       'Which distance is the longest: 1.2 kilometres, 1 kilometre 50 metres or 1,300 metres? Leo writes everything in metres: 1,200, 1,050 and 1,300. Now you see it at once.',
+       '¿Qué distancia es la más larga: 1,2 kilómetros, 1 kilómetro 50 metros o 1 300 metros? Leo lo pasa todo a metros: 1 200, 1 050 y 1 300. Ahora se ve enseguida.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('Kann das stimmen?','Can that be right?','¿Puede ser cierto?'),v:()=>card('🐕 30 g?','r')+arrowSym('→')+card('30 kg','g'),
+     say:t3('Bevor du rechnest, frag dich: Passt die Zahl zur Sache? Ein Hund mit 30 Gramm wäre leichter als ein Ei. 30 Kilogramm passt viel besser.',
+       'Before you calculate, ask yourself: does the number fit the thing? A dog weighing 30 grams would be lighter than an egg. 30 kilograms fits much better.',
+       'Antes de calcular, pregúntate: ¿encaja el número con la cosa? Un perro de 30 gramos pesaría menos que un huevo. 30 kilos encaja mucho mejor.')}
+  ],
+  remember:()=>({rule:[['1 € = 100 ct'],[`1 km = ${fmt(1000)} m`,'1 m = 100 cm','1 cm = 10 mm'],[`1 t = ${fmt(1000)} kg`,`1 kg = ${fmt(1000)} g`],[`1 l = ${fmt(1000)} ml`],[`1 ${tx(t3('Tag','day','día'))} = 24 h`,'1 h = 60 min','1 min = 60 s']].map(g=>g.map(x=>x.replace(/ /g,'&nbsp;')).join(' · ')).join('<br>'),
+    p:tx(t3('Zum Vergleichen schreibst du alles in derselben Einheit.','To compare, write everything in the same unit.','Para comparar, escríbelo todo en la misma unidad.')),ways:''}),
+  quiz:{
+    euro(){const e=rnd(1,9),c=pick([5,8,40,75,99,3]);return mkQ(tx(t3(`Wie viele Cent sind ${e} € ${c} ct?`,`How many cents are ${e} € ${c} ct?`,`¿Cuántos céntimos son ${e} € ${c} ct?`)),(e*100+c)+' ct',[`${e}${c} ct`,`${e*10+c} ct`,`${e*1000+c} ct`].filter(x=>x!==(e*100+c)+' ct'),'1 € = 100 ct');},
+    mm(){const c=rnd(3,40);return mkQ(tx(t3(`Wie viele Millimeter sind ${c} cm?`,`How many millimetres are ${c} cm?`,`¿Cuántos milímetros son ${c} cm?`)),(c*10)+' mm',[c*100,c+10,c*1000].map(x=>fmt(x)+' mm'),'1 cm = 10 mm');},
+    time(){const m=rnd(65,190);return mkQ(tx(t3(`Wie viel sind ${m} min?`,`How much is ${m} min?`,`¿Cuánto son ${m} min?`)),dur2(m),[`${Math.floor(m/100)} h ${m%100} min`,`${Math.floor(m/60)+1} h ${m%60} min`,`${Math.floor(m/60)} h ${(m%60+10)%60} min`],'1 h = 60 min');},
+    plaus(){const [s,u,opts]=pick(PL);return mkQ(tx(s).replace('___','?'),u,opts,tx(t3('Stell dir die Sache vor.','Picture the thing.','Imagina la cosa.')));}
+  },
+  gen:{
+    gu_geld:{l:t3('Euro und Cent','Euros and cents','Euros y céntimos'),f(){const t=rnd(0,2);
+      if(t===0){const e=rnd(1,19),c=pick([rnd(1,9),rnd(10,99)]);return numTask(tx(t3(`Wie viele Cent sind <b>${e} € ${c} ct</b>?`,`How many cents are <b>${e} € ${c} ct</b>?`,`¿Cuántos céntimos son <b>${e} € ${c} ct</b>?`)),'',e*100+c,`<b>${fmt(e*100+c)} ct</b>`,tx(t3(`1 € = 100 ct. Achte auf die Stellen${c<10?`: ${c} ct sind 0${c}`:''}.`,`1 € = 100 ct. Mind the places${c<10?`: ${c} ct is 0${c}`:''}.`,`1 € = 100 ct. Cuidado con las cifras${c<10?`: ${c} ct son 0${c}`:''}.`)),'ct');}
+      const c=rnd(101,1999);if(t===1)return decTask(tx(t3(`Schreibe <b>${fmt(c)} ct</b> in Euro mit Komma.`,`Write <b>${fmt(c)} ct</b> in euros with a decimal point.`,`Escribe <b>${fmt(c)} ct</b> en euros con coma.`)),'',c/100,`<b>${euro(c)}</b>`,tx(t3('Die letzten 2 Ziffern sind die Cent, sie kommen hinter das Komma.','The last 2 digits are the cents, they go after the point.','Las 2 últimas cifras son los céntimos, van después de la coma.')),'€');
+      return numTask(tx(t3(`Wie viele Cent sind <b>${euro(c)}</b>?`,`How many cents are <b>${euro(c)}</b>?`,`¿Cuántos céntimos son <b>${euro(c)}</b>?`)),'',c,`<b>${fmt(c)} ct</b>`,tx(t3('Komma weg, fertig: Euro und Cent hintereinander geschrieben.','Remove the point: euros and cents written one after the other.','Quita la coma: euros y céntimos uno detrás del otro.')),'ct');}},
+    gu_laenge:{l:t3('Längen umrechnen','Converting lengths','Convertir longitudes'),f(){const t=rnd(0,4);
+      if(t===0){const k=rnd(1,9),m=pick([rnd(1,99),rnd(100,999)]);return numTask(tx(t3(`Wie viele Meter sind <b>${k} km ${m} m</b>?`,`How many metres are <b>${k} km ${m} m</b>?`,`¿Cuántos metros son <b>${k} km ${m} m</b>?`)),'',k*1000+m,`<b>${fmt(k*1000+m)} m</b>`,'1 km = 1 000 m'.replace('1 000',fmt(1000)),'m');}
+      if(t===1){const m=rnd(1,20),c=rnd(1,99);return numTask(tx(t3(`Wie viele Zentimeter sind <b>${m} m ${c} cm</b>?`,`How many centimetres are <b>${m} m ${c} cm</b>?`,`¿Cuántos centímetros son <b>${m} m ${c} cm</b>?`)),'',m*100+c,`<b>${fmt(m*100+c)} cm</b>`,'1 m = 100 cm','cm');}
+      if(t===2){const c=rnd(1,50),mm=rnd(1,9);return numTask(tx(t3(`Wie viele Millimeter sind <b>${c} cm ${mm} mm</b>?`,`How many millimetres are <b>${c} cm ${mm} mm</b>?`,`¿Cuántos milímetros son <b>${c} cm ${mm} mm</b>?`)),'',c*10+mm,`<b>${c*10+mm} mm</b>`,'1 cm = 10 mm','mm');}
+      if(t===3){const m=rnd(1,9)*1000+rnd(1,99)*10;return decTask(tx(t3(`Schreibe <b>${fmt(m)} m</b> in Kilometern mit Komma.`,`Write <b>${fmt(m)} m</b> in kilometres with a decimal point.`,`Escribe <b>${fmt(m)} m</b> en kilómetros con coma.`)),'',m/1000,`<b>${fmtDec(m/1000,3)} km</b>`,tx(t3('Nach dem Komma stehen 3 Stellen für die Meter.','After the point there are 3 digits for the metres.','Después de la coma hay 3 cifras para los metros.')),'km');}
+      const c=rnd(101,999);return decTask(tx(t3(`Schreibe <b>${c} cm</b> in Metern mit Komma.`,`Write <b>${c} cm</b> in metres with a decimal point.`,`Escribe <b>${c} cm</b> en metros con coma.`)),'',c/100,`<b>${fmtDec(c/100,2)} m</b>`,tx(t3('Nach dem Komma stehen 2 Stellen für die Zentimeter.','After the point there are 2 digits for the centimetres.','Después de la coma hay 2 cifras para los centímetros.')),'m');}},
+    gu_zeit:{l:t3('Zeit bündeln','Bundling time','Agrupar el tiempo'),f(){if(Math.random()<.5){let m=rnd(61,299);while(m%60===0)m=rnd(61,299);return two(tx(t3(`Schreibe <b>${m} min</b> in Stunden und Minuten.`,`Write <b>${m} min</b> in hours and minutes.`,`Escribe <b>${m} min</b> en horas y minutos.`)),'',Math.floor(m/60),m%60,`<b>${Math.floor(m/60)} h ${m%60} min</b>`,
+        tx(t3(`Wie viele volle 60er stecken in ${m}?`,`How many full 60s are in ${m}?`,`¿Cuántos 60 enteros hay en ${m}?`)),'h','min');}
+      let s=rnd(61,359);while(s%60===0)s=rnd(61,359);return two(tx(t3(`Schreibe <b>${s} s</b> in Minuten und Sekunden.`,`Write <b>${s} s</b> in minutes and seconds.`,`Escribe <b>${s} s</b> en minutos y segundos.`)),'',Math.floor(s/60),s%60,`<b>${Math.floor(s/60)} min ${s%60} s</b>`,
+        tx(t3('1 min = 60 s. Zähle 60, 120, 180, … ','1 min = 60 s. Count 60, 120, 180, …','1 min = 60 s. Cuenta 60, 120, 180, …')),'min','s');}},
+    gu_klein:{l:t3('In die kleine Einheit','Into the small unit','A la unidad pequeña'),f(){const t=rnd(0,5),D1=tx(t3('Tag','day','día')),DN=tx(t3('Tage','days','días'));
+      const [B,B1,S,f,a,b]=[['t','t','kg',1000,rnd(1,9),rnd(1,999)],['kg','kg','g',1000,rnd(1,9),rnd(1,999)],['l','l','ml',1000,rnd(1,9),rnd(1,999)],['h','h','min',60,rnd(1,9),rnd(1,59)],[DN,D1,'h',24,rnd(2,6),rnd(1,23)],['min','min','s',60,rnd(1,9),rnd(1,59)]][t],v=a*f+b;
+      return numTask(tx(t3(`Rechne um: <b>${a} ${B} ${b} ${S}</b> = ? ${S}`,`Convert: <b>${a} ${B} ${b} ${S}</b> = ? ${S}`,`Convierte: <b>${a} ${B} ${b} ${S}</b> = ? ${S}`)),'',v,`${a} · ${fmt(f)} + ${b} = <b>${fmt(v)} ${S}</b>`,`1 ${B1} = ${fmt(f)} ${S}`,S);}},
+    gu_ordnen:{l:t3('Größen vergleichen','Comparing measures','Comparar medidas'),f(){const kind=pick(Object.keys(KINDS)),K=KINDS[kind],vals=new Set();while(vals.size<4)vals.add(K.gen());const vs=[...vals],big=Math.random()<.5,ans=big?Math.max(...vs):Math.min(...vs);
+      const shown=vs.map(v=>[v,showIn(kind,v)]),opts=shown.map(x=>x[1]),a=shown.find(x=>x[0]===ans)[1];
+      return mcTask(big?tx(t3('Was ist <b>am meisten</b>?','Which is <b>the most</b>?','¿Qué es <b>lo mayor</b>?')):tx(t3('Was ist <b>am wenigsten</b>?','Which is <b>the least</b>?','¿Qué es <b>lo menor</b>?')),'',opts,a,null,
+        shown.sort((x,y)=>x[0]-y[0]).map(x=>`${x[1]} = ${fmt(x[0])} ${K.b}`).join('<br>'),tx(t3(`Schreib alles in ${K.b}.`,`Write everything in ${K.b}.`,`Escríbelo todo en ${K.b}.`)));}},
+    gu_passt:{l:t3('Was passt?','What fits?','¿Qué encaja?'),f(){const [s,u,opts]=pick(PL);return mcTask(tx(s).replace('___','<b>?</b>'),'',opts,u,null,`<b>${tx(s).replace('___',u)}</b>`,tx(t3('Stell dir die Sache vor: klein, mittel oder riesig?','Picture the thing: small, medium or huge?','Imagina la cosa: ¿pequeña, mediana o enorme?')));}},
+    gu_gerundet:{l:t3('Genau oder gerundet?','Exact or rounded?','¿Exacto o redondeado?'),f(){const [s,k]=pick(GR),txt=tx(s()),a=k==='e'?EX():RO();return mcTask(tx(t3('Ist die Zahl <b>genau</b> oder <b>gerundet</b>?','Is the number <b>exact</b> or <b>rounded</b>?','¿El número es <b>exacto</b> o <b>redondeado</b>?')),`<p class="bignum" style="font-size:1.25rem">${txt}</p>`,[EX(),RO()],a,null,`<b>${a}</b>`,
+      tx(t3('Wörter wie etwa, rund, ungefähr, fast oder ca. zeigen: gerundet. Preise, Hausnummern und Ergebnisse sind genau.','Words like about, around, roughly, nearly or approx. show: rounded. Prices, house numbers and scores are exact.','Palabras como unos, alrededor, casi o aprox. indican: redondeado. Precios, números de casa y resultados son exactos.')));}},
+    gu_wasser:{l:t3('Rechnen mit Wasser','Calculating with water','Calcular con agua'),f(){const t=rnd(0,3);
+      if(t===0){const n=rnd(2,5),k=pick([8,10,12]);return numTask(tx(t3(`Leo gießt den Garten jeden Tag mit <b>${n}</b> Kannen zu je <b>${k} l</b>. Wie viele Liter sind das in einer Woche?`,`Leo waters the garden every day with <b>${n}</b> cans of <b>${k} l</b> each. How many litres is that in one week?`,`Leo riega el jardín cada día con <b>${n}</b> regaderas de <b>${k} l</b>. ¿Cuántos litros son en una semana?`)),'',7*n*k,`7 · ${n} · ${k} = <b>${7*n*k} l</b>`,tx(t3('Erst ein Tag, dann mal 7.','First one day, then times 7.','Primero un día, luego por 7.')),'l');}
+      if(t===1){const p=rnd(2,6);return numTask(tx(t3(`Ein Mensch braucht etwa <b>125 l</b> Wasser am Tag. Wie viel braucht eine Familie mit <b>${p}</b> Personen am Tag?`,`A person uses about <b>125 l</b> of water a day. How much does a family of <b>${p}</b> use per day?`,`Una persona gasta unos <b>125 l</b> de agua al día. ¿Cuánto gasta al día una familia de <b>${p}</b> personas?`)),'',125*p,`${p} · 125 = <b>${fmt(125*p)} l</b>`,`${p} · 125`,'l');}
+      if(t===2){const m=pick([2,3]),l=pick([5,6,8]);return numTask(tx(t3(`Beim Zähneputzen läuft der Hahn: <b>${l} l</b> pro Minute. Leo putzt <b>${m} Minuten</b>, morgens und abends. Wie viele Liter fließen am Tag weg?`,`The tap runs while brushing teeth: <b>${l} l</b> per minute. Leo brushes for <b>${m} minutes</b>, morning and evening. How many litres run away each day?`,`El grifo corre mientras Leo se cepilla: <b>${l} l</b> por minuto. Se cepilla <b>${m} minutos</b>, por la mañana y por la noche. ¿Cuántos litros se van al día?`)),'',2*m*l,`2 · ${m} · ${l} = <b>${2*m*l} l</b>`,tx(t3('Zweimal am Tag!','Twice a day!','¡Dos veces al día!')),'l');}
+      const f=pick([4,5,6]),d=rnd(3,8);return numTask(tx(t3(`Eine Toilettenspülung braucht <b>${f} l</b>. Jemand spült <b>${d}</b> Mal am Tag. Wie viele Liter sind das in 30 Tagen?`,`A toilet flush uses <b>${f} l</b>. Someone flushes <b>${d}</b> times a day. How many litres is that in 30 days?`,`Una cisterna gasta <b>${f} l</b>. Alguien tira de ella <b>${d}</b> veces al día. ¿Cuántos litros son en 30 días?`)),'',f*d*30,`${f} · ${d} · 30 = <b>${fmt(f*d*30)} l</b>`,tx(t3('Erst ein Tag, dann mal 30.','First one day, then times 30.','Primero un día, luego por 30.')),'l');}}
+  },
+  riddles:{
+    sparschwein(){const z=rnd(3,9),f=rnd(1,6)*2;return {title:tx(t3('Das Sparschwein','The piggy bank','La hucha')),text:tx(t3(`Im Sparschwein sind ${z} Münzen zu 2 € und ${f} Münzen zu 50 ct. Wie viele Euro sind es zusammen?`,`The piggy bank holds ${z} coins of 2 € and ${f} coins of 50 ct. How many euros is that altogether?`,`En la hucha hay ${z} monedas de 2 € y ${f} monedas de 50 ct. ¿Cuántos euros hay en total?`)),
+      f:[['€',2*z+f/2]],hint:tx(t3('Zwei 50-ct-Münzen sind 1 €.','Two 50 ct coins make 1 €.','Dos monedas de 50 ct son 1 €.')),ans:(2*z+f/2)+' €',expl:`${z} · 2 € + ${f} · 50 ct = ${2*z} € + ${f/2} € = ${2*z+f/2} €`};},
+    runden(){const r=pick([250,300,350,400,450]),n=rnd(3,8),m=r*n;return {title:tx(t3('Runden laufen','Running laps','Dar vueltas')),text:tx(t3(`Eine Runde um den Sportplatz ist ${r} m lang. Leo läuft ${n} Runden. Wie weit ist er gelaufen? Schreibe in km und m.`,`One lap of the sports field is ${r} m. Leo runs ${n} laps. How far did he run? Write it in km and m.`,`Una vuelta al campo mide ${r} m. Leo da ${n} vueltas. ¿Cuánto ha corrido? Escríbelo en km y m.`)),
+      f:[['km',Math.floor(m/1000)],['m',m%1000]],hint:`${n} · ${r} = ${fmt(m)} m`,ans:mix(m,1000,'km','m'),expl:`${n} · ${r} m = ${fmt(m)} m = ${mix(m,1000,'km','m')}`};},
+    lied(){const m=rnd(2,4),s=rnd(5,55),n=rnd(2,4),t=(m*60+s)*n;return {title:tx(t3('Das Lieblingslied','The favourite song','La canción favorita')),text:tx(t3(`Leos Lieblingslied dauert ${m} min ${s} s. Er hört es ${n} Mal hintereinander. Wie lange ist das in Sekunden?`,`Leo’s favourite song lasts ${m} min ${s} s. He plays it ${n} times in a row. How long is that in seconds?`,`La canción favorita de Leo dura ${m} min ${s} s. La escucha ${n} veces seguidas. ¿Cuánto es en segundos?`)),
+      f:[['s',t]],hint:`${m} min ${s} s = ${m*60+s} s`,ans:t+' s',expl:`${n} · ${m*60+s} s = ${t} s`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Wenige Münzen','Few coins','Pocas monedas')),text:tx(t3(`Leo will genau ${euro(388)} mit möglichst wenigen Münzen bezahlen. Es gibt 1 ct, 2 ct, 5 ct, 10 ct, 20 ct, 50 ct, 1 € und 2 €. Wie viele Münzen braucht er?`,`Leo wants to pay exactly ${euro(388)} with as few coins as possible. There are 1 ct, 2 ct, 5 ct, 10 ct, 20 ct, 50 ct, 1 € and 2 € coins. How many coins does he need?`,`Leo quiere pagar justo ${euro(388)} con las menos monedas posibles. Hay monedas de 1 ct, 2 ct, 5 ct, 10 ct, 20 ct, 50 ct, 1 € y 2 €. ¿Cuántas monedas necesita?`)),f:[[tx(t3('Münzen','Coins','Monedas')),8]],
+      hint:tx(t3('Nimm immer zuerst die größte Münze, die noch passt.','Always take the biggest coin that still fits first.','Coge siempre primero la moneda más grande que aún quepa.')),ans:'8',expl:'2 € + 1 € + 50 ct + 20 ct + 10 ct + 5 ct + 2 ct + 1 ct'}),
+    ()=>({title:tx(t3('Immer doppelt','Always double','Siempre el doble')),text:tx(t3('Leo schreibt vier Zahlen auf. Jede ist doppelt so groß wie die vorige. Zusammen ergeben sie 45 000. Wie heißt die kleinste Zahl?','Leo writes down four numbers. Each is twice as big as the one before. Together they make 45,000. What is the smallest number?','Leo escribe cuatro números. Cada uno es el doble del anterior. Juntos suman 45 000. ¿Cuál es el menor?')),f:[[tx(t3('Zahl','Number','Número')),3000]],
+      hint:tx(t3('Die Zahlen sind 1-mal, 2-mal, 4-mal und 8-mal die kleinste. Wie oft also insgesamt?','The numbers are 1, 2, 4 and 8 times the smallest. So how many times in total?','Los números son 1, 2, 4 y 8 veces el menor. ¿Cuántas veces en total?')),ans:fmt(3000),expl:`1 + 2 + 4 + 8 = 15; ${fmt(45000)} : 15 = ${fmt(3000)}`}),
+    ()=>({title:tx(t3('Steine wegnehmen','Taking counters away','Quitar fichas')),text:tx(t3('Auf einem Feld mit 5 Reihen und 5 Spalten liegt auf jedem Platz ein Stein. Leo nimmt Steine weg, bis in jeder Reihe und jeder Spalte genau 3 Steine liegen. Wie viele Steine nimmt er weg?','On a board with 5 rows and 5 columns there is a counter on every square. Leo takes counters away until every row and every column has exactly 3 counters. How many does he take away?','En un tablero de 5 filas y 5 columnas hay una ficha en cada casilla. Leo quita fichas hasta que en cada fila y cada columna haya exactamente 3. ¿Cuántas quita?')),f:[[tx(t3('Steine','Counters','Fichas')),10]],
+      hint:tx(t3('Wie viele Steine bleiben am Ende liegen? 5 Reihen mit je 3.','How many counters stay at the end? 5 rows of 3.','¿Cuántas fichas quedan al final? 5 filas de 3.')),ans:'10',expl:'25 − 5 · 3 = 10'})
+  ]
+});
+function dur2(m){return `${Math.floor(m/60)} h ${m%60} min`;}
 }
 
 function renderLesson(){
@@ -3136,8 +3358,8 @@ const LESSON={id:'million'};
 /* our own curriculum structure, grouped by maths areas */
 const LESSONS=[
   {id:'million',area:'num',open:true},{id:'bigcalc',area:'num'},{id:'numline',area:'num'},{id:'patterns',area:'num'},{id:'rounding',area:'num'},{id:'mult',area:'num'},{id:'div',area:'num'},
-  {id:'angles',area:'geo'},{id:'quads',area:'geo'},{id:'tiles',area:'geo'},{id:'area',area:'geo'},
-  {id:'weights',area:'meas'},{id:'lengths',area:'meas'},{id:'volume',area:'meas'},{id:'time',area:'meas'},
+  {id:'angles',area:'geo'},{id:'quads',area:'geo'},{id:'tiles',area:'geo'},{id:'area',area:'geo'},{id:'cubes',area:'geo'},
+  {id:'weights',area:'meas'},{id:'lengths',area:'meas'},{id:'volume',area:'meas'},{id:'time',area:'meas'},{id:'convert',area:'meas'},
   {id:'charts',area:'data'},{id:'chance',area:'data'}];
 const LEGACY_IDS={};
 function normalizeIds(){allDays().forEach(d=>['rounds','quizzes','riddles'].forEach(k=>(d[k]||[]).forEach(x=>{if(LEGACY_IDS[x.l])x.l=LEGACY_IDS[x.l];})));}

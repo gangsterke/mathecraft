@@ -5,7 +5,7 @@
 **Playful maths practice for primary school, with Leo the lion.**
 Explanations, endless practice, a number word trainer and small reward games, in German, English and Spanish.
 
-🇩🇪 [mathecraft.de](https://mathecraft.de) · 🇪🇺 [mathcraft.eu](https://mathcraft.eu) *(coming soon)*
+🇩🇪 [mathecraft.de](https://mathecraft.de)
 
 <p>
   <img src="docs/screenshots/home.png" alt="Kid area with stars and game cards" width="260">

@@ -118,6 +118,15 @@ input.carry{width:100%;height:100%;border:0;background:transparent;text-align:ce
 .qtab th{font-size:.72rem;font-weight:800;color:var(--muted);padding:4px 3px;vertical-align:bottom;text-align:center}
 .qtab td{border-top:2px solid var(--grid);padding:6px 3px;text-align:center;font-weight:700}
 .qtab td:first-child{text-align:left;font-weight:800}
+.divt{border-collapse:collapse;font:400 1.5rem var(--hand);line-height:1.15}
+.divt td{width:.75em;text-align:center;padding:0 1px}
+.divt td.w{width:auto;text-align:left;padding-left:6px;white-space:nowrap}
+.divt td.u{border-bottom:2px solid var(--ink)}
+.qcells{display:inline-flex;gap:3px}
+.qcells input.cell{width:1.6em;height:1.9em;border:2px solid var(--line);border-radius:6px;background:var(--card)}
+.ideabox{display:flex;gap:12px;align-items:flex-start;border:2px dashed var(--accent);border-radius:14px;padding:12px 14px;background:color-mix(in srgb,var(--accent) 7%,#fff)}
+a.ideabtn{display:inline-block;font:800 1rem var(--body);text-decoration:none;background:var(--accent);color:#fff;border-radius:999px;padding:8px 16px}
+a.ideabtn:focus-visible{outline:3px solid var(--btn);outline-offset:2px}
 .lsvg{width:100%;max-width:520px;height:auto;display:block;margin:0 auto}
 .stage .lsvg{max-width:560px;flex:1 1 100%;min-width:0}
 .qtext .lsvg{margin-top:8px}
@@ -390,6 +399,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <section class="card">
     <div class="sh"><h2 data-i18n="games_h"></h2></div>
     <div class="gamecard" id="gameCard"></div>
+    <div class="ideabox">
+      <span style="font-size:2rem;line-height:1" aria-hidden="true">💡</span>
+      <div style="display:grid;gap:8px;min-width:0">
+        <b data-i18n="idea_h"></b>
+        <p data-i18n="idea_p"></p>
+        <div class="btns"><a class="ideabtn" id="ideaBtn" href="mailto:info@mathecraft.de" data-i18n="idea_btn"></a></div>
+        <p class="note" data-i18n="idea_note"></p>
+      </div>
+    </div>
   </section>
   <section class="card">
     <div class="sh"><h2 data-i18n="lessons_h"></h2></div>
@@ -607,7 +625,7 @@ de:{
   /* home */
   hello:n=>`Hallo${n?' <b>'+n+'</b>':''}! Für jede richtige Aufgabe bekommst du Sterne. Mit Sternen kannst du Leos Spiele spielen.`,
   tile_stars:'Meine Sterne',tile_today:'Heute verdient',tile_min:'Heute gelernt',min:m=>`${m} Min`,
-  games_h:'Leos Spiele',lessons_h:'Meine Lektionen',lessons_sub:'Passend zum Lehrplan Mathematik, Klasse 4',trophies_h:'Meine Pokale',
+  games_h:'Leos Spiele',idea_h:'Hast du eine Idee für ein neues Spiel?',idea_p:'Erfinde dein eigenes Spiel und schick uns deine Idee! Die besten Ideen bauen wir vielleicht für Leo nach. Wichtig: Es muss deine eigene Erfindung sein. Spiele, die es schon gibt, wie Minecraft oder Fortnite, dürfen wir nicht nachbauen.',idea_btn:'✉️ Spielidee schicken',idea_note:'Öffnet eine E-Mail. Bitte zusammen mit Mama oder Papa schicken.',idea_subj:'Meine Spielidee für Leo',idea_body:'So heißt mein Spiel:\n\nSo geht es:\n\nWas Leo darin macht:\n',lessons_h:'Meine Lektionen',lessons_sub:'Passend zum Lehrplan Mathematik, Klasse 4',trophies_h:'Meine Pokale',
   loading:'Deine Sterne werden geladen …',games_off:'Die Spiele sind gerade ausgeschaltet. Frag deine Eltern.',
   can_play:(c,m)=>`Du hast genug Sterne! Ein Spiel kostet <b>${c} <span class="st">★</span></b> und dauert ${m} Minuten. Welches möchtest du spielen?`,
   need_stars:(n,m)=>`Noch <b>${n} ${n===1?'Stern':'Sterne'}</b>, dann darfst du ${m} Minuten spielen.`,
@@ -753,7 +771,7 @@ en:{
   langname:{de:'German',en:'English',es:'Spanish'},
   hello:n=>`Hi${n?' <b>'+n+'</b>':''}! You get stars for every right answer. With stars you can play Leo's games.`,
   tile_stars:'My stars',tile_today:'Earned today',tile_min:'Learned today',min:m=>`${m} min`,
-  games_h:`Leo's games`,lessons_h:'My lessons',lessons_sub:'Following the grade 4 maths curriculum',trophies_h:'My trophies',
+  games_h:`Leo's games`,idea_h:'Do you have an idea for a new game?',idea_p:'Invent your own game and send us your idea! We might build the best ideas for Leo. Important: it must be your own invention. We can’t copy games that already exist, like Minecraft or Fortnite.',idea_btn:'✉️ Send a game idea',idea_note:'Opens an email. Please send it together with a parent.',idea_subj:'My game idea for Leo',idea_body:'My game is called:\n\nHow it works:\n\nWhat Leo does in it:\n',lessons_h:'My lessons',lessons_sub:'Following the grade 4 maths curriculum',trophies_h:'My trophies',
   loading:'Loading your stars …',games_off:'Games are switched off right now. Ask your parents.',
   can_play:(c,m)=>`You have enough stars! A game costs <b>${c} <span class="st">★</span></b> and lasts ${m} minutes. Which one do you want to play?`,
   need_stars:(n,m)=>`<b>${n} more ${n===1?'star':'stars'}</b>, then you can play for ${m} minutes.`,
@@ -891,7 +909,7 @@ es:{
   langname:{de:'alemán',en:'inglés',es:'español'},
   hello:n=>`¡Hola${n?' <b>'+n+'</b>':''}! Por cada respuesta correcta ganas estrellas. Con estrellas puedes jugar a los juegos de Leo.`,
   tile_stars:'Mis estrellas',tile_today:'Ganadas hoy',tile_min:'Aprendido hoy',min:m=>`${m} min`,
-  games_h:'Los juegos de Leo',lessons_h:'Mis lecciones',lessons_sub:'Según el currículo de matemáticas de 4.º de primaria',trophies_h:'Mis trofeos',
+  games_h:'Los juegos de Leo',idea_h:'¿Tienes una idea para un juego nuevo?',idea_p:'¡Inventa tu propio juego y mándanos tu idea! Quizá construyamos las mejores para Leo. Importante: tiene que ser un invento tuyo. No podemos copiar juegos que ya existen, como Minecraft o Fortnite.',idea_btn:'✉️ Enviar idea de juego',idea_note:'Abre un correo. Envíalo junto con mamá o papá.',idea_subj:'Mi idea de juego para Leo',idea_body:'Mi juego se llama:\n\nAsí se juega:\n\nLo que hace Leo:\n',lessons_h:'Mis lecciones',lessons_sub:'Según el currículo de matemáticas de 4.º de primaria',trophies_h:'Mis trofeos',
   loading:'Cargando tus estrellas …',games_off:'Los juegos están desactivados ahora. Pregunta a tus padres.',
   can_play:(c,m)=>`¡Tienes suficientes estrellas! Un juego cuesta <b>${c} <span class="st">★</span></b> y dura ${m} minutos. ¿A cuál quieres jugar?`,
   need_stars:(n,m)=>`Te faltan <b>${n} ${n===1?'estrella':'estrellas'}</b> para jugar ${m} minutos.`,
@@ -2606,6 +2624,409 @@ defLesson('chance',{
 });
 }
 
+/* =========================================================
+   LESSON: Schriftlich teilen
+   ========================================================= */
+{
+function divSteps(n,d){const s=String(n),rows=[];let cur=0,started=false,first=true;
+  for(let i=0;i<s.length;i++){const prev=cur;cur=cur*10+ +s[i];
+    if(!started&&cur<d&&i<s.length-1)continue;
+    if(!first)rows.push({t:(prev===0?'0':String(prev))+s[i],e:i});
+    started=true;first=false;const q=Math.floor(cur/d),sub=q*d;rows.push({t:'−'+sub,e:i,u:1});cur-=sub;}
+  rows.push({t:String(cur),e:s.length-1});return rows;}
+function divHTML(n,d){const s=String(n),q=Math.floor(n/d),r=n%d,C=s.length+1,rows=divSteps(n,d);
+  const line=(t,e,u)=>{const cells=Array(C).fill('');const st=e+1-(t.length-1);[...t].forEach((ch,k)=>cells[st+k]=ch);return `<tr>${cells.map((c,k)=>`<td${u&&k>=st&&k<=e+1?' class="u"':''}>${c}</td>`).join('')}</tr>`;};
+  return `<div class="tw"><table class="divt"><tr><td></td>${[...s].map(c=>`<td>${c}</td>`).join('')}<td class="w">: ${d} = ${q}${r?` ${tx(t3('Rest','R','resto'))} ${r}`:''}</td></tr>`+rows.map(x=>line(x.t,x.e,x.u)).join('')+`</table></div>`;}
+function exact(){for(;;){const d=rnd(2,9),q=rnd(12,9999),n=q*d;if(n>=100&&n<=99999)return [n,d];}}
+function withRest(){for(;;){const d=rnd(2,9),n=rnd(100,9999);if(n%d)return [n,d];}}
+function divTask(n,d,rest){const q=Math.floor(n/d),r=n%d,s=String(n),qs=String(q),L=s.length,want=[...Array(L)].map((_,j)=>{const i=L-1-j;return qs[qs.length-1-i]||'';});
+  const cells=want.map(()=>`<input class="cell" inputmode="numeric" maxlength="1" aria-label="${tx(t3('Ziffer','digit','cifra'))}">`).join('');
+  const ok=v=>{const m=want.map((w,j)=>w===''?(v[j].trim()===''||v[j].trim()==='0'):v[j].trim()===w);if(rest)m.push(parseNum(v[L])===r);return m;};
+  return {q:tx(t3(`Rechne schriftlich: <b>${fmt(n)} : ${d}</b>`,`Work it out in writing: <b>${fmt(n)} : ${d}</b>`,`Calcula por escrito: <b>${fmt(n)} : ${d}</b>`)),
+    body:`<div class="eq"><span class="big">${s} : ${d} =</span><span class="qcells">${cells}</span>${rest?`<span class="op">${tx(t3('Rest','R','resto'))}</span>${numIn(true)}`:''}</div>`,
+    check:v=>ok(v).every(Boolean),perField:ok,sol:divHTML(n,d),a:rest?[...want,String(r)]:want,
+    hint:tx(t3(`Fang links an: Wie oft passt ${d} in ${+s[0]>=d?s[0]:s.slice(0,2)}? Den Rest nimmst du mit zur nächsten Ziffer.`,`Start on the left: how many times does ${d} go into ${+s[0]>=d?s[0]:s.slice(0,2)}? Take what is left over to the next digit.`,`Empieza por la izquierda: ¿cuántas veces cabe ${d} en ${+s[0]>=d?s[0]:s.slice(0,2)}? Lo que sobra pasa a la siguiente cifra.`))};}
+const lead=a=>{const s=String(a),k=10**(s.length-1);return Math.round(a/k)*k;};
+defLesson('div',{
+  h1:t3('Schriftlich <span>teilen</span>','Written <span>division</span>','Dividir <span>por escrito</span>'),
+  intro:t3('Hallo! Teilen heißt gerecht verteilen. Bei großen Zahlen hilft ein Trick: Wir teilen Stelle für Stelle, von links nach rechts.',
+    'Hi! Dividing means sharing fairly. With big numbers there is a trick: we divide place by place, from left to right.',
+    '¡Hola! Dividir es repartir de forma justa. Con números grandes hay un truco: dividimos posición a posición, de izquierda a derecha.'),
+  steps:[
+    {t:t3('Gerecht verteilen','Sharing fairly','Repartir de forma justa'),eq:()=>`846 : 2 = 423`,v:()=>card('8 '+AB('H'),'r')+card('4 '+AB('Z'),'b')+card('6 '+AB('E'),'g')+arrowSym(': 2')+arrowSym('=')+card('4 '+AB('H'),'r')+card('2 '+AB('Z'),'b')+card('3 '+AB('E'),'g'),
+     say:t3('Leo und Mia teilen 846 Sticker gerecht. Leo teilt jede Stelle einzeln: 8 Hunderter geteilt durch 2 sind 4 Hunderter. 4 Zehner durch 2 sind 2 Zehner. 6 Einer durch 2 sind 3 Einer. Jeder bekommt 423.',
+       'Leo and Mia share 846 stickers fairly. Leo divides each place on its own: 8 hundreds divided by 2 are 4 hundreds. 4 tens divided by 2 are 2 tens. 6 ones divided by 2 are 3 ones. Each gets 423.',
+       'Leo y Mia reparten 846 pegatinas. Leo divide cada posición por separado: 8 centenas entre 2 son 4 centenas. 4 decenas entre 2 son 2 decenas. 6 unidades entre 2 son 3 unidades. Cada uno recibe 423.')},
+    {t:t3('Der Rest wandert weiter','The remainder moves on','El resto pasa a la siguiente'),v:()=>divHTML(756,3),
+     say:t3('Bei 756 durch 3 rechnet Leo: 7 Hunderter durch 3 sind 2 Hunderter, 1 Hunderter bleibt übrig. Den wechselt er in 10 Zehner. Mit den 5 Zehnern sind das 15 Zehner. 15 durch 3 sind 5. Dann 6 Einer durch 3 sind 2. Ergebnis: 252.',
+       'For 756 divided by 3 Leo works out: 7 hundreds divided by 3 are 2 hundreds, 1 hundred is left over. He swaps it for 10 tens. With the 5 tens that makes 15 tens. 15 divided by 3 is 5. Then 6 ones divided by 3 are 2. Answer: 252.',
+       'Para 756 entre 3 Leo calcula: 7 centenas entre 3 son 2 centenas y sobra 1 centena. La cambia por 10 decenas. Con las 5 decenas son 15 decenas. 15 entre 3 son 5. Luego 6 unidades entre 3 son 2. Resultado: 252.')},
+    {t:t3('Wenn etwas übrig bleibt','When something is left over','Cuando sobra algo'),v:()=>divHTML(87,4),
+     say:t3('Manchmal geht es nicht ganz auf. 87 durch 4: 8 durch 4 sind 2, dann 7 durch 4 ist 1, und 3 bleiben übrig. Das Ergebnis ist 21 Rest 3.',
+       'Sometimes it doesn’t share out exactly. 87 divided by 4: 8 divided by 4 is 2, then 7 divided by 4 is 1, with 3 left over. The answer is 21 remainder 3.',
+       'A veces no sale exacto. 87 entre 4: 8 entre 4 son 2, luego 7 entre 4 es 1 y sobran 3. El resultado es 21 resto 3.')},
+    {t:t3('Die Probe','Checking','La prueba'),eq:()=>`252 · 3 = 756 ✔`,v:()=>card('252 · 3','b')+arrowSym('=')+card('756','g'),
+     say:t3('Ob alles stimmt, prüft Leo mit Malnehmen: 252 mal 3 ist 756. Das ist genau die Zahl vom Anfang. Bei einem Rest rechnet er ihn am Ende dazu.',
+       'Leo checks with multiplication: 252 times 3 is 756. That is exactly the number he started with. If there is a remainder, he adds it at the end.',
+       'Leo lo comprueba multiplicando: 252 por 3 son 756. Es justo el número del principio. Si hay resto, lo suma al final.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('Teilen · Malnehmen · Abziehen · Herunterholen','Divide · multiply · subtract · bring down','Dividir · multiplicar · restar · bajar'),
+     v:()=>['1','2','3','4'].map((n,i)=>card(n,['r','b','g','b'][i])).join(arrowSym('→')),
+     say:t3('Bei jeder Stelle machst du dasselbe: Teilen, wie oft es passt. Malnehmen. Abziehen. Dann die nächste Ziffer herunterholen. Und wieder von vorn.',
+       'At every place you do the same: divide to see how often it fits. Multiply. Subtract. Then bring down the next digit. And start again.',
+       'En cada posición haces lo mismo: dividir para ver cuántas veces cabe. Multiplicar. Restar. Bajar la siguiente cifra. Y otra vez desde el principio.')}
+  ],
+  remember:()=>({
+    rule:`<span>${tx(t3('Links anfangen','Start on the left','Empieza por la izquierda'))}</span><br>${tx(t3('Teilen, malnehmen, abziehen, herunterholen','Divide, multiply, subtract, bring down','Dividir, multiplicar, restar, bajar'))}<p class="rulecap">${tx(t3('Die Probe mit Malnehmen zeigt, ob dein Ergebnis stimmt.','Checking with multiplication shows whether your answer is right.','La prueba multiplicando te dice si tu resultado es correcto.'))}</p>`,
+    p:t3('So sieht es im Heft aus:','This is how it looks in your exercise book:','Así queda en el cuaderno:'),
+    ways:`<div class="way">${divHTML(756,3)}</div><div class="way">${divHTML(1478,6)}</div>`
+  }),
+  quiz:{
+    res(){const [n,d]=exact(),q=n/d;return mkQ(tx(t3(`Wie viel ist ${fmt(n)} : ${d}?`,`What is ${fmt(n)} : ${d}?`,`¿Cuánto es ${fmt(n)} : ${d}?`)),fmt(q),[q*10,Math.floor(q/10)||q+d,q+1].map(fmt),`${fmt(q)} · ${d} = ${fmt(n)}`);},
+    probe(){const [n,d]=exact(),q=n/d;return mkQ(tx(t3(`Mit welcher Aufgabe prüfst du ${fmt(n)} : ${d} = ${fmt(q)}?`,`Which sum checks ${fmt(n)} : ${d} = ${fmt(q)}?`,`¿Con qué cuenta compruebas ${fmt(n)} : ${d} = ${fmt(q)}?`)),`${fmt(q)} · ${d}`,[`${fmt(q)} + ${d}`,`${fmt(n)} · ${d}`,`${fmt(n)} − ${d}`],tx(t3('Teilen prüft man mit Malnehmen.','You check division with multiplication.','La división se comprueba multiplicando.')));},
+    rest(){const d=rnd(3,9),q=rnd(4,12),r=rnd(1,d-1),n=q*d+r;return mkQ(tx(t3(`${n} : ${d} = ?`,`${n} : ${d} = ?`,`${n} : ${d} = ?`)),`${q} ${tx(t3('Rest','R','resto'))} ${r}`,[`${q} ${tx(t3('Rest','R','resto'))} ${r+1>=d?r-1||d-1:r+1}`,`${q+1} ${tx(t3('Rest','R','resto'))} ${r}`,`${q-1} ${tx(t3('Rest','R','resto'))} ${r+d}`].filter(x=>!x.includes(' 0')),
+      `${q} · ${d} + ${r} = ${n}`);},
+    est(){const [n,d]=exact(),e=Math.round(lead(n)/d);return mkQ(tx(t3(`Welches Ergebnis von ${fmt(n)} : ${d} kann stimmen?`,`Which answer to ${fmt(n)} : ${d} can be right?`,`¿Qué resultado de ${fmt(n)} : ${d} puede ser correcto?`)),fmt(n/d),[n/d*10,Math.max(1,Math.round(n/d/10)),n/d*100].map(fmt),
+      tx(t3(`Überschlag: ${fmt(lead(n))} : ${d} ≈ ${fmt(e)}.`,`Estimate: ${fmt(lead(n))} : ${d} ≈ ${fmt(e)}.`,`Estimación: ${fmt(lead(n))} : ${d} ≈ ${fmt(e)}.`)));}
+  },
+  gen:{
+    dv_ohne:{l:t3('Ohne Rest','No remainder','Sin resto'),f(){const [n,d]=exact();return divTask(n,d,false);}},
+    dv_rest:{l:t3('Mit Rest','With remainder','Con resto'),f(){const [n,d]=withRest();return divTask(n,d,true);}},
+    dv_probe:{l:t3('Probe','Check','Prueba'),f(){const [n,d]=exact(),q=n/d,right=Math.random()<.5,shown=right?q:q+pick([1,-1,10,d]);
+      return mcTask(tx(t3('Stimmt das Ergebnis? Mach die Probe mit Malnehmen.','Is the answer right? Check it with multiplication.','¿Es correcto el resultado? Haz la prueba multiplicando.')),`<p class="bignum">${fmt(n)} : ${d} = ${fmt(shown)}</p>`,['y','n'],right?'y':'n',x=>x==='y'?YES():NO(),
+        `${fmt(shown)} · ${d} = ${fmt(shown*d)}${right?' ✔':` ≠ ${fmt(n)}`}`,tx(t3(`Rechne ${fmt(shown)} · ${d}. Kommt ${fmt(n)} heraus?`,`Work out ${fmt(shown)} · ${d}. Do you get ${fmt(n)}?`,`Calcula ${fmt(shown)} · ${d}. ¿Da ${fmt(n)}?`)));}},
+    dv_euro:{l:t3('Geld teilen','Sharing money','Repartir dinero'),f(){const d=rnd(2,6),q=rnd(105,1999),c=q*d;
+      return decTask(tx(t3(`${d} Kinder teilen sich <b>${euro(c)}</b> gerecht. Wie viel bekommt jedes Kind?`,`${d} children share <b>${euro(c)}</b> fairly. How much does each child get?`,`${d} niños se reparten <b>${euro(c)}</b> a partes iguales. ¿Cuánto recibe cada uno?`)),'',q/100,`${c} ct : ${d} = ${q} ct = <b>${euro(q)}</b>`,
+        tx(t3('Rechne in Cent und setze am Ende das Komma.','Work in cents and put the point back at the end.','Calcula en céntimos y pon la coma al final.')),'€');}},
+    dv_sach:{l:t3('Sachaufgabe','Word problem','Problema'),f(){const ctx=pick([[t3('Bonbons','sweets','caramelos'),t3('Tüten','bags','bolsas')],[t3('Eier','eggs','huevos'),t3('Kartons','boxes','cajas')],[t3('Stifte','pencils','lápices'),t3('Dosen','tins','botes')]]),d=pick([4,5,6,8]),full=rnd(12,140),r=rnd(0,d-1),n=full*d+r;
+      return numTask(tx(t3(`Leo hat ${fmt(n)} ${tx(ctx[0])}. In jede von seinen ${tx(ctx[1])} passen ${d} Stück. Wie viele ${tx(ctx[1])} werden ganz voll?`,`Leo has ${fmt(n)} ${tx(ctx[0])}. Each of his ${tx(ctx[1])} holds ${d}. How many ${tx(ctx[1])} are completely full?`,`Leo tiene ${fmt(n)} ${tx(ctx[0])}. En cada una de sus ${tx(ctx[1])} caben ${d}. ¿Cuántas ${tx(ctx[1])} quedan llenas del todo?`)),'',full,
+        `${fmt(n)} : ${d} = ${full}${r?` ${tx(t3('Rest','R','resto'))} ${r}`:''} → <b>${full}</b>`,tx(t3('Teile und schau, was übrig bleibt. Der Rest füllt keine ganze mehr.','Divide and look at what is left over. The remainder doesn’t fill a whole one.','Divide y mira lo que sobra. El resto no llena una entera.')));}}
+  },
+  riddles:{
+    teams(){const n=rnd(5,12)*6;return {title:tx(t3('Mannschaften','Teams','Equipos')),text:tx(t3(`Beim Sportfest sind ${n} Kinder. Sie sollen Mannschaften mit je 6 Kindern bilden. Wie viele Mannschaften gibt es?`,`There are ${n} children at sports day. They make teams of 6. How many teams are there?`,`En la fiesta deportiva hay ${n} niños. Forman equipos de 6. ¿Cuántos equipos hay?`)),
+      f:[[tx(t3('Mannschaften','Teams','Equipos')),n/6]],hint:`${n} : 6`,ans:String(n/6),expl:`${n} : 6 = ${n/6}`};},
+    bus(){const n=rnd(120,300),s=pick([45,50,40]),k=Math.ceil(n/s);return {title:tx(t3('Busse für den Ausflug','Buses for the trip','Autobuses para la excursión')),text:tx(t3(`${n} Kinder fahren zum Ausflug. In einen Bus passen ${s} Kinder. Wie viele Busse braucht die Schule mindestens?`,`${n} children go on a trip. A bus holds ${s} children. How many buses does the school need at least?`,`${n} niños van de excursión. En un autobús caben ${s}. ¿Cuántos autobuses hacen falta como mínimo?`)),
+      f:[[tx(t3('Busse','Buses','Autobuses')),k]],hint:tx(t3('Denk an den Rest: Auch die übrigen Kinder brauchen einen Platz!','Think of the remainder: the children left over need a seat too!','Piensa en el resto: ¡los niños que sobran también necesitan sitio!')),ans:String(k),expl:`${n} : ${s} = ${Math.floor(n/s)} ${tx(t3('Rest','R','resto'))} ${n%s} → ${k}`};},
+    zahl(){const d=rnd(3,9),q=rnd(101,999);return {title:tx(t3('Die gedachte Zahl','The secret number','El número pensado')),text:tx(t3(`Mia denkt sich eine Zahl und teilt sie durch ${d}. Es kommt ${q} heraus, und es bleibt nichts übrig. Welche Zahl hat sie gedacht?`,`Mia thinks of a number and divides it by ${d}. She gets ${q} with nothing left over. Which number did she think of?`,`Mia piensa un número y lo divide entre ${d}. Le da ${q} y no sobra nada. ¿Qué número pensó?`)),
+      f:[[T('label_iam'),q*d]],hint:tx(t3('Rechne rückwärts mit Malnehmen.','Work backwards with multiplication.','Calcula al revés multiplicando.')),ans:fmt(q*d),expl:`${q} · ${d} = ${fmt(q*d)}`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Immer Rest 1','Always remainder 1','Siempre resto 1')),text:tx(t3('Welche ist die kleinste Zahl über 10, die geteilt durch 2, durch 3 und durch 4 immer Rest 1 lässt?','What is the smallest number above 10 that leaves remainder 1 when divided by 2, by 3 and by 4?','¿Cuál es el menor número mayor que 10 que da resto 1 al dividirlo entre 2, entre 3 y entre 4?')),f:[[T('label_iam'),13]],
+      hint:tx(t3('Such eine Zahl, die durch 2, 3 und 4 teilbar ist, und zähle 1 dazu.','Find a number that divides by 2, 3 and 4, then add 1.','Busca un número divisible entre 2, 3 y 4 y súmale 1.')),ans:'13',expl:'12 + 1 = 13'}),
+    ()=>({title:tx(t3('Lauter Einsen','All ones','Todo unos')),text:tx(t3(`Wie viel ist ${fmt(111111)} : 3?`,`What is ${fmt(111111)} : 3?`,`¿Cuánto es ${fmt(111111)} : 3?`)),f:[[T('label_iam'),37037]],hint:tx(t3('Teile Stelle für Stelle: 11 : 3 = 3 Rest 2 …','Divide place by place: 11 : 3 = 3 R 2 …','Divide posición a posición: 11 : 3 = 3 resto 2 …')),ans:fmt(37037),expl:`${fmt(37037)} · 3 = ${fmt(111111)}`})
+  ]
+});
+}
+
+/* =========================================================
+   LESSON: Fläche und Umfang
+   ========================================================= */
+{
+function rectCells(w,h){const c=[];for(let y=0;y<h;y++)for(let x=0;x<w;x++)c.push([x,y]);return c;}
+function shape(){const t=rnd(0,2),w=rnd(3,7),h=rnd(2,5);let c=rectCells(w,h);
+  if(t===1){const cw=rnd(1,w-2),ch=rnd(1,h-1);c=c.filter(([x,y])=>!(x>=w-cw&&y<ch));}
+  if(t===2&&w>=4){const cx=rnd(1,w-3),cw=rnd(1,w-cx-2);c=c.filter(([x,y])=>!(y===0&&x>=cx&&x<cx+cw));}
+  return c;}
+function perim(c){const set=new Set(c.map(p=>p.join(',')));let p=0;c.forEach(([x,y])=>{[[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{if(!set.has((x+dx)+','+(y+dy)))p++;});});return p;}
+function shapeSVG(c,col,showP){const s=30,W=Math.max(...c.map(p=>p[0]))+1,H=Math.max(...c.map(p=>p[1]))+1,PW=(W+2)*s,PH=(H+2)*s;let g='';
+  for(let i=0;i<=W+2;i++)g+=`<line x1="${i*s}" y1="0" x2="${i*s}" y2="${PH}" stroke="var(--grid)" stroke-width="1.5"/>`;for(let j=0;j<=H+2;j++)g+=`<line x1="0" y1="${j*s}" x2="${PW}" y2="${j*s}" stroke="var(--grid)" stroke-width="1.5"/>`;
+  const set=new Set(c.map(p=>p.join(',')));c.forEach(([x,y])=>{g+=`<rect x="${(x+1)*s}" y="${(y+1)*s}" width="${s}" height="${s}" fill="color-mix(in srgb,var(--pv-${col||'g'}) 45%,#fff)" stroke="#fff" stroke-width="2.5"/>`;});
+  c.forEach(([x,y])=>{const X=(x+1)*s,Y=(y+1)*s;[[0,-1,X,Y,X+s,Y],[0,1,X,Y+s,X+s,Y+s],[-1,0,X,Y,X,Y+s],[1,0,X+s,Y,X+s,Y+s]].forEach(([dx,dy,a,b,cc,d])=>{if(!set.has((x+dx)+','+(y+dy)))g+=`<line x1="${a}" y1="${b}" x2="${cc}" y2="${d}" stroke="var(--pv-${showP?'r':(col||'g')})" stroke-width="${showP?4:3}" stroke-linecap="round"/>`;});});
+  return svgBox(PW,PH,g,'lsvg').replace('class="lsvg"',`class="lsvg" style="max-width:${Math.min(460,PW*1.3)}px"`);}
+const sq=t3('Kästchen','squares','cuadraditos');
+defLesson('area',{
+  h1:t3('Fläche und <span>Umfang</span>','Area and <span>perimeter</span>','Área y <span>perímetro</span>'),
+  intro:t3('Hallo! Ich baue einen Gemüsegarten. Wie viel Platz hat er innen? Und wie lang wird der Zaun außen herum? Das finden wir jetzt heraus.',
+    'Hi! I’m making a vegetable garden. How much room is inside? And how long will the fence around it be? Let’s find out.',
+    '¡Hola! Estoy haciendo un huerto. ¿Cuánto sitio hay dentro? ¿Y cuánto medirá la valla de alrededor? Vamos a descubrirlo.'),
+  steps:[
+    {t:t3('Die Fläche','The area','El área'),v:()=>shapeSVG(rectCells(5,3),'g'),eq:()=>`5 · 3 = 15 ${tx(sq)}`,
+     say:t3('Die Fläche ist der Platz innen drin. Leo zählt die Kästchen in seinem Beet: 3 Reihen mit je 5 Kästchen. Das sind 5 mal 3, also 15 Kästchen.',
+       'The area is the space inside. Leo counts the squares in his garden bed: 3 rows of 5 squares. That is 5 times 3, so 15 squares.',
+       'El área es el espacio de dentro. Leo cuenta los cuadraditos de su huerto: 3 filas de 5. Son 5 por 3, o sea 15 cuadraditos.')},
+    {t:t3('Der Umfang','The perimeter','El perímetro'),v:()=>shapeSVG(rectCells(5,3),'g',true),eq:()=>`5 + 3 + 5 + 3 = 16 cm`,
+     say:t3('Der Umfang ist der Weg einmal außen herum, wie ein Zaun. Jede Kästchenseite ist 1 cm lang. Oben 5, rechts 3, unten 5, links 3. Zusammen 16 cm.',
+       'The perimeter is the way once around the outside, like a fence. Each side of a square is 1 cm long. Top 5, right 3, bottom 5, left 3. Together 16 cm.',
+       'El perímetro es el camino por fuera, como una valla. Cada lado de un cuadradito mide 1 cm. Arriba 5, a la derecha 3, abajo 5, a la izquierda 3. En total 16 cm.')},
+    {t:t3('Gleiche Fläche, anderer Umfang','Same area, different perimeter','Misma área, distinto perímetro'),v:()=>`<figure class="it">${shapeSVG(rectCells(6,2),'b',true)}<figcaption>12 · 16 cm</figcaption></figure><figure class="it">${shapeSVG(rectCells(4,3),'r',true)}<figcaption>12 · 14 cm</figcaption></figure>`,
+     say:t3('Beide Beete haben 12 Kästchen. Aber das lange, schmale Beet braucht 16 cm Zaun, das andere nur 14 cm. Fläche und Umfang sind also zwei verschiedene Dinge.',
+       'Both beds have 12 squares. But the long, narrow bed needs 16 cm of fence, the other only 14 cm. So area and perimeter are two different things.',
+       'Los dos huertos tienen 12 cuadraditos. Pero el largo y estrecho necesita 16 cm de valla y el otro solo 14 cm. El área y el perímetro son dos cosas distintas.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('Fläche: Länge · Breite · Umfang: alle Seiten zusammen','Area: length · width · Perimeter: all sides added','Área: largo · ancho · Perímetro: todos los lados sumados'),
+     v:()=>card(tx(t3('innen','inside','dentro')),'g')+arrowSym('·')+card(tx(t3('außen','outside','fuera')),'r')+arrowSym('+'),
+     say:t3('Beim Rechteck musst du nicht zählen: Fläche ist Länge mal Breite. Umfang ist Länge plus Breite plus Länge plus Breite.',
+       'With a rectangle you don’t need to count: the area is length times width. The perimeter is length plus width plus length plus width.',
+       'En un rectángulo no hace falta contar: el área es largo por ancho. El perímetro es largo más ancho más largo más ancho.')}
+  ],
+  remember:()=>({
+    rule:`<span>${tx(t3('Fläche','Area','Área'))}</span> = ${tx(t3('Länge · Breite','length · width','largo · ancho'))}<br><span>${tx(t3('Umfang','Perimeter','Perímetro'))}</span> = ${tx(t3('alle Seiten zusammen','all sides added up','todos los lados sumados'))}<p class="rulecap">${tx(t3('Ein Kästchen von 1 cm mal 1 cm heißt 1 Quadratzentimeter, kurz 1 cm².','A square of 1 cm by 1 cm is called 1 square centimetre, 1 cm² for short.','Un cuadrado de 1 cm por 1 cm se llama 1 centímetro cuadrado, 1 cm².'))}</p>`,
+    p:'',ways:''
+  }),
+  quiz:{
+    area(){const w=rnd(3,9),h=rnd(2,8);return mkQ(tx(t3(`Ein Rechteck ist ${w} cm lang und ${h} cm breit. Wie groß ist die Fläche?`,`A rectangle is ${w} cm long and ${h} cm wide. What is its area?`,`Un rectángulo mide ${w} cm de largo y ${h} cm de ancho. ¿Cuál es su área?`)),`${w*h} cm²`,[`${w+h} cm²`,`${2*(w+h)} cm²`,`${w*h+w} cm²`],`${w} · ${h} = ${w*h}`);},
+    per(){const w=rnd(3,9),h=rnd(2,8);return mkQ(tx(t3(`Ein Rechteck ist ${w} cm lang und ${h} cm breit. Wie groß ist der Umfang?`,`A rectangle is ${w} cm long and ${h} cm wide. What is its perimeter?`,`Un rectángulo mide ${w} cm de largo y ${h} cm de ancho. ¿Cuál es su perímetro?`)),`${2*(w+h)} cm`,[`${w+h} cm`,`${w*h} cm`,`${2*w+h} cm`].filter(x=>x!==`${2*(w+h)} cm`),`${w} + ${h} + ${w} + ${h} = ${2*(w+h)}`);},
+    which(){return mkQ(tx(t3('Was misst man mit dem Umfang?','What does the perimeter measure?','¿Qué mide el perímetro?')),tx(t3('den Weg außen herum','the way around the outside','el camino por fuera')),[t3('den Platz innen','the space inside','el espacio de dentro'),t3('die Ecken','the corners','las esquinas'),t3('die Farbe','the colour','el color')].map(tx),'');},
+    sq(){const a=rnd(2,9);return mkQ(tx(t3(`Ein Quadrat hat Seiten von ${a} cm. Wie groß ist der Umfang?`,`A square has sides of ${a} cm. What is its perimeter?`,`Un cuadrado tiene lados de ${a} cm. ¿Cuál es su perímetro?`)),`${4*a} cm`,[`${a*a} cm`,`${2*a} cm`,`${4*a+4} cm`].filter(x=>x!==`${4*a} cm`),`4 · ${a} = ${4*a}`);}
+  },
+  gen:{
+    fl_flaeche:{l:t3('Fläche zählen','Count the area','Contar el área'),f(){const c=shape();return numTask(tx(t3('Wie viele Kästchen groß ist die Fläche?','How many squares big is the area?','¿Cuántos cuadraditos mide el área?')),shapeSVG(c,pick(['g','b','r'])),c.length,`<b>${c.length}</b> ${tx(sq)}`,
+      tx(t3('Zähle reihenweise. Bei einem Rechteck geht es schneller mit Malnehmen.','Count row by row. With a rectangle multiplying is quicker.','Cuenta fila a fila. En un rectángulo es más rápido multiplicar.')),'cm²');}},
+    fl_umfang:{l:t3('Umfang zählen','Count the perimeter','Contar el perímetro'),f(){const c=shape(),p=perim(c);return numTask(tx(t3('Jede Kästchenseite ist 1 cm. Wie lang ist der Umfang?','Each side of a square is 1 cm. How long is the perimeter?','Cada lado de un cuadradito mide 1 cm. ¿Cuánto mide el perímetro?')),shapeSVG(c,pick(['g','b','r']),true),p,`<b>${p} cm</b>`,
+      tx(t3('Fahr mit dem Finger einmal außen herum und zähle jede Kante.','Run your finger once around the outside and count every edge.','Recorre el borde con el dedo y cuenta cada lado.')),'cm');}},
+    fl_rechteck:{l:t3('Rechteck berechnen','Rectangle sums','Calcular el rectángulo'),f(){const w=rnd(3,12),h=rnd(2,9);
+      return {q:tx(t3(`Ein Rechteck ist <b>${w} cm</b> lang und <b>${h} cm</b> breit. Berechne Fläche und Umfang.`,`A rectangle is <b>${w} cm</b> long and <b>${h} cm</b> wide. Work out the area and the perimeter.`,`Un rectángulo mide <b>${w} cm</b> de largo y <b>${h} cm</b> de ancho. Calcula el área y el perímetro.`)),
+        body:`<div class="eq"><span class="op">${tx(t3('Fläche','Area','Área'))}</span>${numIn(true)}<span class="op">cm²</span></div><div class="eq"><span class="op">${tx(t3('Umfang','Perimeter','Perímetro'))}</span>${numIn(true)}<span class="op">cm</span></div>`,
+        check:v=>parseNum(v[0])===w*h&&parseNum(v[1])===2*(w+h),perField:v=>[parseNum(v[0])===w*h,parseNum(v[1])===2*(w+h)],sol:`${w} · ${h} = <b>${w*h} cm²</b> · ${w} + ${h} + ${w} + ${h} = <b>${2*(w+h)} cm</b>`,
+        hint:tx(t3('Fläche: Länge mal Breite. Umfang: alle vier Seiten zusammenzählen.','Area: length times width. Perimeter: add all four sides.','Área: largo por ancho. Perímetro: suma los cuatro lados.')),a:[String(w*h),String(2*(w+h))]};}},
+    fl_seite:{l:t3('Fehlende Seite','Missing side','Lado que falta'),f(){const w=rnd(2,9),h=rnd(2,9),byArea=Math.random()<.5;
+      return numTask(byArea?tx(t3(`Ein Rechteck hat die Fläche ${w*h} cm². Eine Seite ist ${w} cm lang. Wie lang ist die andere?`,`A rectangle has an area of ${w*h} cm². One side is ${w} cm long. How long is the other?`,`Un rectángulo tiene un área de ${w*h} cm². Un lado mide ${w} cm. ¿Cuánto mide el otro?`)):tx(t3(`Ein Rechteck hat den Umfang ${2*(w+h)} cm. Eine Seite ist ${w} cm lang. Wie lang ist die andere?`,`A rectangle has a perimeter of ${2*(w+h)} cm. One side is ${w} cm long. How long is the other?`,`Un rectángulo tiene un perímetro de ${2*(w+h)} cm. Un lado mide ${w} cm. ¿Cuánto mide el otro?`)),'',h,
+        byArea?`${w*h} : ${w} = <b>${h} cm</b>`:`(${2*(w+h)} − ${w} − ${w}) : 2 = <b>${h} cm</b>`,byArea?tx(t3('Welche Zahl mal '+w+' ergibt '+w*h+'?','Which number times '+w+' makes '+w*h+'?','¿Qué número por '+w+' da '+w*h+'?')):tx(t3('Zieh die beiden bekannten Seiten ab. Der Rest sind zwei gleiche Seiten.','Take away the two known sides. What is left is two equal sides.','Resta los dos lados conocidos. Lo que queda son dos lados iguales.')),'cm');}},
+    fl_vergleich:{l:t3('Vergleichen','Comparing','Comparar'),f(){let a,b;do{a=shape();b=shape();}while(a.length===b.length);const big=a.length>b.length?'A':'B';
+      return mcTask(tx(t3('Welche Figur hat die größere Fläche?','Which shape has the bigger area?','¿Qué figura tiene más área?')),`<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start"><figure class="it" style="flex:1 1 140px">${shapeSVG(a,'b')}<figcaption>A</figcaption></figure><figure class="it" style="flex:1 1 140px">${shapeSVG(b,'r')}<figcaption>B</figcaption></figure></div>`,['A','B'],big,null,
+        `A: ${a.length}, B: ${b.length} → <b>${big}</b>`,tx(t3('Zähle bei beiden die Kästchen.','Count the squares in both.','Cuenta los cuadraditos de las dos.')));}}
+  },
+  riddles:{
+    zaun(){const w=rnd(4,12),h=rnd(3,9);return {title:tx(t3('Der Gartenzaun','The garden fence','La valla del jardín')),text:tx(t3(`Leos Beet ist ${w} m lang und ${h} m breit. Wie viele Meter Zaun braucht er, um es ganz einzuzäunen?`,`Leo’s bed is ${w} m long and ${h} m wide. How many metres of fence does he need to go all the way round?`,`El huerto de Leo mide ${w} m de largo y ${h} m de ancho. ¿Cuántos metros de valla necesita para rodearlo?`)),
+      f:[['m',2*(w+h)]],hint:tx(t3('Alle vier Seiten zusammen.','All four sides together.','Los cuatro lados juntos.')),ans:2*(w+h)+' m',expl:`${w} + ${h} + ${w} + ${h} = ${2*(w+h)}`};},
+    viele(){const a=pick([12,16,18,20,24]);let k=0;for(let i=1;i*i<=a;i++)if(a%i===0)k++;return {title:tx(t3('Verschiedene Rechtecke','Different rectangles','Rectángulos distintos')),text:tx(t3(`Wie viele verschiedene Rechtecke kannst du aus genau ${a} Kästchen legen? Gedrehte zählen nicht extra.`,`How many different rectangles can you make from exactly ${a} squares? Turned ones don’t count again.`,`¿Cuántos rectángulos distintos puedes formar con exactamente ${a} cuadraditos? Los girados no cuentan otra vez.`)),
+      f:[[tx(t3('Rechtecke','Rectangles','Rectángulos')),k]],hint:tx(t3(`Such alle Malaufgaben mit dem Ergebnis ${a}: 1 · ${a}, …`,`Find all the times sums that make ${a}: 1 · ${a}, …`,`Busca todas las multiplicaciones que dan ${a}: 1 · ${a}, …`)),ans:String(k),expl:[...Array(a+1).keys()].filter(i=>i>0&&i*i<=a&&a%i===0).map(i=>`${i} · ${a/i}`).join(', ')};},
+    quadrat(){const a=rnd(3,9);return {title:tx(t3('Vom Umfang zur Fläche','From perimeter to area','Del perímetro al área')),text:tx(t3(`Ein Quadrat hat einen Umfang von ${4*a} cm. Wie groß ist seine Fläche?`,`A square has a perimeter of ${4*a} cm. What is its area?`,`Un cuadrado tiene un perímetro de ${4*a} cm. ¿Cuál es su área?`)),
+      f:[['cm²',a*a]],hint:tx(t3('Wie lang ist eine Seite?','How long is one side?','¿Cuánto mide un lado?')),ans:a*a+' cm²',expl:`${4*a} : 4 = ${a}, ${a} · ${a} = ${a*a}`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Das größte Beet','The biggest bed','El huerto más grande')),text:tx(t3('Leo hat 20 m Zaun. Er will damit ein Rechteck einzäunen, dessen Seiten ganze Meter lang sind. Wie groß kann die Fläche höchstens werden?','Leo has 20 m of fence. He wants to fence a rectangle whose sides are whole metres. What is the biggest area he can get?','Leo tiene 20 m de valla. Quiere rodear un rectángulo con lados de metros enteros. ¿Cuál es la mayor área que puede conseguir?')),
+      f:[['m²',25]],hint:tx(t3('Länge plus Breite sind 10 m. Probiere 1 und 9, 2 und 8, …','Length plus width is 10 m. Try 1 and 9, 2 and 8, …','Largo más ancho son 10 m. Prueba 1 y 9, 2 y 8, …')),ans:'25 m²',expl:'5 · 5 = 25'}),
+    ()=>({title:tx(t3('Der Rahmen','The frame','El marco')),text:tx(t3('Ein Bild ist 8 cm lang und 6 cm breit. Es bekommt rundherum einen Rahmen, der 1 cm breit ist. Wie groß ist die Fläche nur vom Rahmen?','A picture is 8 cm long and 6 cm wide. It gets a frame 1 cm wide all the way round. What is the area of just the frame?','Un cuadro mide 8 cm de largo y 6 cm de ancho. Tiene un marco de 1 cm de ancho alrededor. ¿Cuál es el área solo del marco?')),
+      f:[['cm²',32]],hint:tx(t3('Mit Rahmen ist alles 10 cm mal 8 cm. Zieh das Bild ab.','With the frame everything is 10 cm by 8 cm. Take away the picture.','Con marco todo mide 10 cm por 8 cm. Resta el cuadro.')),ans:'32 cm²',expl:'80 − 48 = 32'})
+  ]
+});
+}
+
+/* =========================================================
+   LESSON: Gramm, Kilogramm, Tonne
+   ========================================================= */
+{
+const OBJ=[[t3('ein Elefant','an elephant','un elefante'),'t'],[t3('ein Lastwagen','a lorry','un camión'),'t'],[t3('ein Apfel','an apple','una manzana'),'g'],[t3('ein Radiergummi','a rubber','una goma'),'g'],[t3('eine Feder','a feather','una pluma'),'g'],
+  [t3('ein Kind','a child','un niño'),'kg'],[t3('ein Fahrrad','a bike','una bicicleta'),'kg'],[t3('ein Sack Kartoffeln','a sack of potatoes','un saco de patatas'),'kg'],[t3('ein Wal','a whale','una ballena'),'t'],[t3('ein Brief','a letter','una carta'),'g']];
+function scaleSVG(v){const max=1000,W=260,H=180,cx=130,cy=152,R=118;let s=`<path d="M${cx-R-8} ${cy+6} A${R+8} ${R+8} 0 0 1 ${cx+R+8} ${cy+6}Z" fill="#fff" stroke="var(--ink)" stroke-width="2"/>`;
+  for(let i=0;i<=20;i++){const a=Math.PI+Math.PI*i/20,maj=i%4===0,mid=i%2===0,r1=maj?R-18:mid?R-12:R-7;s+=`<line x1="${cx+R*Math.cos(a)}" y1="${cy+R*Math.sin(a)}" x2="${cx+r1*Math.cos(a)}" y2="${cy+r1*Math.sin(a)}" stroke="var(--ink)" stroke-width="${maj?2.6:mid?1.8:1.1}"/>`;}
+  const a=Math.PI+Math.PI*v/max;s+=`<line x1="${cx}" y1="${cy}" x2="${cx+(R-4)*Math.cos(a)}" y2="${cy+(R-4)*Math.sin(a)}" stroke="var(--pen)" stroke-width="4" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="7" fill="var(--pen)"/>`;
+  for(let i=0;i<=20;i+=4){const a=Math.PI+Math.PI*i/20;s+=`<text x="${cx+(R-36)*Math.cos(a)}" y="${cy+(R-36)*Math.sin(a)+(i===0||i===20?-4:5)}" text-anchor="middle" font-size="14" font-weight="800" fill="var(--ink)" stroke="#fff" stroke-width="4" paint-order="stroke" font-family="Nunito,sans-serif">${fmt(i*50)}</text>`;}
+  s+=`<text x="${cx}" y="${cy-28}" text-anchor="middle" font-size="14" font-weight="800" fill="var(--muted)" font-family="Nunito,sans-serif">g</text>`;
+  return svgBox(W,H,s,'lsvg').replace('class="lsvg"','class="lsvg" style="max-width:320px"');}
+defLesson('weights',{
+  h1:t3('Gramm, <span>Kilogramm</span>, Tonne','Grams, <span>kilograms</span>, tonnes','Gramos, <span>kilos</span> y toneladas'),
+  intro:t3('Hallo! Was ist schwerer, ein Apfel oder ein Fahrrad? Klar! Aber wie viel wiegt ein Elefant? Heute lernst du die Gewichte kennen.',
+    'Hi! Which is heavier, an apple or a bike? Easy! But how much does an elephant weigh? Today you get to know weights.',
+    '¡Hola! ¿Qué pesa más, una manzana o una bici? ¡Fácil! ¿Pero cuánto pesa un elefante? Hoy conoces los pesos.'),
+  steps:[
+    {t:t3('Drei Einheiten','Three units','Tres unidades'),v:()=>`<div class="ladder"><span class="rung c-g"><b>1 g</b></span><span class="step">×1000</span><span class="rung c-b"><b>1 kg</b></span><span class="step">×1000</span><span class="rung c-r"><b>1 t</b></span></div>`,
+     say:t3('Leichte Dinge wiegt man in Gramm, zum Beispiel einen Radiergummi. Schwerere in Kilogramm, zum Beispiel ein Kind. Sehr schwere in Tonnen, zum Beispiel einen Elefanten.',
+       'Light things are weighed in grams, like a rubber. Heavier things in kilograms, like a child. Very heavy things in tonnes, like an elephant.',
+       'Las cosas ligeras se pesan en gramos, como una goma. Las más pesadas en kilos, como un niño. Las muy pesadas en toneladas, como un elefante.')},
+    {t:t3('Immer mal 1 000','Always times 1,000','Siempre por 1 000'),eq:()=>`1 kg = ${fmt(1000)} g · 1 t = ${fmt(1000)} kg`,v:()=>card(`1 kg`,'b')+arrowSym('=')+card(`${fmt(1000)} g`,'g'),
+     say:t3('1 Kilogramm sind 1 000 Gramm. Und 1 Tonne sind 1 000 Kilogramm. Ein halbes Kilo sind 500 Gramm, ein Viertel 250 Gramm.',
+       '1 kilogram is 1,000 grams. And 1 tonne is 1,000 kilograms. Half a kilo is 500 grams, a quarter 250 grams.',
+       '1 kilo son 1 000 gramos. Y 1 tonelada son 1 000 kilos. Medio kilo son 500 gramos y un cuarto 250 gramos.')},
+    {t:t3('Mit Komma','With a decimal point','Con coma'),eq:()=>`${fmtDec(2.35,3)} kg = 2 kg 350 g = ${fmt(2350)} g`,v:()=>card(fmtDec(2.35,3)+' kg','b')+arrowSym('=')+card(fmt(2350)+' g','g'),
+     say:t3('Wie bei den Längen gibt es auch hier die Kommaschreibweise: 2,350 kg sind 2 kg und 350 g. Nach dem Komma stehen 3 Stellen für die Gramm.',
+       'Just like lengths, weights can be written with a decimal point: 2.350 kg is 2 kg and 350 g. After the point there are 3 digits for the grams.',
+       'Como con las longitudes, también se escribe con coma: 2,350 kg son 2 kg y 350 g. Después de la coma hay 3 cifras para los gramos.')},
+    {t:t3('Die Küchenwaage','The kitchen scale','La báscula de cocina'),v:()=>scaleSVG(750),
+     say:t3('Auf der Küchenwaage zeigt der Zeiger das Gewicht. Von 0 bis 200 sind es 4 kleine Schritte, jeder ist also 50 Gramm. Der Zeiger steht 3 Schritte hinter 600. Das sind 750 Gramm.',
+       'On the kitchen scale the pointer shows the weight. From 0 to 200 there are 4 small steps, so each is 50 grams. The pointer is 3 steps past 600. That is 750 grams.',
+       'En la báscula la aguja marca el peso. De 0 a 200 hay 4 pasos pequeños, así que cada uno son 50 gramos. La aguja está 3 pasos después de 600. Son 750 gramos.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('Erst alles in Gramm, dann rechnen','First everything in grams, then calculate','Primero todo en gramos, luego calcula'),v:()=>card('1 kg 200 g','b')+arrowSym('+')+card('900 g','g')+arrowSym('=')+card(fmt(2100)+' g','r'),
+     say:t3('Willst du Gewichte zusammenzählen, schreib alles in derselben Einheit. 1 kg 200 g plus 900 g: Das sind 1 200 g plus 900 g, zusammen 2 100 g.',
+       'If you want to add weights, write everything in the same unit. 1 kg 200 g plus 900 g: that is 1,200 g plus 900 g, together 2,100 g.',
+       'Si quieres sumar pesos, escríbelo todo en la misma unidad. 1 kg 200 g más 900 g: son 1 200 g más 900 g, en total 2 100 g.')}
+  ],
+  remember:()=>({rule:`<span>1 t = ${fmt(1000)} kg</span><br><span>1 kg = ${fmt(1000)} g</span><br>½ kg = 500 g · ¼ kg = 250 g · ¾ kg = 750 g`,p:'',ways:''}),
+  quiz:{
+    unit(){const [o,u]=pick(OBJ);return mkQ(tx(t3(`In welcher Einheit wiegt man ${tx(o)}?`,`Which unit do you use to weigh ${tx(o)}?`,`¿En qué unidad se pesa ${tx(o)}?`)),u,['g','kg','t'],tx(t3('Denk daran, wie schwer es ungefähr ist.','Think about roughly how heavy it is.','Piensa en cuánto pesa más o menos.')));},
+    kg(){const g=rnd(1,9)*1000+rnd(1,9)*100+rnd(0,9)*10;return mkQ(tx(t3(`Wie viele Gramm sind ${fmtDec(g/1000,3)} kg?`,`How many grams is ${fmtDec(g/1000,3)} kg?`,`¿Cuántos gramos son ${fmtDec(g/1000,3)} kg?`)),fmt(g)+' g',[g*10,Math.floor(g/1000)*100+g%1000,g+1000].map(x=>fmt(x)+' g'),`1 kg = ${fmt(1000)} g`);},
+    frac(){const [s,v]=pick([['½',500],['¼',250],['¾',750]]);return mkQ(tx(t3(`Wie viele Gramm sind ${s} kg?`,`How many grams is ${s} kg?`,`¿Cuántos gramos son ${s} kg?`)),v+' g',[500,250,750,400].filter(x=>x!==v).map(x=>x+' g'),'');},
+    t(){const t=rnd(2,9);return mkQ(tx(t3(`Wie viele Kilogramm sind ${t} t?`,`How many kilograms is ${t} t?`,`¿Cuántos kilos son ${t} t?`)),fmt(t*1000)+' kg',[t*100,t*10000,t*10].map(x=>fmt(x)+' kg'),`1 t = ${fmt(1000)} kg`);}
+  },
+  gen:{
+    gw_umr:{l:t3('Umrechnen','Converting','Convertir'),f(){const t=rnd(0,2);
+      if(t===0){const kg=rnd(1,9),g=rnd(1,999);return numTask(tx(t3(`Wie viele Gramm sind <b>${kg} kg ${g} g</b>?`,`How many grams are <b>${kg} kg ${g} g</b>?`,`¿Cuántos gramos son <b>${kg} kg ${g} g</b>?`)),'',kg*1000+g,`<b>${fmt(kg*1000+g)} g</b>`,tx(t3('1 kg = 1 000 g.','1 kg = 1,000 g.','1 kg = 1 000 g.')),'g');}
+      if(t===1){const tt=rnd(1,9),kg=rnd(1,999);return numTask(tx(t3(`Wie viele Kilogramm sind <b>${tt} t ${kg} kg</b>?`,`How many kilograms are <b>${tt} t ${kg} kg</b>?`,`¿Cuántos kilos son <b>${tt} t ${kg} kg</b>?`)),'',tt*1000+kg,`<b>${fmt(tt*1000+kg)} kg</b>`,tx(t3('1 t = 1 000 kg.','1 t = 1,000 kg.','1 t = 1 000 kg.')),'kg');}
+      const g=rnd(1,9)*1000+rnd(1,999);return decTask(tx(t3(`Schreibe <b>${fmt(g)} g</b> mit Komma in Kilogramm.`,`Write <b>${fmt(g)} g</b> in kilograms with a decimal point.`,`Escribe <b>${fmt(g)} g</b> en kilos con coma.`)),'',g/1000,`<b>${fmtDec(g/1000,3)} kg</b>`,tx(t3('Die Tausender werden Kilogramm, die letzten 3 Ziffern kommen hinter das Komma.','The thousands become kilograms, the last 3 digits go after the point.','Los millares son kilos, las 3 últimas cifras van después de la coma.')),'kg');}},
+    gw_bruch:{l:t3('Halbe und Viertel','Halves and quarters','Medios y cuartos'),f(){const [s,v]=pick([['½',500],['¼',250],['¾',750]]),w=rnd(0,5),show=(w?w+' ':'')+s+' kg';
+      return numTask(tx(t3(`Wie viele Gramm sind <b>${show}</b>?`,`How many grams is <b>${show}</b>?`,`¿Cuántos gramos son <b>${show}</b>?`)),'',w*1000+v,`<b>${fmt(w*1000+v)} g</b>`,'½ kg = 500 g, ¼ kg = 250 g, ¾ kg = 750 g.','g');}},
+    gw_einheit:{l:t3('Welche Einheit?','Which unit?','¿Qué unidad?'),f(){const [o,u]=pick(OBJ);return mcTask(tx(t3(`In welcher Einheit wiegt man <b>${tx(o)}</b>?`,`Which unit do you use to weigh <b>${tx(o)}</b>?`,`¿En qué unidad se pesa <b>${tx(o)}</b>?`)),'',['g','kg','t'],u,null,`<b>${u}</b>`,tx(t3('g für leichte Dinge, kg für mittlere, t für sehr schwere.','g for light things, kg for medium ones, t for very heavy ones.','g para cosas ligeras, kg para medianas, t para muy pesadas.')));}},
+    gw_waage:{l:t3('Waage ablesen','Read the scale','Leer la báscula'),f(){const v=rnd(1,19)*50;return numTask(tx(t3('Wie viel Gramm zeigt die Waage?','How many grams does the scale show?','¿Cuántos gramos marca la báscula?')),scaleSVG(v),v,`<b>${fmt(v)} g</b>`,
+      tx(t3('Jeder kleine Strich ist 50 g. Zähle von der Zahl davor weiter.','Each small mark is 50 g. Count on from the number before.','Cada rayita son 50 g. Sigue contando desde el número anterior.')),'g');}},
+    gw_rechnen:{l:t3('Gewichte addieren','Adding weights','Sumar pesos'),f(){const a=rnd(1,4)*1000+rnd(1,19)*50,b=rnd(2,19)*50,sum=a+b;
+      return numTask(tx(t3('Rechne zusammen. Gib das Ergebnis in Gramm an.','Add them up. Give the answer in grams.','Súmalos. Da el resultado en gramos.')),`<p class="bignum">${fmtDec(a/1000,3)} kg + ${b} g</p>`,sum,`${fmt(a)} g + ${b} g = <b>${fmt(sum)} g</b>`,tx(t3('Mach aus den Kilogramm erst Gramm.','First turn the kilograms into grams.','Primero pasa los kilos a gramos.')),'g');}}
+  },
+  riddles:{
+    laster(){const L=pick([6,7.5,9,12]),k=pick([250,500,300]),n=Math.floor(L*1000/k);return {title:tx(t3('Der Lastwagen','The lorry','El camión')),text:tx(t3(`Ein Lastwagen darf ${fmtDec(L,L%1?1:0)} t laden. Eine Kiste wiegt ${k} kg. Wie viele Kisten darf er höchstens laden?`,`A lorry may carry ${fmtDec(L,L%1?1:0)} t. A crate weighs ${k} kg. How many crates may it carry at most?`,`Un camión puede cargar ${fmtDec(L,L%1?1:0)} t. Una caja pesa ${k} kg. ¿Cuántas cajas puede cargar como máximo?`)),
+      f:[[tx(t3('Kisten','Crates','Cajas')),n]],hint:tx(t3(`${fmtDec(L,L%1?1:0)} t = ${fmt(L*1000)} kg.`,`${fmtDec(L,L%1?1:0)} t = ${fmt(L*1000)} kg.`,`${fmtDec(L,L%1?1:0)} t = ${fmt(L*1000)} kg.`)),ans:String(n),expl:`${fmt(L*1000)} : ${k} = ${n}${L*1000%k?` ${tx(t3('Rest','R','resto'))} ${L*1000%k}`:''}`};},
+    waage(){const a=rnd(2,4),x=rnd(5,30)*10,b=rnd(1,4)*100;return {title:tx(t3('Die Balkenwaage','The balance','La balanza')),text:tx(t3(`Auf der einen Seite liegen ${a} gleiche Äpfel und ein ${b}-g-Gewicht. Auf der anderen Seite liegen ${a*x+b} g. Die Waage ist im Gleichgewicht. Wie schwer ist ein Apfel?`,`On one side there are ${a} identical apples and a ${b} g weight. On the other side there are ${a*x+b} g. The balance is level. How heavy is one apple?`,`En un lado hay ${a} manzanas iguales y una pesa de ${b} g. En el otro hay ${a*x+b} g. La balanza está equilibrada. ¿Cuánto pesa una manzana?`)),
+      f:[['g',x]],hint:tx(t3(`Nimm das ${b}-g-Gewicht weg. Was bleibt für die Äpfel?`,`Take away the ${b} g weight. What is left for the apples?`,`Quita la pesa de ${b} g. ¿Qué queda para las manzanas?`)),ans:x+' g',expl:`(${a*x+b} − ${b}) : ${a} = ${x}`};},
+    tueten(){const g=pick([20,25,50,125]);return {title:tx(t3('Gummibärchen','Gummy bears','Ositos de goma')),text:tx(t3(`Eine Tüte Gummibärchen wiegt ${g} g. Wie viele Tüten wiegen zusammen 1 kg?`,`A bag of gummy bears weighs ${g} g. How many bags weigh 1 kg together?`,`Una bolsa de ositos pesa ${g} g. ¿Cuántas bolsas pesan juntas 1 kg?`)),
+      f:[[tx(t3('Tüten','Bags','Bolsas')),1000/g]],hint:`${fmt(1000)} : ${g}`,ans:String(1000/g),expl:`${fmt(1000)} : ${g} = ${1000/g}`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Elefant gegen Kinder','Elephant against children','Elefante contra niños')),text:tx(t3('Ein Elefant wiegt 5 t. Ein Kind wiegt 35 kg. Wie viele Kinder wiegen ungefähr so viel wie der Elefant? Rechne auf ganze Kinder.','An elephant weighs 5 t. A child weighs 35 kg. About how many children weigh as much as the elephant? Give whole children.','Un elefante pesa 5 t. Un niño pesa 35 kg. ¿Cuántos niños pesan más o menos lo mismo que el elefante? En niños enteros.')),f:[[tx(t3('Kinder','Children','Niños')),143]],
+      hint:tx(t3('5 t = 5 000 kg. Teile durch 35.','5 t = 5,000 kg. Divide by 35.','5 t = 5 000 kg. Divide entre 35.')),ans:'143',expl:`${fmt(5000)} : 35 = 142 ${tx(t3('Rest','R','resto'))} 30 → 143`}),
+    ()=>({title:tx(t3('Das Mehl-Rätsel','The flour puzzle','El acertijo de la harina')),text:tx(t3('Für einen Kuchen braucht man 375 g Mehl. Eine Packung hat 1 kg. Wie viele ganze Kuchen kann man mit 3 Packungen backen?','A cake needs 375 g of flour. A packet holds 1 kg. How many whole cakes can you bake with 3 packets?','Un bizcocho necesita 375 g de harina. Un paquete tiene 1 kg. ¿Cuántos bizcochos enteros salen con 3 paquetes?')),f:[[tx(t3('Kuchen','Cakes','Bizcochos')),8]],
+      hint:tx(t3('3 Packungen sind 3 000 g.','3 packets are 3,000 g.','3 paquetes son 3 000 g.')),ans:'8',expl:`${fmt(3000)} : 375 = 8`})
+  ]
+});
+}
+
+/* =========================================================
+   LESSON: Liter und Milliliter
+   ========================================================= */
+{
+const VOBJ=[[t3('eine Badewanne','a bathtub','una bañera'),'l'],[t3('ein Eimer','a bucket','un cubo'),'l'],[t3('ein Teelöffel','a teaspoon','una cucharita'),'ml'],[t3('eine Tasse','a cup','una taza'),'ml'],[t3('ein Aquarium','a fish tank','un acuario'),'l'],[t3('eine Medizinflasche','a medicine bottle','un frasco de jarabe'),'ml'],[t3('ein Planschbecken','a paddling pool','una piscina hinchable'),'l'],[t3('ein Joghurtbecher','a yoghurt pot','un vasito de yogur'),'ml']];
+function jugSVG(v,max){const W=170,H=230,x0=40,x1=130,yb=210,yt=30,k=(yb-yt)/max;let s=`<path d="M${x0} ${yt-10} L${x0} ${yb} Q${x0} ${yb+8} ${x0+8} ${yb+8} L${x1-8} ${yb+8} Q${x1} ${yb+8} ${x1} ${yb} L${x1} ${yt-10}" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/>`;
+  s+=`<rect x="${x0+2}" y="${yb-v*k}" width="${x1-x0-4}" height="${v*k+6}" fill="color-mix(in srgb,var(--pv-b) 40%,#fff)"/>`;
+  for(let m=0;m<=max;m+=max/10){const y=yb-m*k,maj=m%(max/2)===0||max/10*2===m||m%(max/5)===0;s+=`<line x1="${x1}" y1="${y}" x2="${x1-(maj?22:12)}" y2="${y}" stroke="var(--ink)" stroke-width="${maj?2:1.2}"/>`;if(m%(max/5)===0&&m)s+=`<text x="${x1+6}" y="${y+5}" font-size="13" font-weight="800" fill="var(--ink)" font-family="Nunito,sans-serif">${fmt(m)}</text>`;}
+  s+=`<text x="${x1+6}" y="${yb+5}" font-size="12" font-weight="700" fill="var(--muted)" font-family="Nunito,sans-serif">ml</text>`;
+  return svgBox(W,H,s,'lsvg').replace('class="lsvg"','class="lsvg" style="max-width:190px"');}
+defLesson('volume',{
+  h1:t3('Liter und <span>Milliliter</span>','Litres and <span>millilitres</span>','Litros y <span>mililitros</span>'),
+  intro:t3('Hallo! Wie viel passt in eine Flasche, in einen Eimer oder in die Badewanne? Heute messen wir Flüssigkeiten.',
+    'Hi! How much fits into a bottle, a bucket or the bathtub? Today we measure liquids.',
+    '¡Hola! ¿Cuánto cabe en una botella, en un cubo o en la bañera? Hoy medimos líquidos.'),
+  steps:[
+    {t:t3('Liter und Milliliter','Litres and millilitres','Litros y mililitros'),eq:()=>`1 l = ${fmt(1000)} ml`,v:()=>card('1 l','b')+arrowSym('=')+card(`${fmt(1000)} ml`,'g'),
+     say:t3('Große Mengen misst man in Litern, zum Beispiel eine Flasche Wasser mit 1 Liter. Kleine Mengen in Millilitern, zum Beispiel einen Löffel Medizin. 1 Liter sind 1 000 Milliliter.',
+       'Big amounts are measured in litres, for example a 1-litre bottle of water. Small amounts in millilitres, for example a spoonful of medicine. 1 litre is 1,000 millilitres.',
+       'Las cantidades grandes se miden en litros, por ejemplo una botella de agua de 1 litro. Las pequeñas en mililitros, como una cucharada de jarabe. 1 litro son 1 000 mililitros.')},
+    {t:t3('Halbe und Viertel','Halves and quarters','Medios y cuartos'),eq:()=>`½ l = 500 ml · ¼ l = 250 ml · ¾ l = 750 ml`,v:()=>jugSVG(500,1000),
+     say:t3('Ein halber Liter sind 500 Milliliter. Ein Viertelliter sind 250 Milliliter, das ist ungefähr ein großes Glas. Drei Viertel sind 750 Milliliter.',
+       'Half a litre is 500 millilitres. A quarter of a litre is 250 millilitres, about one big glass. Three quarters are 750 millilitres.',
+       'Medio litro son 500 mililitros. Un cuarto de litro son 250 mililitros, más o menos un vaso grande. Tres cuartos son 750 mililitros.')},
+    {t:t3('Den Messbecher ablesen','Reading a measuring jug','Leer la jarra medidora'),v:()=>jugSVG(700,1000),
+     say:t3('Am Messbecher steht eine Skala. Hier ist jeder Strich 100 Milliliter. Das Wasser reicht bis zum 7. Strich, also 700 Milliliter.',
+       'A measuring jug has a scale. Here each mark is 100 millilitres. The water reaches the 7th mark, so 700 millilitres.',
+       'La jarra medidora tiene una escala. Aquí cada raya son 100 mililitros. El agua llega a la 7.ª raya, o sea 700 mililitros.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('Wie oft passt das Glas in die Flasche?','How many times does the glass fit into the bottle?','¿Cuántas veces cabe el vaso en la botella?'),v:()=>card('2 l','b')+arrowSym(':')+card('250 ml','g')+arrowSym('=')+card('8','r'),
+     say:t3('Wie viele Gläser zu 250 Milliliter bekommt man aus einer 2-Liter-Flasche? Leo rechnet: 2 Liter sind 2 000 Milliliter. 2 000 geteilt durch 250 sind 8 Gläser.',
+       'How many 250-millilitre glasses can you pour from a 2-litre bottle? Leo works out: 2 litres are 2,000 millilitres. 2,000 divided by 250 makes 8 glasses.',
+       '¿Cuántos vasos de 250 mililitros salen de una botella de 2 litros? Leo calcula: 2 litros son 2 000 mililitros. 2 000 entre 250 son 8 vasos.')}
+  ],
+  remember:()=>({rule:`<span>1 l = ${fmt(1000)} ml</span><br>½ l = 500 ml · ¼ l = 250 ml · ¾ l = 750 ml<br>${fmtDec(1.5,1)} l = 1 l 500 ml = ${fmt(1500)} ml`,p:'',ways:''}),
+  quiz:{
+    unit(){const [o,u]=pick(VOBJ);return mkQ(tx(t3(`Womit misst man, was in ${tx(o)} passt?`,`Which unit do you use for what fits into ${tx(o)}?`,`¿Con qué unidad se mide lo que cabe en ${tx(o)}?`)),u,['ml','l'],tx(t3('Viel oder wenig?','A lot or a little?','¿Mucho o poco?')));},
+    ml(){const l=rnd(2,9);return mkQ(tx(t3(`Wie viele Milliliter sind ${l} l?`,`How many millilitres is ${l} l?`,`¿Cuántos mililitros son ${l} l?`)),fmt(l*1000)+' ml',[l*100,l*10,l*10000].map(x=>fmt(x)+' ml'),`1 l = ${fmt(1000)} ml`);},
+    frac(){const [s,v]=pick([['½',500],['¼',250],['¾',750]]);return mkQ(tx(t3(`Wie viele Milliliter sind ${s} l?`,`How many millilitres is ${s} l?`,`¿Cuántos mililitros son ${s} l?`)),v+' ml',[500,250,750,400].filter(x=>x!==v).map(x=>x+' ml'),'');},
+    glas(){const l=rnd(1,3),g=pick([200,250,500]);return mkQ(tx(t3(`Wie viele Gläser zu ${g} ml bekommt man aus ${l} l?`,`How many ${g} ml glasses do you get from ${l} l?`,`¿Cuántos vasos de ${g} ml salen de ${l} l?`)),String(l*1000/g),[l*1000/g+2,l*1000/g-1,l*10].map(String),`${fmt(l*1000)} : ${g} = ${l*1000/g}`);}
+  },
+  gen:{
+    lt_umr:{l:t3('Umrechnen','Converting','Convertir'),f(){if(Math.random()<.5){const l=rnd(1,9),ml=rnd(1,999);return numTask(tx(t3(`Wie viele Milliliter sind <b>${l} l ${ml} ml</b>?`,`How many millilitres are <b>${l} l ${ml} ml</b>?`,`¿Cuántos mililitros son <b>${l} l ${ml} ml</b>?`)),'',l*1000+ml,`<b>${fmt(l*1000+ml)} ml</b>`,tx(t3('1 l = 1 000 ml.','1 l = 1,000 ml.','1 l = 1 000 ml.')),'ml');}
+      const ml=rnd(1,9)*1000+rnd(1,99)*10;return decTask(tx(t3(`Schreibe <b>${fmt(ml)} ml</b> mit Komma in Litern.`,`Write <b>${fmt(ml)} ml</b> in litres with a decimal point.`,`Escribe <b>${fmt(ml)} ml</b> en litros con coma.`)),'',ml/1000,`<b>${fmtDec(ml/1000,3)} l</b>`,tx(t3('Die Tausender werden Liter, die letzten 3 Ziffern kommen hinter das Komma.','The thousands become litres, the last 3 digits go after the point.','Los millares son litros, las 3 últimas cifras van después de la coma.')),'l');}},
+    lt_bruch:{l:t3('Halbe und Viertel','Halves and quarters','Medios y cuartos'),f(){const [s,v]=pick([['½',500],['¼',250],['¾',750]]),w=rnd(0,4),show=(w?w+' ':'')+s+' l';
+      return numTask(tx(t3(`Wie viele Milliliter sind <b>${show}</b>?`,`How many millilitres is <b>${show}</b>?`,`¿Cuántos mililitros son <b>${show}</b>?`)),'',w*1000+v,`<b>${fmt(w*1000+v)} ml</b>`,'½ l = 500 ml, ¼ l = 250 ml, ¾ l = 750 ml.','ml');}},
+    lt_becher:{l:t3('Messbecher','Measuring jug','Jarra medidora'),f(){const max=pick([1000,500]),v=rnd(1,19)*max/20;return numTask(tx(t3('Wie viele Milliliter sind im Messbecher?','How many millilitres are in the jug?','¿Cuántos mililitros hay en la jarra?')),jugSVG(v,max),v,`<b>${fmt(v)} ml</b>`,
+      tx(t3(`Jeder Strich ist ${max/10} ml. Steht das Wasser zwischen zwei Strichen, ist es die Hälfte mehr.`,`Each mark is ${max/10} ml. If the water is between two marks, add half a step.`,`Cada raya son ${max/10} ml. Si el agua está entre dos rayas, suma medio paso.`)),'ml');}},
+    lt_glaeser:{l:t3('Gläser füllen','Filling glasses','Llenar vasos'),f(){const l=pick([1,2,3,5]),g=pick([100,200,250,500]),n=l*1000/g;
+      return numTask(tx(t3(`Aus einer Kanne mit ${l} l Saft gießt Leo Gläser mit je ${g} ml ein. Wie viele Gläser werden voll?`,`From a jug with ${l} l of juice Leo pours glasses of ${g} ml each. How many glasses does he fill?`,`De una jarra con ${l} l de zumo Leo llena vasos de ${g} ml. ¿Cuántos vasos llena?`)),'',n,`${fmt(l*1000)} : ${g} = <b>${n}</b>`,tx(t3(`${l} l = ${fmt(l*1000)} ml. Wie oft passt ${g} hinein?`,`${l} l = ${fmt(l*1000)} ml. How often does ${g} fit in?`,`${l} l = ${fmt(l*1000)} ml. ¿Cuántas veces cabe ${g}?`)));}},
+    lt_einheit:{l:t3('l oder ml?','l or ml?','¿l o ml?'),f(){const [o,u]=pick(VOBJ);return mcTask(tx(t3(`Womit misst man, was in <b>${tx(o)}</b> passt?`,`Which unit do you use for what fits into <b>${tx(o)}</b>?`,`¿Con qué unidad se mide lo que cabe en <b>${tx(o)}</b>?`)),'',['ml','l'],u,null,`<b>${u}</b>`,tx(t3('Liter für große Mengen, Milliliter für kleine.','Litres for big amounts, millilitres for small ones.','Litros para cantidades grandes, mililitros para pequeñas.')));}}
+  },
+  riddles:{
+    tropf(){const m=pick([3,5,8]);return {title:tx(t3('Der tropfende Hahn','The dripping tap','El grifo que gotea')),text:tx(t3(`Ein Wasserhahn tropft. Jede Minute gehen ${m} ml verloren. Wie viele Milliliter sind es in einer Stunde?`,`A tap is dripping. Every minute ${m} ml are lost. How many millilitres is that in one hour?`,`Un grifo gotea. Cada minuto se pierden ${m} ml. ¿Cuántos mililitros son en una hora?`)),
+      f:[['ml',m*60]],hint:tx(t3('Eine Stunde hat 60 Minuten.','An hour has 60 minutes.','Una hora tiene 60 minutos.')),ans:m*60+' ml',expl:`60 · ${m} = ${m*60}`};},
+    eimer(){const l=pick([5,8,10]),f=pick([750,600,400]),n=Math.ceil(l*1000/f);return {title:tx(t3('Den Eimer füllen','Filling the bucket','Llenar el cubo')),text:tx(t3(`Leo füllt einen ${l}-Liter-Eimer mit einer Flasche, in die ${f} ml passen. Wie oft muss er mindestens gießen, bis der Eimer voll ist?`,`Leo fills a ${l}-litre bucket using a bottle that holds ${f} ml. How many times must he pour at least until the bucket is full?`,`Leo llena un cubo de ${l} litros con una botella de ${f} ml. ¿Cuántas veces tiene que echar como mínimo hasta llenarlo?`)),
+      f:[[tx(t3('Mal','Times','Veces')),n]],hint:tx(t3('Am Ende reicht vielleicht eine halbe Flasche, aber er muss trotzdem gießen.','At the end half a bottle may be enough, but he still has to pour.','Al final quizá baste media botella, pero tiene que echarla igual.')),ans:String(n),expl:`${fmt(l*1000)} : ${f} = ${Math.floor(l*1000/f)} ${tx(t3('Rest','R','resto'))} ${l*1000%f} → ${n}`};},
+    tee(){const n=rnd(4,9),c=pick([150,200,250]);return {title:tx(t3('Tee für alle','Tea for everyone','Té para todos')),text:tx(t3(`Oma kocht Tee für ${n} Personen. Jede bekommt eine Tasse mit ${c} ml. Wie viele Milliliter Tee braucht sie?`,`Grandma makes tea for ${n} people. Each gets a cup of ${c} ml. How many millilitres of tea does she need?`,`La abuela hace té para ${n} personas. Cada una recibe una taza de ${c} ml. ¿Cuántos mililitros necesita?`)),
+      f:[['ml',n*c]],hint:`${n} · ${c}`,ans:fmt(n*c)+' ml',expl:`${n} · ${c} = ${fmt(n*c)}`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Zwei Krüge','Two jugs','Dos jarras')),text:tx(t3('Leo hat einen 5-Liter-Krug und einen 3-Liter-Krug. Er füllt den großen voll und gießt daraus den kleinen voll. Wie viele Liter bleiben im großen Krug?','Leo has a 5-litre jug and a 3-litre jug. He fills the big one and pours from it until the small one is full. How many litres are left in the big jug?','Leo tiene una jarra de 5 litros y otra de 3. Llena la grande y con ella llena la pequeña. ¿Cuántos litros quedan en la grande?')),f:[['l',2]],
+      hint:tx(t3('5 Liter waren drin, 3 Liter sind weg.','There were 5 litres, 3 litres have gone.','Había 5 litros y se han ido 3.')),ans:'2 l',expl:'5 − 3 = 2'}),
+    ()=>({title:tx(t3('Wasser sparen','Saving water','Ahorrar agua')),text:tx(t3('Ein Bad braucht 150 l Wasser, eine kurze Dusche 40 l. Leo duscht eine Woche lang jeden Tag, statt zu baden. Wie viele Liter spart er?','A bath uses 150 l of water, a short shower 40 l. For one week Leo showers every day instead of having a bath. How many litres does he save?','Un baño gasta 150 l de agua y una ducha corta 40 l. Durante una semana Leo se ducha cada día en lugar de bañarse. ¿Cuántos litros ahorra?')),f:[['l',770]],
+      hint:tx(t3('Was spart er an einem Tag? Und in 7 Tagen?','How much does he save in one day? And in 7 days?','¿Cuánto ahorra en un día? ¿Y en 7 días?')),ans:'770 l',expl:'7 · 110 = 770'})
+  ]
+});
+}
+
+/* =========================================================
+   LESSON: Uhrzeit und Zeitspannen
+   ========================================================= */
+{
+const p2=n=>String(n).padStart(2,'0');
+const hm=(h,m)=>`${h}:${p2(m)}`;
+const dur=d=>d>=60?Math.floor(d/60)+' h'+(d%60?' '+d%60+' min':''):d+' min';
+function clockSVG(h,m){const W=200,cx=100,cy=100,R=88;let s=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#fff" stroke="var(--ink)" stroke-width="4"/>`;
+  for(let i=0;i<60;i++){const a=i*6*DEG,r1=i%5===0?R-14:R-7;s+=`<line x1="${cx+(R-3)*Math.sin(a)}" y1="${cy-(R-3)*Math.cos(a)}" x2="${cx+r1*Math.sin(a)}" y2="${cy-r1*Math.cos(a)}" stroke="var(--ink)" stroke-width="${i%5===0?3:1.2}"/>`;}
+  for(let i=1;i<=12;i++){const a=i*30*DEG;s+=`<text x="${cx+(R-28)*Math.sin(a)}" y="${cy-(R-28)*Math.cos(a)+6}" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ink)" font-family="Nunito,sans-serif">${i}</text>`;}
+  const ha=((h%12)+m/60)*30*DEG,ma=m*6*DEG;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${cx+46*Math.sin(ha)}" y2="${cy-46*Math.cos(ha)}" stroke="var(--pv-r)" stroke-width="7" stroke-linecap="round"/><line x1="${cx}" y1="${cy}" x2="${cx+70*Math.sin(ma)}" y2="${cy-70*Math.cos(ma)}" stroke="var(--pv-b)" stroke-width="4.5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>`;
+  return svgBox(W,W,s,'lsvg').replace('class="lsvg"','class="lsvg" style="max-width:220px"');}
+const hIn=()=>`<div class="eq">${numIn(true)}<span class="op">${tx(t3('Std','h','h'))}</span>${numIn(true)}<span class="op">min</span></div>`;
+const tIn=()=>`<div class="eq">${numIn(true)}<span class="op">:</span>${numIn(true)}<span class="op">${tx(t3('Uhr','','h'))}</span></div>`;
+function twoTask(q,pre,a,b,sol,hint,inp,altA){return {q,body:(pre||'')+inp(),check:v=>(parseNum(v[0])===a||parseNum(v[0])===altA)&&parseNum(v[1])===b,perField:v=>[parseNum(v[0])===a||parseNum(v[0])===altA,parseNum(v[1])===b],sol,hint,a:[String(a),String(b)]};}
+const STOPS=[[t3('Bahnhof','Station','Estación'),t3('Schule','School','Colegio'),t3('Schwimmbad','Swimming pool','Piscina'),t3('Zoo','Zoo','Zoo')],[t3('Marktplatz','Market square','Plaza'),t3('Bücherei','Library','Biblioteca'),t3('Park','Park','Parque'),t3('Stadion','Stadium','Estadio')]];
+defLesson('time',{
+  h1:t3('Uhrzeit und <span>Zeitspannen</span>','Time and <span>durations</span>','La hora y los <span>intervalos</span>'),
+  intro:t3('Hallo! Wann fährt mein Bus? Wie lange dauert der Film? Heute lesen wir die Uhr und rechnen mit Zeit.',
+    'Hi! When does my bus leave? How long is the film? Today we read the clock and calculate with time.',
+    '¡Hola! ¿Cuándo sale mi autobús? ¿Cuánto dura la película? Hoy leemos el reloj y calculamos con el tiempo.'),
+  steps:[
+    {t:t3('Die Uhr lesen','Reading the clock','Leer el reloj'),v:()=>clockSVG(3,40),eq:()=>'3:40 · 15:40',
+     say:t3('Der kurze rote Zeiger zeigt die Stunden, der lange blaue die Minuten. Hier steht der kurze Zeiger zwischen 3 und 4, der lange auf der 8. Das sind 40 Minuten. Es ist 3:40 Uhr, am Nachmittag 15:40 Uhr.',
+       'The short red hand shows the hours, the long blue one the minutes. Here the short hand is between 3 and 4, the long one on the 8. That means 40 minutes. It is 3:40, or 15:40 in the afternoon.',
+       'La aguja corta roja marca las horas y la larga azul los minutos. Aquí la corta está entre el 3 y el 4, y la larga en el 8. Son 40 minutos. Son las 3:40, por la tarde las 15:40.')},
+    {t:t3('Zeiteinheiten','Units of time','Unidades de tiempo'),v:()=>`<div class="ladder"><span class="rung c-g"><b>1 s</b></span><span class="step">×60</span><span class="rung c-b"><b>1 min</b></span><span class="step">×60</span><span class="rung c-r"><b>1 h</b></span><span class="step">×24</span><span class="rung c-g"><b>1 ${tx(t3('Tag','day','día'))}</b></span></div>`,
+     say:t3('1 Minute hat 60 Sekunden. 1 Stunde hat 60 Minuten. Und ein Tag hat 24 Stunden. Achtung: Hier rechnet man nicht mit 10 oder 100, sondern mit 60!',
+       '1 minute has 60 seconds. 1 hour has 60 minutes. And a day has 24 hours. Careful: here you don’t work with 10 or 100, but with 60!',
+       '1 minuto tiene 60 segundos. 1 hora tiene 60 minutos. Y un día tiene 24 horas. ¡Ojo: aquí no se calcula con 10 ni con 100, sino con 60!')},
+    {t:t3('Wie lange dauert es?','How long does it take?','¿Cuánto dura?'),eq:()=>`14:35 → 15:00 → 15:20 = 25 min + 20 min = 45 min`,v:()=>card('14:35','b')+arrowSym('+25')+card('15:00','g')+arrowSym('+20')+card('15:20','r'),
+     say:t3('Der Film beginnt um 14:35 Uhr und endet um 15:20 Uhr. Leo rechnet in Sprüngen: Bis 15:00 Uhr sind es 25 Minuten, dann noch 20 Minuten. Zusammen 45 Minuten.',
+       'The film starts at 14:35 and ends at 15:20. Leo jumps in steps: to 15:00 is 25 minutes, then another 20 minutes. Together 45 minutes.',
+       'La película empieza a las 14:35 y termina a las 15:20. Leo calcula a saltos: hasta las 15:00 son 25 minutos y luego 20 más. En total 45 minutos.')},
+    {t:t3('Leos Trick','Leo’s trick','El truco de Leo'),eq:t3('Bis zur vollen Stunde springen','Jump to the full hour','Salta hasta la hora en punto'),v:()=>clockSVG(10,0),
+     say:t3('Rechne mit Zeit immer in Sprüngen: zuerst bis zur vollen Stunde, dann ganze Stunden, dann die restlichen Minuten. So machst du keine Fehler mit den 60 Minuten.',
+       'Always calculate with time in jumps: first to the full hour, then whole hours, then the remaining minutes. That way you won’t make mistakes with the 60 minutes.',
+       'Calcula siempre con el tiempo a saltos: primero hasta la hora en punto, luego horas enteras y después los minutos que faltan. Así no te equivocas con los 60 minutos.')}
+  ],
+  remember:()=>({rule:`<span>1 h = 60 min</span><br><span>1 min = 60 s</span><br>1 ${tx(t3('Tag','day','día'))} = 24 h<br>½ h = 30 min · ¼ h = 15 min · ¾ h = 45 min`,p:'',ways:''}),
+  quiz:{
+    read(){const h=rnd(1,12),m=rnd(0,11)*5;return mkQ(tx(t3('Wie spät ist es?','What time is it?','¿Qué hora es?'))+clockSVG(h,m),hm(h,m),[hm(m/5||12,h*5%60),hm(h%12+1,m),hm(h,(m+30)%60)].filter(x=>x!==hm(h,m)),tx(t3('Kurzer Zeiger: Stunden. Langer Zeiger: Minuten.','Short hand: hours. Long hand: minutes.','Aguja corta: horas. Aguja larga: minutos.')));},
+    min(){const h=rnd(1,4),m=pick([15,30,45,10,20]);return mkQ(tx(t3(`Wie viele Minuten sind ${h} h ${m} min?`,`How many minutes are ${h} h ${m} min?`,`¿Cuántos minutos son ${h} h ${m} min?`)),`${h*60+m} min`,[`${h*100+m} min`,`${h*10+m} min`,`${(h+1)*60+m} min`],`${h} · 60 + ${m} = ${h*60+m}`);},
+    frac(){const [s,v]=pick([['½',30],['¼',15],['¾',45]]);return mkQ(tx(t3(`Wie viele Minuten sind ${s} Stunde?`,`How many minutes are ${s} of an hour?`,`¿Cuántos minutos son ${s} de hora?`)),v+' min',[30,15,45,50,25].filter(x=>x!==v).map(x=>x+' min'),'1 h = 60 min');},
+    day(){return mkQ(tx(t3('Wie viele Stunden hat eine Woche?','How many hours are there in a week?','¿Cuántas horas tiene una semana?')),'168',['70','84','100','24'],'7 · 24 = 168');}
+  },
+  gen:{
+    zt_uhr:{l:t3('Uhr ablesen','Read the clock','Leer el reloj'),f(){const h=rnd(1,12),m=rnd(0,11)*5;return twoTask(tx(t3('Wie spät ist es? Schreib die Uhrzeit auf.','What time is it? Write it down.','¿Qué hora es? Escríbela.')),clockSVG(h,m),h,m,`<b>${hm(h,m)}</b> ${tx(t3('oder','or','o'))} <b>${hm(h+12===24?0:h+12,m)}</b>`,
+      tx(t3('Der kurze Zeiger zeigt die Stunde. Bei jeder Zahl, auf die der lange Zeiger zeigt, rechnest du mal 5 Minuten.','The short hand shows the hour. For the number the long hand points to, multiply by 5 minutes.','La aguja corta marca la hora. El número al que apunta la larga se multiplica por 5 minutos.')),tIn,h===12?0:h+12);}},
+    zt_dauer:{l:t3('Wie lange?','How long?','¿Cuánto dura?'),f(){const sh=rnd(7,19),sm=rnd(0,11)*5,d=rnd(4,30)*5,e=sh*60+sm+d,eh=Math.floor(e/60),em=e%60;
+      return twoTask(tx(t3(`Etwas beginnt um <b>${hm(sh,sm)} Uhr</b> und endet um <b>${hm(eh,em)} Uhr</b>. Wie lange dauert es?`,`Something starts at <b>${hm(sh,sm)}</b> and ends at <b>${hm(eh,em)}</b>. How long does it take?`,`Algo empieza a las <b>${hm(sh,sm)}</b> y termina a las <b>${hm(eh,em)}</b>. ¿Cuánto dura?`)),'',Math.floor(d/60),d%60,`<b>${Math.floor(d/60)} h ${d%60} min</b> (${d} min)`,
+        tx(t3('Spring zuerst bis zur vollen Stunde, dann weiter.','First jump to the full hour, then on.','Salta primero hasta la hora en punto y luego sigue.')),hIn);}},
+    zt_ende:{l:t3('Wann ist es vorbei?','When does it end?','¿Cuándo termina?'),f(){const sh=rnd(7,19),sm=rnd(0,11)*5,d=rnd(4,30)*5,e=sh*60+sm+d,eh=Math.floor(e/60),em=e%60;
+      return twoTask(tx(t3(`Leo startet um <b>${hm(sh,sm)} Uhr</b>. Es dauert <b>${dur(d)}</b>. Wann ist er fertig?`,`Leo starts at <b>${hm(sh,sm)}</b>. It takes <b>${dur(d)}</b>. When is he finished?`,`Leo empieza a las <b>${hm(sh,sm)}</b>. Dura <b>${dur(d)}</b>. ¿A qué hora termina?`)),'',eh,em,`<b>${hm(eh,em)}</b>`,
+        tx(t3('Zähle erst die ganzen Stunden dazu, dann die Minuten. Über 60 Minuten? Dann kommt eine Stunde dazu.','Add the whole hours first, then the minutes. Over 60 minutes? Then it is one more hour.','Suma primero las horas enteras y luego los minutos. ¿Más de 60 minutos? Entonces es una hora más.')),tIn);}},
+    zt_umr:{l:t3('Umrechnen','Converting','Convertir'),f(){const t=rnd(0,2);
+      if(t===0){const h=rnd(1,5),m=rnd(1,11)*5;return numTask(tx(t3(`Wie viele Minuten sind <b>${h} h ${m} min</b>?`,`How many minutes are <b>${h} h ${m} min</b>?`,`¿Cuántos minutos son <b>${h} h ${m} min</b>?`)),'',h*60+m,`${h} · 60 + ${m} = <b>${h*60+m} min</b>`,'1 h = 60 min','min');}
+      if(t===1){const m=rnd(2,9);return numTask(tx(t3(`Wie viele Sekunden sind <b>${m} min</b>?`,`How many seconds are <b>${m} min</b>?`,`¿Cuántos segundos son <b>${m} min</b>?`)),'',m*60,`${m} · 60 = <b>${m*60} s</b>`,'1 min = 60 s','s');}
+      const d=rnd(2,7);return numTask(tx(t3(`Wie viele Stunden sind <b>${d} Tage</b>?`,`How many hours are <b>${d} days</b>?`,`¿Cuántas horas son <b>${d} días</b>?`)),'',d*24,`${d} · 24 = <b>${d*24} h</b>`,tx(t3('1 Tag = 24 h','1 day = 24 h','1 día = 24 h')),'h');}},
+    zt_plan:{l:t3('Fahrplan','Timetable','Horario'),f(){const st=pick(STOPS),h=rnd(7,17),m0=rnd(0,5)*5,gaps=[rnd(2,9),rnd(3,12),rnd(4,15)],times=[h*60+m0];gaps.forEach(g=>times.push(times[times.length-1]+g));
+      const i=rnd(0,2),j=rnd(i+1,3),d=times[j]-times[i];
+      return numTask(tx(t3(`Wie viele Minuten fährt der Bus von <b>${tx(st[i])}</b> bis <b>${tx(st[j])}</b>?`,`How many minutes does the bus take from <b>${tx(st[i])}</b> to <b>${tx(st[j])}</b>?`,`¿Cuántos minutos tarda el autobús de <b>${tx(st[i])}</b> a <b>${tx(st[j])}</b>?`)),
+        `<table class="qtab" style="max-width:320px"><tr><th style="text-align:left">🚌</th><th></th></tr>${st.map((s,k)=>`<tr><td>${tx(s)}</td><td>${hm(Math.floor(times[k]/60),times[k]%60)}</td></tr>`).join('')}</table>`,d,
+        `<b>${d} min</b>`,tx(t3('Lies beide Zeiten ab und rechne den Unterschied in Sprüngen.','Read both times and work out the difference in jumps.','Lee las dos horas y calcula la diferencia a saltos.')),'min');}}
+  },
+  riddles:{
+    film(){const sh=rnd(15,19),sm=pick([15,30,45,40,50]),d=rnd(80,130),e=sh*60+sm+d;return {title:tx(t3('Kinoabend','Film night','Noche de cine')),text:tx(t3(`Der Film beginnt um ${hm(sh,sm)} Uhr und dauert ${d} Minuten. Wann ist er zu Ende?`,`The film starts at ${hm(sh,sm)} and lasts ${d} minutes. When does it end?`,`La película empieza a las ${hm(sh,sm)} y dura ${d} minutos. ¿A qué hora termina?`)),
+      f:[[tx(t3('Stunde','Hour','Hora')),Math.floor(e/60)],['min',e%60]],hint:tx(t3(`${d} min = ${Math.floor(d/60)} h ${d%60} min.`,`${d} min = ${Math.floor(d/60)} h ${d%60} min.`,`${d} min = ${Math.floor(d/60)} h ${d%60} min.`)),ans:hm(Math.floor(e/60),e%60),expl:`${hm(sh,sm)} + ${d} min = ${hm(Math.floor(e/60),e%60)}`};},
+    tag(){return {title:tx(t3('Minuten am Tag','Minutes in a day','Minutos al día')),text:tx(t3('Wie viele Minuten hat ein ganzer Tag?','How many minutes are there in a whole day?','¿Cuántos minutos tiene un día entero?')),f:[['min',1440]],hint:'24 · 60',ans:fmt(1440),expl:'24 · 60 = 1 440'.replace('1 440',fmt(1440))};},
+    schlaf(){const bh=pick([19,20,21]),bm=pick([0,15,30,45]),wh=6,wm=pick([30,45,0]),d=(24*60-(bh*60+bm))+wh*60+wm;return {title:tx(t3('Wie lange schläft Leo?','How long does Leo sleep?','¿Cuánto duerme Leo?')),text:tx(t3(`Leo geht um ${hm(bh,bm)} Uhr ins Bett und steht um ${hm(wh,wm)} Uhr auf. Wie lange schläft er?`,`Leo goes to bed at ${hm(bh,bm)} and gets up at ${hm(wh,wm)}. How long does he sleep?`,`Leo se acuesta a las ${hm(bh,bm)} y se levanta a las ${hm(wh,wm)}. ¿Cuánto duerme?`)),
+      f:[['h',Math.floor(d/60)],['min',d%60]],hint:tx(t3('Rechne erst bis Mitternacht, dann bis zum Aufstehen.','First work out the time to midnight, then to getting up.','Calcula primero hasta medianoche y luego hasta que se levanta.')),ans:`${Math.floor(d/60)} h ${d%60} min`,expl:`${Math.floor(d/60)} h ${d%60} min`};}
+  },
+  pro:[
+    ()=>({title:tx(t3('Lauter gleiche Ziffern','All the same digits','Todas las cifras iguales')),text:tx(t3('Eine Digitaluhr zeigt Stunden und Minuten, zum Beispiel 13:45. Wie oft am Tag zeigt sie vier gleiche Ziffern?','A digital clock shows hours and minutes, for example 13:45. How many times a day does it show four identical digits?','Un reloj digital muestra horas y minutos, por ejemplo 13:45. ¿Cuántas veces al día muestra cuatro cifras iguales?')),f:[[tx(t3('Mal','Times','Veces')),3]],
+      hint:tx(t3('Probiere 00:00, 11:11, … Gibt es 33:33?','Try 00:00, 11:11, … Is there a 33:33?','Prueba 00:00, 11:11, … ¿Existe 33:33?')),ans:'3',expl:'00:00, 11:11, 22:22'}),
+    ()=>({title:tx(t3('Der Zeiger wandert','The hand moves','La aguja avanza')),text:tx(t3('Wie oft überholt der lange Minutenzeiger den kurzen Stundenzeiger zwischen 12 Uhr mittags und 12 Uhr nachts? Das Treffen um 12 Uhr am Anfang zählt nicht.','Between 12 noon and 12 midnight, how many times does the long minute hand pass the short hour hand? The meeting at 12 at the start doesn’t count.','Entre las 12 del mediodía y las 12 de la noche, ¿cuántas veces adelanta la aguja larga a la corta? El encuentro de las 12 al principio no cuenta.')),f:[[tx(t3('Mal','Times','Veces')),11]],
+      hint:tx(t3('Zwischen 1 und 2 Uhr gibt es ein Treffen, zwischen 2 und 3 Uhr auch … Wie ist es zwischen 11 und 12 Uhr?','There is one meeting between 1 and 2, one between 2 and 3 … What about between 11 and 12?','Hay un encuentro entre la 1 y las 2, otro entre las 2 y las 3 … ¿Y entre las 11 y las 12?')),ans:'11',expl:tx(t3('Zwischen 11 und 12 treffen sie sich erst genau um 12 Uhr.','Between 11 and 12 they only meet exactly at 12.','Entre las 11 y las 12 solo se encuentran justo a las 12.'))})
+  ]
+});
+}
+
 function renderLesson(){
   const d=CUR(),meta=LESSONS.find(l=>l.id===LESSON.id)||LESSONS[0];
   $('#lCrumb').textContent=T('grade')+' · '+T('areas')[meta.area];$('#lH1').innerHTML=d.h1();$('#lIntro').innerHTML=d.intro();
@@ -2778,6 +3199,7 @@ async function reload(){
 
 /* ---------- language ---------- */
 function applyStatic(){
+  try{const ib=document.getElementById('ideaBtn');if(ib)ib.href='mailto:info@mathecraft.de?subject='+encodeURIComponent(T('idea_subj'))+'&body='+encodeURIComponent(T('idea_body'));}catch(e){}
   document.documentElement.lang=LANG;
   document.querySelectorAll('[data-i18n]').forEach(el=>{const [k,i]=el.dataset.i18n.split('.');let v=L[LANG][k]??L.de[k];if(i!==undefined)v=v[+i];if(typeof v==='string')el.innerHTML=v;});
   document.querySelectorAll('.langs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===LANG));

@@ -1237,10 +1237,10 @@ function renderTask(){
     <div class="btns"><button class="main" id="checkBtn">${T('check')}</button><button id="hintBtn">${T('hint')}</button></div>
     <div id="fb" aria-live="polite"></div>`;
   const body=$('#tbody');
-  body.querySelectorAll('.mcopts button').forEach(b=>b.onclick=()=>{body.querySelectorAll('.mcopts button').forEach(x=>x.setAttribute('aria-pressed',x===b));body.querySelector('.mc').value=b.dataset.v;});
+  body.querySelectorAll('.mcopts button').forEach(b=>b.onclick=()=>{body.querySelectorAll('.mcopts button').forEach(x=>x.setAttribute('aria-pressed',x===b));body.querySelector('.mc').value=b.dataset.v;$('#checkBtn').focus();});
   body.querySelectorAll('input').forEach((inp,k,all)=>{
-    inp.id='task-in-'+k;
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter')$('#checkBtn').click();});
+    inp.id='task-in-'+k;inp.enterKeyHint='go';
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#checkBtn').click();}});
     if(inp.classList.contains('cell'))inp.addEventListener('input',()=>{inp.value=inp.value.replace(/\D/g,'').slice(-1);if(inp.value&&all[k+1])all[k+1].focus();});
   });
   $('#hintBtn').onclick=()=>say('bad',t.hint);
@@ -1331,9 +1331,24 @@ function wireRiddle(r,x){
     }else{tries++;
       if(tries===1){r.querySelector('.hint').hidden=false;msg('bad',T('rd_try1'));}else msg('bad',T('rd_try2'));}
   });
-  ins.forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter')chk.click();}));
+  ins.forEach(i=>{i.enterKeyHint='go';i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();chk.click();}});});
 }
 $('#newRiddles').onclick=buildRiddles;
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'||e.defaultPrevented||e.isComposing||view==='game')return;
+  const el=document.activeElement;
+  if(el&&el.tagName==='BUTTON'&&!el.disabled)return; /* buttons already react to Enter */
+  if(el&&el.tagName==='INPUT'&&!el.disabled)return;  /* inputs have their own handler */
+  let btn=null;
+  if(view==='trainer')btn=$('#trCheck');
+  else if(view==='lesson'){
+    const r=el&&el.closest&&el.closest('.riddle');
+    btn=r?r.querySelector('[data-t="check"]'):$('#checkBtn');
+    if(btn&&btn.closest('#task')===null&&!r){btn=null;}
+    if(!btn){const t=$('#task');const inView=t&&t.getBoundingClientRect().top<innerHeight&&t.getBoundingClientRect().bottom>0;if(inView)btn=$('#checkBtn');}
+  }
+  if(btn&&!btn.hidden&&!btn.disabled){e.preventDefault();btn.click();}
+});
 
 function renderLesson(){showStep();renderRemember();buildQuiz();renderFilters();newRound();buildRiddles();}
 
@@ -1374,10 +1389,10 @@ function trTask(){
   $('#trTask').innerHTML=`<div class="taskhead"><span class="kind">${T('task_of',TRS.i+1,8)} · ${T('tr_lv',fmt(TR_LEVELS[TRS.lvl]))}</span>${trProg()}</div>
     <p class="qtext">${T('tr_prompt',`<span class="trtarget">${FLAG[TRS.lang]} ${T('langname')[TRS.lang]}</span>`)}</p>
     <p class="bignum">${fmt(TRS.n)}</p>
-    <input class="wordin" id="trIn" type="text" lang="${TRS.lang}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="${T('tr_ph')}" aria-label="${T('answer_aria')}">
+    <input class="wordin" id="trIn" type="text" enterkeyhint="go" lang="${TRS.lang}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="${T('tr_ph')}" aria-label="${T('answer_aria')}">
     <div class="btns"><button class="main" id="trCheck">${T('check')}</button><button id="trHint">${T('hint')}</button>${canSpeak?`<button id="trListen" hidden>${T('tr_listen')}</button>`:''}</div>
     <div id="trFb" aria-live="polite"></div>`;
-  $('#trIn').addEventListener('keydown',e=>{if(e.key==='Enter')$('#trCheck').click();});
+  $('#trIn').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#trCheck').click();}});
   $('#trHint').onclick=()=>say('bad',trHintFor(TRS.lang,TRS.n),$('#trFb'));
   $('#trCheck').onclick=trCheck;
   if(canSpeak)$('#trListen').onclick=e=>speak(WORDS[TRS.lang](TRS.n),TRS.lang,e.currentTarget,.87);

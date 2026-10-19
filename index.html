@@ -197,6 +197,13 @@ td:has(input.good){background:var(--okbg)} td:has(input.bad){background:var(--wa
 .rfb:empty{display:none}
 .rfb.good{color:var(--ok)}
 .rfb.bad{color:var(--pen)}
+/* support box for parents */
+.support{border-color:var(--owl);background:linear-gradient(135deg,#fff8e8,#ffffff)}
+.supportrow{display:flex;gap:14px;align-items:flex-start}
+.supportrow .owl{width:64px;height:64px}
+a.kofi{display:inline-block;font:800 1rem var(--body);text-decoration:none;background:var(--game);color:#fff;border:2px solid var(--game);border-radius:999px;padding:9px 18px}
+a.kofi:hover{filter:brightness(1.05)}
+a.kofi:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 footer{color:var(--muted);font-size:.85rem;text-align:center;max-width:60ch;margin:0 auto}
 
 /* ---------- app shell ---------- */
@@ -354,6 +361,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <section class="card">
     <div class="sh"><h2 data-i18n="trophies_h"></h2></div>
     <div class="trophies" id="trophies"></div>
+  </section>
+  <section class="card support">
+    <div class="supportrow">
+      <svg class="owl" aria-hidden="true"><use href="#owl"/></svg>
+      <div style="display:grid;gap:8px;min-width:0">
+        <span class="kind" data-i18n="sup_for"></span>
+        <h2 data-i18n="sup_h"></h2>
+        <p data-i18n="sup_p"></p>
+        <div class="btns"><a class="kofi" href="https://ko-fi.com/mathecraft" target="_blank" rel="noopener" data-i18n="sup_btn"></a></div>
+        <p class="note" data-i18n="sup_note"></p>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -564,7 +583,7 @@ de:{
   s3_h:'Teste dein Wissen',s3_p:'Vier kurze Fragen, jedes Mal neu. Tippe auf die richtige Antwort.',new_quiz:'Neuer Test',
   s4_h:'Üben',s4_p:'8 Aufgaben pro Runde. Richtig beim ersten Versuch gibt einen Stern. Jede Runde hat neue Zahlen.',
   s5_h:'Knobeln',s5_p:'Jedes Mal neue Rätsel. Schreib deine Antwort ins Kästchen und tippe auf Prüfen. Richtig beim ersten Versuch gibt einen Stern, ein Profi-Rätsel sogar zwei.',
-  new_riddles:'Neue Rätsel',footer:'Alle Erklärungen, Bilder und Aufgaben sind eigene Inhalte, orientiert am Lehrplan Mathematik der Grundschule.',
+  new_riddles:'Neue Rätsel',sup_for:'Für Eltern',sup_h:'Gefällt euch MatheCraft?',sup_p:'MatheCraft ist kostenlos und ohne Werbung. Wenn es eurem Kind Spaß macht, könnt ihr uns mit einem kleinen Trinkgeld unterstützen. Ganz freiwillig, jeder Euro hilft.',sup_btn:'☕ Leo unterstützen',sup_note:'Öffnet Ko-fi in einem neuen Fenster. Kinder bitte nur zusammen mit Mama oder Papa.',footer:'Alle Erklärungen, Bilder und Aufgaben sind eigene Inhalte, orientiert am Lehrplan Mathematik der Grundschule.',
   /* story */
   cap:p=>`1 ${L.de.sg[p]}`,
   steps:[
@@ -698,7 +717,7 @@ en:{
   s3_h:'Test yourself',s3_p:'Four short questions, new every time. Tap the right answer.',new_quiz:'New test',
   s4_h:'Practise',s4_p:'8 tasks per round. Right on the first try earns a star. Every round has new numbers.',
   s5_h:'Puzzles',s5_p:'New puzzles every time. Type your answer in the box and tap Check. Right on the first try earns a star, a Pro puzzle even two.',
-  new_riddles:'New puzzles',footer:'All explanations, pictures and tasks are our own, following the primary school maths curriculum.',
+  new_riddles:'New puzzles',sup_for:'For parents',sup_h:'Enjoying MatheCraft?',sup_p:'MatheCraft is free and has no ads. If your child enjoys it, you can support us with a small tip. Completely optional, every euro helps.',sup_btn:'☕ Support Leo',sup_note:'Opens Ko-fi in a new window. Kids, please only with a parent.',footer:'All explanations, pictures and tasks are our own, following the primary school maths curriculum.',
   cap:p=>`1 ${L.en.sg[p]}`,
   steps:[
     {t:'Cube, rod, flat',say:'You already know these blocks: the small cube is 1. Ten of them in a row make a rod, that is 10. Ten rods side by side make a flat, that is 100. And ten flats stacked up make a big cube: 1,000.'},
@@ -825,7 +844,7 @@ es:{
   s3_h:'Pon a prueba lo que sabes',s3_p:'Cuatro preguntas cortas, nuevas cada vez. Toca la respuesta correcta.',new_quiz:'Nuevo test',
   s4_h:'Practicar',s4_p:'8 tareas por ronda. Acertar al primer intento da una estrella. Cada ronda tiene números nuevos.',
   s5_h:'Acertijos',s5_p:'Acertijos nuevos cada vez. Escribe tu respuesta y toca Comprobar. Acertar al primer intento da una estrella; un acertijo Pro, dos.',
-  new_riddles:'Nuevos acertijos',footer:'Todas las explicaciones, imágenes y tareas son propias y siguen el currículo de matemáticas de primaria.',
+  new_riddles:'Nuevos acertijos',sup_for:'Para madres y padres',sup_h:'¿Os gusta MatheCraft?',sup_p:'MatheCraft es gratis y sin anuncios. Si a vuestro hijo o hija le gusta, podéis apoyarnos con una pequeña propina. Totalmente voluntario, cada euro ayuda.',sup_btn:'☕ Apoyar a Leo',sup_note:'Abre Ko-fi en una ventana nueva. Niños, solo con mamá o papá.',footer:'Todas las explicaciones, imágenes y tareas son propias y siguen el currículo de matemáticas de primaria.',
   cap:p=>`1 ${L.es.sg[p]}`,
   steps:[
     {t:'Cubo, barra, placa',say:'Ya conoces estos bloques: el cubito vale 1. Diez en fila forman una barra, que vale 10. Diez barras juntas forman una placa, que vale 100. Y diez placas apiladas forman un cubo grande: 1000.'},

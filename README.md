@@ -5,7 +5,7 @@
 **Playful maths practice for primary school, with Leo the lion.**
 Explanations, endless practice, a number word trainer and small reward games, in German, English and Spanish.
 
-🇩🇪 [mathecraft.de](https://mathecraft.de)
+🇩🇪 [mathecraft.de](https://mathecraft.de) · 🇪🇺 [mathcraft.eu](https://mathcraft.eu) *(coming soon)*
 
 <p>
   <img src="docs/screenshots/home.png" alt="Kid area with stars and game cards" width="260">
@@ -44,10 +44,10 @@ Lessons are grouped by the four areas of the primary school maths curriculum (as
 
 | Area | Lessons | Status |
 |---|---|---|
-| Numbers and calculating | Building a million · Big numbers made easy · The number line · Number patterns and neighbours · Rounding · Written multiplication · Long division | first lesson ✅, others 🔜 |
-| Shapes and space | Right angles, parallel and perpendicular · Quadrilaterals · Area and perimeter | 🔜 |
-| Measuring | Grams, kilograms, tonnes · Millimetres to kilometres · Litres and millilitres · Time | 🔜 |
-| Data and chance | Charts · Chance and probability | 🔜 |
+| Numbers and calculating | Building a million ✅ · Big numbers made easy ✅ · The number line ✅ · Number patterns and neighbours ✅ · Rounding ✅ · Written multiplication ✅ · Long division 🔜 | 6 of 7 |
+| Shapes and space | Right angles, parallel and perpendicular ✅ · Quadrilaterals ✅ · Patterns and tilings ✅ · Area and perimeter 🔜 | 3 of 4 |
+| Measuring | Millimetres to kilometres ✅ · Grams, kilograms, tonnes 🔜 · Litres and millilitres 🔜 · Time 🔜 | 1 of 4 |
+| Data and chance | Charts ✅ · Chance and probability ✅ | 2 of 2 |
 
 Plus the **number word trainer** (DE / EN / ES), available at any time.
 
@@ -64,7 +64,7 @@ Progress is saved in the browser on the device (`localStorage`). When the app ru
 
 ```
 index.html            the complete app (HTML, CSS and JavaScript)
-assets/               Leo picture and app icons
+assets/               Leo picture, app icons and fonts (self-hosted)
 docs/
   PLAN.md             roadmap, decisions and curriculum map
   screenshots/        images used in this README

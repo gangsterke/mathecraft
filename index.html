@@ -1228,6 +1228,8 @@ function newRound(){
   R.list=order.slice(0,8);R.i=0;R.res=[];startTask();
 }
 function startTask(){R.tries=0;R.state='ask';R.cur=GEN[R.list[R.i]]();renderTask();}
+let nextLock=0;
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.repeat){e.preventDefault();e.stopPropagation();}},true);
 const resCls=r=>r===true?'good':r==='late'?'late':'bad';
 function progHTML(){return `<div class="prog" aria-label="${T('task_of',R.i+1,8)}">`+R.list.map((_,j)=>`<i class="${j<R.res.length?resCls(R.res[j]):(j===R.i?'now':'')}"></i>`).join('')+`</div>`;}
 function renderTask(){
@@ -1249,7 +1251,7 @@ function renderTask(){
 function say(kind,html,el){(el||$('#fb')).innerHTML=`<div class="fb ${kind}"><svg class="owl sm" aria-hidden="true"><use href="#owl"/></svg><div class="bubble">${html}</div></div>`;}
 function onCheck(){
   const t=R.cur,body=$('#tbody');
-  if(R.state==='next'){R.i++;if(R.i<8)startTask();else finishRound();return;}
+  if(R.state==='next'){if(Date.now()<nextLock)return;R.i++;if(R.i<8)startTask();else finishRound();return;}
   const ins=[...body.querySelectorAll('input')],vals=ins.map(x=>x.value);
   if(vals.every(v=>v.trim()==='')){say('bad',T('enter_first'));return;}
   const ok=t.check(vals),marks=t.perField?t.perField(vals):null;
@@ -1259,7 +1261,7 @@ function onCheck(){
     if(R.tries===1)say('bad',T('not_quite')+t.hint);
     else{R.res.push(false);say('bad',`${T('here_right')}<div style="margin-top:8px">${t.sol}</div>`);toNext();}}
 }
-function toNext(){taskDone();R.state='next';$('#checkBtn').textContent=R.i<7?T('next_task'):T('see_result');$('#hintBtn').hidden=true;$('#tbody').querySelectorAll('input,button').forEach(x=>x.disabled=true);$('#checkBtn').focus();}
+function toNext(){taskDone();nextLock=Date.now()+700;R.state='next';$('#checkBtn').textContent=R.i<7?T('next_task'):T('see_result');$('#hintBtn').hidden=true;$('#tbody').querySelectorAll('input,button').forEach(x=>x.disabled=true);$('#checkBtn').focus();}
 function finishRound(){
   const s=R.res.filter(x=>x===true).length;
   const ty={};R.list.forEach((k,j)=>{ty[k]=ty[k]||[0,0];ty[k][1]++;if(R.res[j]===true)ty[k][0]++;});
@@ -1409,7 +1411,7 @@ function wrongLang(n,raw){return LANGS.find(l=>l!==TRS.lang&&checkWord(l,n,raw).
 function chunksHTML(lang,n){return `<span class="chunks" lang="${lang}">`+wordChunks(lang,n).map((c,i)=>`<span class="ck ck${i%3}">${escapeHTML(c)}</span>`).join('')+`</span>`;}
 function trCheck(){
   const fbEl=$('#trFb'),inp=$('#trIn');
-  if(TRS.state==='next'){TRS.i++;if(TRS.i<8)trTask();else trFinish();return;}
+  if(TRS.state==='next'){if(Date.now()<nextLock)return;TRS.i++;if(TRS.i<8)trTask();else trFinish();return;}
   if(!inp.value.trim()){say('bad',T('enter_first'),fbEl);return;}
   const wl=wrongLang(TRS.n,inp.value);
   if(wl){inp.classList.remove('good');inp.classList.add('bad');say('bad',`<b>${T('tr_wronglang',T('langname')[wl],`${FLAG[TRS.lang]} ${T('langname')[TRS.lang]}`)}</b>`,fbEl);inp.select();return;}
@@ -1432,7 +1434,7 @@ function trCheck(){
   }else{TRS.res.push(false);say('bad',`${T('here_right')}<div class="sol">${chunksHTML(TRS.lang,TRS.n)}</div>${tipList}`,fbEl);trToNext();}
 }
 function trToNext(){
-  taskDone();
+  taskDone();nextLock=Date.now()+700;
   TRS.state='next';$('#trIn').disabled=true;$('#trHint').hidden=true;if(canSpeak)$('#trListen').hidden=false;
   $('#trCheck').textContent=TRS.i<7?T('next_task'):T('see_result');$('#trCheck').focus();
 }

@@ -221,8 +221,10 @@ td:has(input.good){background:var(--okbg)} td:has(input.bad){background:var(--wa
 @media (min-width:640px){.riddles{grid-template-columns:1fr 1fr}}
 .riddle{border:2px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;align-content:start}
 .hint{background:var(--soft);border-radius:10px;padding:10px 12px}
-.answer{border-left:4px solid var(--pen);padding:4px 0 4px 12px}
-.answer b{font-family:var(--hand);font-weight:400;font-size:1.6rem;color:var(--pen);display:block;line-height:1.1}
+.answer{border-left:4px solid var(--btn);padding:4px 0 4px 12px}
+.answer b{font-family:var(--hand);font-weight:400;font-size:1.6rem;color:var(--btn);display:block;line-height:1.1}
+.answer.ok{border-left-color:var(--ok)}.answer.ok b{color:var(--ok)}
+.why.ok{color:var(--ok);font-weight:700}
 .ans{display:flex;flex-wrap:wrap;gap:8px 14px}
 .field{display:flex;align-items:center;gap:8px}
 .field label{font-weight:800;font-size:.9rem}
@@ -238,6 +240,13 @@ a.kofi{display:inline-block;font:800 1rem var(--body);text-decoration:none;backg
 a.kofi:hover{filter:brightness(1.05)}
 a.kofi:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 /* site footer + legal pages */
+.sndbtn{position:fixed;right:12px;bottom:12px;z-index:50;width:46px;height:46px;border-radius:50%;border:2px solid var(--line,#cfd8e6);background:var(--card,#fff);font-size:1.3rem;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:pointer}
+.sndbtn[aria-pressed="false"]{opacity:.7}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.confetti i{position:absolute;top:-16px;width:10px;height:14px;border-radius:2px;animation:cfall 2.2s cubic-bezier(.25,.6,.4,1) forwards}
+@keyframes cfall{to{transform:translate(var(--dx),110vh) rotate(var(--r));opacity:.9}}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}}
+.sitefoot{padding-bottom:64px}
 .sitefoot{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;padding:8px 0 4px}
 .sitefoot a,.linkbtn{color:var(--muted);font:700 .9rem var(--body);text-decoration:underline;text-underline-offset:3px;background:none;border:0;padding:4px 2px;border-radius:4px;cursor:pointer}
 .sitefoot a:hover,.linkbtn:hover{color:var(--ink)}
@@ -285,6 +294,21 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;max-width:60ch;marg
 .lessonlist li.open{border-color:var(--btn);background:var(--soft)}
 .lessonlist .pg{font-size:.8rem;color:var(--muted);font-weight:800}
 .lessonlist li.area{border:0;padding:10px 2px 0;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.lessonlist li.term{border:0;padding:18px 2px 2px;justify-content:flex-start;gap:10px;font-size:1.05rem}
+.lessonlist li.term .tdot{width:14px;height:14px;border-radius:50%;background:var(--tc);flex:none}
+.lessonlist li.term .tmon{color:var(--muted);font-weight:700;font-size:.9rem}
+.lessonlist .nowpill{margin-left:auto;background:var(--tc);color:#fff;font-weight:800;font-size:.8rem;border-radius:999px;padding:3px 12px}
+.lessonlist .atag{font-size:.75rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.lessonlist li.tsoon{justify-content:flex-start;border-style:dashed;color:var(--muted);font-weight:700}
+.lessonlist li.tsoon .owl{width:40px;height:40px;flex:none}
+.lessonlist li.yearbar{display:block;border:2px solid var(--grid);background:var(--card);padding:12px}
+.yh{display:grid;gap:2px;margin-bottom:24px}.yh .muted{font-size:.85rem}
+.ybar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.yseg{position:relative;display:grid;justify-items:center;gap:0;padding:22px 4px 8px;border-radius:10px;background:color-mix(in srgb,var(--tc) 14%,#fff);border:2px solid color-mix(in srgb,var(--tc) 45%,#fff);color:var(--ink);text-decoration:none;font-size:.95rem;line-height:1.15;text-align:center}
+.yseg span{font-size:.72rem;font-weight:700;color:var(--muted)}
+.yseg.now{background:var(--tc);border-color:var(--tc);color:#fff}.yseg.now span{color:#fff}
+.yseg.past{opacity:.75}
+.yseg .ymark{position:absolute;top:-18px;width:36px;height:36px}
 .lessonlist .soon{font-size:.8rem;font-weight:800;color:var(--muted);border:2px dashed var(--grid);border-radius:999px;padding:2px 10px}
 .trophies{display:flex;flex-wrap:wrap;gap:10px}
 .trophy{display:grid;justify-items:center;gap:4px;width:84px;text-align:center;font-size:.75rem;font-weight:800}
@@ -358,7 +382,7 @@ input.wordin{font:400 1.6rem var(--hand);color:var(--ink);background:var(--card)
 .gatebar.blocked{border-color:var(--pen);color:var(--pen)}
 .gatebar.blocked .meter i{background:var(--pen)}
 .gatebar.done{border-color:var(--ok);color:var(--ok)}
-.back.locked{opacity:.45}
+.back.locked,.tabs button.locked{opacity:.45}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
 @media (prefers-reduced-motion:no-preference){.gatebar.shake{animation:shake .4s}}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
@@ -385,6 +409,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </div>
 
 <!-- ============ HOME ============ -->
+<button type="button" id="sndBtn" class="sndbtn" aria-pressed="true">🔊</button>
 <div class="view" id="v-home">
   <section class="card">
     <div class="intro">
@@ -571,9 +596,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <form class="settings" id="setForm">
         <div class="row"><label for="setName" data-i18n="set_name"></label><input type="text" id="setName" maxlength="20"></div>
         <div class="row"><label for="setOn" data-i18n="set_on"></label><input type="checkbox" id="setOn"></div>
+        <div class="row"><label for="setSound" data-i18n="set_sound"></label><input type="checkbox" id="setSound"></div>
+        <div class="row"><label for="setVoice" data-i18n="set_voice"></label><input type="checkbox" id="setVoice"></div>
         <div class="row"><label for="setCost" data-i18n="set_cost"></label><input type="number" id="setCost" min="1" max="200"></div>
         <div class="row"><label for="setMin" data-i18n="set_min"></label><input type="number" id="setMin" min="1" max="30"></div>
         <div class="row"><label for="setTasks" data-i18n="set_tasks"></label><input type="number" id="setTasks" min="0" max="50"></div>
+        <div class="row"><label for="setTerm" data-i18n="set_term"></label><select id="setTerm"></select></div>
         <div class="row"><label for="setPin" data-i18n="set_pin"></label><input type="text" id="setPin" inputmode="numeric" maxlength="6"></div>
         <div class="row"><button class="main" type="submit" data-i18n="save"></button><span id="setMsg" class="saved" aria-live="polite"></span></div>
       </form>
@@ -634,7 +662,7 @@ de:{
   lesson_stats:(n,b)=>`${n} Übungsrunden · bestes Ergebnis ${b} von 8`,pages:r=>`S. ${r}`,
   trophy_next:(n,name)=>`Noch ${n} Sterne bis zum Pokal „${name}“.`,
   trophies:['Würfel','Stange','Platte','Großer Würfel','Zahlenprofi','Millionär'],
-  areas:{num:'Zahlen und Rechnen',geo:'Formen und Raum',meas:'Größen und Messen',data:'Daten und Zufall'},rule_cap:'Jeder Schritt ist zehnmal so viel wie der davor.',and_:'und',
+  terms:[{n:'Teil 1',s:'Herbst',m:'Sept – Okt'},{n:'Teil 2',s:'Winter',m:'Nov – Jan'},{n:'Teil 3',s:'Frühling',m:'Feb – Apr'},{n:'Teil 4',s:'Sommer',m:'Mai – Juli'}],term_now:'Jetzt in der Schule',term_soon:'Leo bereitet diese Lektionen gerade vor. Bald geht es hier weiter!',year_h:'Dein Mathe-Jahr',year_p:'So geht es in der Schule weiter. Du darfst jede Lektion schon jetzt öffnen.',set_term:'Die Klasse ist gerade in',term_auto:'Automatisch (nach Datum)',areas:{num:'Zahlen und Rechnen',geo:'Formen und Raum',meas:'Größen und Messen',data:'Daten und Zufall'},rule_cap:'Jeder Schritt ist zehnmal so viel wie der davor.',and_:'und',
   lessons:{'million':'Die Million bauen','bigcalc':'Große Zahlen, leicht gerechnet','numline':'Wo wohnt die Zahl? Der Zahlenstrahl','patterns':'Zahlenmuster und Nachbarn','rounding':'Runden wie ein Profi','mult':'Schriftlich malnehmen','div':'Schriftlich teilen','angles':'Rechte Winkel, parallel und senkrecht','quads':'Vierecke erkennen und zeichnen','area':'Fläche und Umfang','weights':'Gramm, Kilogramm, Tonne','lengths':'Von Millimeter bis Kilometer','volume':'Liter und Milliliter','time':'Uhrzeit und Zeitspannen','charts':'Diagramme lesen und zeichnen','chance':'Zufall und Wahrscheinlichkeit','tiles':'Muster und Parkette','cubes':'Würfel und Rauminhalt','convert':'Größen umrechnen'},
   trainer_name:'Zahlwort-Trainer',trainer_sub:'Zahlen als Wort schreiben: Deutsch, Englisch, Spanisch',
   back_home:'← Zu Mein Bereich',
@@ -739,7 +767,7 @@ sup_h:'Gefällt euch MatheCraft?',sup_p:'MatheCraft ist kostenlos und ohne Werbu
   p_log_h:'Letzte Aktivitäten',p_log_none:'Noch keine Aktivitäten.',
   log_round:l=>`Übungsrunde${l?' ('+l+')':''}`,log_quiz:'Schnelltest',log_riddle:n=>`Rätsel: ${n}`,
   log_rd:{first:'gelöst, 1. Versuch',ok:'gelöst',seen:'Lösung angesehen'},log_game:(n,m)=>`${n} (${m} Min)`,log_game_res:(c,s)=>`−${c} ★ · ${s} Punkte`,log_trainer:l=>`Zahlwort-Trainer (${l})`,
-  p_set_h:'Einstellungen',set_name:'Name des Kindes',set_on:'Spiele erlaubt',set_cost:'Ein Spiel kostet (Sterne)',set_min:'Spielzeit (Minuten)',set_tasks:'Pflichtaufgaben pro Besuch (0 = aus)',gate_progress:(d,m)=>`Pflichtaufgaben: ${d} von ${m}. Danach darfst du zurück.`,gate_done:'Geschafft! Du darfst jetzt zurück oder weiterüben.',gate_blocked:n=>`Noch ${n} ${n===1?'Aufgabe':'Aufgaben'}, dann darfst du zurück.`,set_pin:'Neue PIN (leer = bleibt)',
+  p_set_h:'Einstellungen',set_name:'Name des Kindes',set_on:'Spiele erlaubt',set_sound:'Töne bei Antworten',set_voice:'Leo lobt mit Stimme',snd_aria:'Töne an oder aus',cheer:['Spitze!','Super!','Klasse!','Toll gemacht!','Stark!','Prima!','Genau so!','Wunderbar!','Bravo!','Sensationell!','Mega!','Richtig gut!','Volltreffer!','Ausgezeichnet!','Weltklasse!','Der Hammer!','Ganz genau!','Fantastisch!','Du bist ein Ass!','Sauber gerechnet!','Spitzenklasse!','Wow, super!'],cheer_name:[n=>`Spitze, ${n}!`,n=>`Super, ${n}!`,n=>`Klasse gemacht, ${n}!`,n=>`Bravo, ${n}!`,n=>`${n}, du bist ein Ass!`],streak:{3:['Drei richtig hintereinander! Spitze!','Drei am Stück! Du bist heute richtig gut drauf!'],5:['Fünf richtig hintereinander! Du bist nicht zu bremsen!','Fünf am Stück! Leo ist begeistert!'],8:['Acht von acht! Unglaublich!']},oops:['Fast! Probier es noch einmal.','Nicht schlimm, du schaffst das!','Noch nicht ganz. Schau dir den Tipp an.','Kein Problem, versuch es nochmal!','Hmm, rechne noch einmal nach.'],end_msg:[['Gut, dass du drangeblieben bist! Schau dir Teil 1 noch einmal an, dann klappt es bestimmt besser.','Das war eine schwere Runde. Leo glaubt an dich! Versuch es gleich noch einmal.','Nicht aufgeben! Auch Profis haben mal klein angefangen.'],['Gut gemacht! Jede Runde macht dich ein Stück stärker.','Weiter so! Fehler sind zum Lernen da, und du lernst gerade ganz viel.','Prima gekämpft! Probier gleich noch eine Runde.'],['Sehr stark! Fast alles richtig. Darauf kannst du stolz sein!','Super Runde! Noch ein bisschen üben, dann schaffst du alle 8.','Klasse! Dein Kopf hat heute richtig gut gearbeitet.'],['Wow, alle 8 beim ersten Versuch! Du bist ein echter Mathe-Profi!','Perfekt! Leo macht einen Freudensprung für dich!','8 von 8! Das war Weltklasse!']],set_cost:'Ein Spiel kostet (Sterne)',set_min:'Spielzeit (Minuten)',set_tasks:'Pflichtaufgaben pro Besuch (0 = aus)',gate_progress:(d,m)=>`Pflichtaufgaben: ${d} von ${m}. Danach darfst du zurück.`,gate_done:'Geschafft! Du darfst jetzt zurück oder weiterüben.',gate_blocked:n=>`Noch ${n} ${n===1?'Aufgabe':'Aufgaben'}, dann darfst du zurück.`,set_pin:'Neue PIN (leer = bleibt)',
   save:'Speichern',saved:'Gespeichert',pin_need:'Die PIN braucht 4 bis 6 Ziffern.',bonus:'Bonus-Sterne schenken:',bonus_given:n=>`+${n} ★ geschenkt`,
   store_online:'Der Fortschritt wird online gespeichert. Du siehst ihn auf jedem Gerät, auf dem du mit deinem Claude-Konto angemeldet bist.',store_local:'Der Fortschritt wird nur auf diesem Gerät gespeichert.',
   /* trainer */
@@ -780,7 +808,7 @@ en:{
   lesson_stats:(n,b)=>`${n} practice rounds · best ${b} of 8`,pages:r=>`p. ${r}`,
   trophy_next:(n,name)=>`${n} more stars until the “${name}” trophy.`,
   trophies:['Cube','Rod','Flat','Big cube','Number pro','Millionaire'],
-  areas:{num:'Numbers and calculating',geo:'Shapes and space',meas:'Measuring',data:'Data and chance'},rule_cap:'Each step is worth ten times the one before.',and_:'and',
+  terms:[{n:'Part 1',s:'Autumn',m:'Sept – Oct'},{n:'Part 2',s:'Winter',m:'Nov – Jan'},{n:'Part 3',s:'Spring',m:'Feb – Apr'},{n:'Part 4',s:'Summer',m:'May – July'}],term_now:'In school now',term_soon:'Leo is preparing these lessons right now. More coming soon!',year_h:'Your maths year',year_p:'This is what comes next at school. You can open every lesson already.',set_term:'The class is currently in',term_auto:'Automatic (by date)',areas:{num:'Numbers and calculating',geo:'Shapes and space',meas:'Measuring',data:'Data and chance'},rule_cap:'Each step is worth ten times the one before.',and_:'and',
   lessons:{'million':'Building a million','bigcalc':'Big numbers made easy','numline':'Where does the number live? The number line','patterns':'Number patterns and neighbours','rounding':'Rounding like a pro','mult':'Written multiplication','div':'Long division','angles':'Right angles, parallel and perpendicular','quads':'Quadrilaterals','area':'Area and perimeter','weights':'Grams, kilograms, tonnes','lengths':'From millimetres to kilometres','volume':'Litres and millilitres','time':'Time and durations','charts':'Reading and drawing charts','chance':'Chance and probability','tiles':'Patterns and tilings','cubes':'Cubes and volume','convert':'Converting measures'},
   trainer_name:'Number Word Trainer',trainer_sub:'Write numbers as words: German, English, Spanish',
   back_home:'← Back to my area',
@@ -878,7 +906,7 @@ sup_h:'Enjoying MatheCraft?',sup_p:'MatheCraft is free and has no ads. If your c
   p_log_h:'Recent activity',p_log_none:'No activity yet.',
   log_round:l=>`Practice round${l?' ('+l+')':''}`,log_quiz:'Quick test',log_riddle:n=>`Puzzle: ${n}`,
   log_rd:{first:'solved, 1st try',ok:'solved',seen:'looked at solution'},log_game:(n,m)=>`${n} (${m} min)`,log_game_res:(c,s)=>`−${c} ★ · ${s} points`,log_trainer:l=>`Number Word Trainer (${l})`,
-  p_set_h:'Settings',set_name:`Child's name`,set_on:'Games allowed',set_cost:'A game costs (stars)',set_min:'Play time (minutes)',set_tasks:'Required tasks per visit (0 = off)',gate_progress:(d,m)=>`Required tasks: ${d} of ${m}. Then you can go back.`,gate_done:'Done! You can go back now or keep practising.',gate_blocked:n=>`${n} more ${n===1?'task':'tasks'}, then you can go back.`,set_pin:'New PIN (empty = keep)',
+  p_set_h:'Settings',set_name:`Child's name`,set_on:'Games allowed',set_sound:'Sounds for answers',set_voice:'Leo praises out loud',snd_aria:'Sounds on or off',cheer:['Brilliant!','Super!','Great!','Well done!','Awesome!','Spot on!','Fantastic!','Wonderful!','Bravo!','Amazing!','Excellent!','Top marks!','Bullseye!','Nailed it!','World class!','You are a star!','Exactly right!','Superb!','You rock!','Nice work!'],cheer_name:[n=>`Brilliant, ${n}!`,n=>`Super, ${n}!`,n=>`Well done, ${n}!`,n=>`Bravo, ${n}!`,n=>`${n}, you are a star!`],streak:{3:['Three in a row! Brilliant!','Three right in a row! You are on fire today!'],5:['Five in a row! Nothing can stop you!','Five right in a row! Leo is thrilled!'],8:['Eight out of eight! Incredible!']},oops:['Almost! Try once more.','No problem, you can do it!','Not quite yet. Have a look at the tip.','That is fine, try again!','Hmm, check your sum once more.'],end_msg:[['Well done for sticking with it! Look at part 1 again and it will go better next time.','That was a tough round. Leo believes in you! Try again straight away.','Never give up! Every pro started small.'],['Good job! Every round makes you a little stronger.','Keep going! Mistakes help you learn, and you are learning a lot right now.','Great effort! Try another round now.'],['Really strong! Almost everything right. You can be proud of that!','Super round! A little more practice and you will get all 8.','Brilliant! Your brain worked really hard today.'],['Wow, all 8 on the first try! You are a real maths pro!','Perfect! Leo is jumping for joy!','8 out of 8! That was world class!']],set_cost:'A game costs (stars)',set_min:'Play time (minutes)',set_tasks:'Required tasks per visit (0 = off)',gate_progress:(d,m)=>`Required tasks: ${d} of ${m}. Then you can go back.`,gate_done:'Done! You can go back now or keep practising.',gate_blocked:n=>`${n} more ${n===1?'task':'tasks'}, then you can go back.`,set_pin:'New PIN (empty = keep)',
   save:'Save',saved:'Saved',pin_need:'The PIN needs 4 to 6 digits.',bonus:'Give bonus stars:',bonus_given:n=>`+${n} ★ given`,
   store_online:'Progress is saved online. You can see it on every device where you are signed in to your Claude account.',store_local:'Progress is only saved on this device.',
   tr_intro:'Write the number in words. Leo shows you exactly where a mistake is.',tr_lang:'Language of the number words',tr_level:'Difficulty',
@@ -918,7 +946,7 @@ es:{
   lesson_stats:(n,b)=>`${n} rondas · mejor resultado ${b} de 8`,pages:r=>`pág. ${r}`,
   trophy_next:(n,name)=>`Faltan ${n} estrellas para el trofeo «${name}».`,
   trophies:['Cubo','Barra','Placa','Cubo grande','Experto','Millonario'],
-  areas:{num:'Números y cálculo',geo:'Formas y espacio',meas:'Magnitudes y medida',data:'Datos y azar'},rule_cap:'Cada paso vale diez veces el anterior.',and_:'y',
+  terms:[{n:'Parte 1',s:'Otoño',m:'sept – oct'},{n:'Parte 2',s:'Invierno',m:'nov – ene'},{n:'Parte 3',s:'Primavera',m:'feb – abr'},{n:'Parte 4',s:'Verano',m:'may – jul'}],term_now:'Ahora en el cole',term_soon:'Leo está preparando estas lecciones. ¡Muy pronto habrá más!',year_h:'Tu año de mates',year_p:'Esto es lo que viene en el cole. Ya puedes abrir todas las lecciones.',set_term:'La clase está ahora en',term_auto:'Automático (según la fecha)',areas:{num:'Números y cálculo',geo:'Formas y espacio',meas:'Magnitudes y medida',data:'Datos y azar'},rule_cap:'Cada paso vale diez veces el anterior.',and_:'y',
   lessons:{'million':'Construir un millón','bigcalc':'Números grandes, cálculo fácil','numline':'¿Dónde vive el número? La recta numérica','patterns':'Patrones y números vecinos','rounding':'Redondear como un experto','mult':'Multiplicar por escrito','div':'Dividir por escrito','angles':'Ángulo recto, paralelas y perpendiculares','quads':'Cuadriláteros','area':'Área y perímetro','weights':'Gramos, kilos y toneladas','lengths':'Del milímetro al kilómetro','volume':'Litros y mililitros','time':'La hora y los intervalos de tiempo','charts':'Leer y dibujar gráficos','chance':'Azar y probabilidad','tiles':'Mosaicos y teselados','cubes':'Cubos y volumen','convert':'Convertir medidas'},
   trainer_name:'Entrenador de números',trainer_sub:'Escribir números con letras: alemán, inglés, español',
   back_home:'← Volver a mi zona',
@@ -1016,7 +1044,7 @@ sup_h:'¿Os gusta MatheCraft?',sup_p:'MatheCraft es gratis y sin anuncios. Si a 
   p_log_h:'Actividad reciente',p_log_none:'Aún no hay actividad.',
   log_round:l=>`Ronda de práctica${l?' ('+l+')':''}`,log_quiz:'Test rápido',log_riddle:n=>`Acertijo: ${n}`,
   log_rd:{first:'resuelto al primer intento',ok:'resuelto',seen:'vio la solución'},log_game:(n,m)=>`${n} (${m} min)`,log_game_res:(c,s)=>`−${c} ★ · ${s} puntos`,log_trainer:l=>`Entrenador de números (${l})`,
-  p_set_h:'Ajustes',set_name:'Nombre del niño o la niña',set_on:'Juegos permitidos',set_cost:'Un juego cuesta (estrellas)',set_min:'Tiempo de juego (minutos)',set_tasks:'Tareas obligatorias por visita (0 = desactivado)',gate_progress:(d,m)=>`Tareas obligatorias: ${d} de ${m}. Después puedes volver.`,gate_done:'¡Hecho! Ya puedes volver o seguir practicando.',gate_blocked:n=>`${n===1?'Falta 1 tarea':'Faltan '+n+' tareas'} para poder volver.`,set_pin:'Nuevo PIN (vacío = mantener)',
+  p_set_h:'Ajustes',set_name:'Nombre del niño o la niña',set_on:'Juegos permitidos',set_sound:'Sonidos al responder',set_voice:'Leo felicita en voz alta',snd_aria:'Sonido sí o no',cheer:['¡Genial!','¡Muy bien!','¡Estupendo!','¡Fenomenal!','¡Bravo!','¡Exacto!','¡Fantástico!','¡Maravilloso!','¡Increíble!','¡Excelente!','¡De diez!','¡En el blanco!','¡Lo has clavado!','¡De campeonato!','¡Eres un crack!','¡Perfecto!','¡Súper!','¡Olé!','¡Qué bien lo haces!','¡Buenísimo!'],cheer_name:[n=>`¡Genial, ${n}!`,n=>`¡Muy bien, ${n}!`,n=>`¡Bravo, ${n}!`,n=>`¡${n}, eres un crack!`,n=>`¡Estupendo, ${n}!`],streak:{3:['¡Tres seguidas! ¡Genial!','¡Tres bien seguidas! ¡Hoy estás que te sales!'],5:['¡Cinco seguidas! ¡No hay quien te pare!','¡Cinco seguidas! ¡Leo está encantado!'],8:['¡Ocho de ocho! ¡Increíble!']},oops:['¡Casi! Prueba otra vez.','No pasa nada, ¡tú puedes!','Todavía no. Mira la pista.','Tranquilo, ¡inténtalo de nuevo!','Mmm, revisa la cuenta otra vez.'],end_msg:[['¡Qué bien que no te has rendido! Mira otra vez la parte 1 y la próxima saldrá mejor.','Ha sido una ronda difícil. ¡Leo cree en ti! Inténtalo otra vez.','¡No te rindas! Todos los cracks empezaron poco a poco.'],['¡Bien hecho! Cada ronda te hace un poco más fuerte.','¡Sigue así! Los errores sirven para aprender, y estás aprendiendo mucho.','¡Buen esfuerzo! Prueba otra ronda ahora.'],['¡Muy fuerte! Casi todo bien. ¡Puedes estar orgulloso!','¡Súper ronda! Un poco más de práctica y sacarás las 8.','¡Estupendo! Tu cabeza ha trabajado muy bien hoy.'],['¡Guau, las 8 al primer intento! ¡Eres un auténtico crack de las mates!','¡Perfecto! ¡Leo salta de alegría!','¡8 de 8! ¡Ha sido de campeonato!']],set_cost:'Un juego cuesta (estrellas)',set_min:'Tiempo de juego (minutos)',set_tasks:'Tareas obligatorias por visita (0 = desactivado)',gate_progress:(d,m)=>`Tareas obligatorias: ${d} de ${m}. Después puedes volver.`,gate_done:'¡Hecho! Ya puedes volver o seguir practicando.',gate_blocked:n=>`${n===1?'Falta 1 tarea':'Faltan '+n+' tareas'} para poder volver.`,set_pin:'Nuevo PIN (vacío = mantener)',
   save:'Guardar',saved:'Guardado',pin_need:'El PIN necesita de 4 a 6 cifras.',bonus:'Regalar estrellas extra:',bonus_given:n=>`+${n} ★ regaladas`,
   store_online:'El progreso se guarda en línea. Lo verás en cualquier dispositivo donde hayas iniciado sesión con tu cuenta de Claude.',store_local:'El progreso solo se guarda en este dispositivo.',
   tr_intro:'Escribe el número con letras. Leo te muestra exactamente dónde está el error.',tr_lang:'Idioma de los números',tr_level:'Dificultad',
@@ -1216,6 +1244,31 @@ function speak(text,lang,btn,rate){
     setTimeout(()=>{if(!started&&!s.speaking)speechNote(btn,true);},2500);
   }catch(e){speechNote(btn,true);}
 }
+
+/* ---------- sounds and cheering (made in the browser, no audio files) ---------- */
+function soundMuted(){try{return localStorage.getItem('mathecraft.mute')==='1';}catch(e){return false;}}
+const FX={ctx:null,
+  ac(){try{if(!this.ctx){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;this.ctx=new C();}if(this.ctx.state==='suspended')this.ctx.resume();return this.ctx;}catch(e){return null;}},
+  on(){return Store.settings.sound!==false&&!soundMuted();},
+  tone(f,t0,d,type,vol,f2){const c=this.ac();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
+    g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(vol||.2,t+.015);g.gain.exponentialRampToValueAtTime(0.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.05);},
+  ok(){if(!this.on())return;this.tone(1046.5,0,.16,'sine',.2);this.tone(1568,.08,.35,'sine',.2);this.tone(3136,.08,.25,'sine',.04);},
+  bad(){},
+  oops(){this.cheer(pick(T('oops')));},
+  praise(streak){const S=T('streak'),n=(Store.settings.name||'').trim();if(streak&&S[streak])return this.cheer(pick(S[streak]));this.cheer(n&&Math.random()<.3?pick(T('cheer_name'))(n):pick(T('cheer')));},
+  end(level){if(!this.on())return;const C5=523.25,E5=659.25,G5=783.99,C6=1046.5,E6=1318.5,G6=1567.98;
+    const seq=[[392,C5],[C5,E5,G5],[C5,E5,G5,C6],[C5,E5,G5,C6,E6]][level],st=level===0?.22:.12;
+    seq.forEach((f,i)=>{this.tone(f,i*st,.3,'triangle',.16);this.tone(f*2,i*st,.2,'sine',.04);});
+    if(level>=2){const t=seq.length*st;[C6,E6,G6].forEach(f=>this.tone(f,t,.9,'sine',.12));[C5,G5].forEach(f=>this.tone(f,t,.9,'triangle',.08));}},
+  cheer(text){if(!this.on()||Store.settings.voice===false||!canSpeak)return;try{speak(text,LANG,null,1.25);}catch(e){}},
+  confetti(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}const box=document.createElement('div');box.className='confetti';const cols=['var(--pv-g)','var(--pv-b)','var(--pv-r)','var(--star,#ffc21a)'];
+    for(let i=0;i<46;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.background=cols[i%4];p.style.animationDelay=(Math.random()*.5)+'s';p.style.setProperty('--dx',(Math.random()*160-80)+'px');p.style.setProperty('--r',(Math.random()*720-360)+'deg');box.appendChild(p);}
+    document.body.appendChild(box);setTimeout(()=>box.remove(),3200);}
+};
+/* end of a round: level 0..3, message, sound, voice, confetti */
+function roundEnd(s){const level=s===8?3:s>=6?2:s>=4?1:0,msg=pick(T('end_msg')[level]);FX.end(level);if(level===3)FX.confetti();FX.cheer(msg);return msg;}
+function syncSndBtn(){const b=$('#sndBtn');if(!b)return;const on=!soundMuted();b.textContent=on?'🔊':'🔇';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',T('snd_aria'));b.title=T('snd_aria');}
+$('#sndBtn').addEventListener('click',()=>{const m=!soundMuted();try{localStorage.setItem('mathecraft.mute',m?'1':'0');}catch(e){}syncSndBtn();if(!m){FX.ok();}else{try{speechSynthesis.cancel();}catch(e){}}});
 $('#readStep').hidden=false;$('#readStep').onclick=e=>{const st=CUR().steps[step];speak(st.t()+'. '+st.say(),LANG,e.currentTarget);};
 
 /* =========================================================
@@ -1291,8 +1344,8 @@ function buildQuiz(){
       if(QZ.stars===null)QZ.stars=quizStarTestsToday()<QUIZ_STAR_TESTS;
       btns.forEach(bb=>bb.disabled=true);
       btns[x.a].classList.add('right');
-      if(j!==x.a)b.classList.add('wrong');else{QZ.right++;if(QZ.stars)earnStar();}
-      const w=q.querySelector('.why');w.textContent=(j===x.a?T('right_pre'):T('again_pre'))+x.why;w.hidden=false;
+      if(j!==x.a){b.classList.add('wrong');FX.bad();}else{QZ.right++;if(QZ.stars)earnStar();FX.ok();FX.praise();}
+      const w=q.querySelector('.why');w.classList.toggle('ok',j===x.a);w.textContent=(j===x.a?T('right_pre'):T('again_pre'))+x.why;w.hidden=false;
       QZ.done++;taskDone();
       if(QZ.done===QZ.list.length){
         const s=QZ.right,st=QZ.stars,m=QZ.list.length;
@@ -1379,8 +1432,8 @@ function onCheck(){
   if(vals.every(v=>v.trim()==='')){say('bad',T('enter_first'));return;}
   const ok=t.check(vals),marks=t.perField?t.perField(vals):null;
   ins.filter(x=>x.type!=='hidden').forEach((x,k)=>{x.classList.remove('good','bad');x.classList.add((marks?marks[k]:ok)?'good':'bad');});
-  if(ok){const star=R.tries===0;R.res.push(star?true:'late');if(star)earnStar();say('good',`${pick(T('praise'))} ${star?T('star1'):''}`);toNext();}
-  else{R.tries++;
+  if(ok){const star=R.tries===0;R.res.push(star?true:'late');if(star)earnStar();const pr=pick(T('praise'));say('good',`${pr} ${star?T('star1'):''}`);FX.ok();let k=0;for(let i=R.res.length-1;i>=0&&R.res[i]===true;i--)k++;FX.praise(k);toNext();}
+  else{R.tries++;if(R.tries===1)FX.oops();
     if(R.tries===1)say('bad',T('not_quite')+t.hint);
     else{R.res.push(false);say('bad',`${T('here_right')}<div style="margin-top:8px">${t.sol}</div>`);toNext();}}
 }
@@ -1389,7 +1442,7 @@ function finishRound(){
   const s=R.res.filter(x=>x===true).length;
   const ty={};R.list.forEach((k,j)=>{ty[k]=ty[k]||[0,0];ty[k][1]++;if(R.res[j]===true)ty[k][0]++;});
   record(d=>{d.rounds.push({t:Date.now(),l:LESSON.id,f:filter,s,m:8,ty});});
-  const msg=T('round_msg')[s===8?3:s>=6?2:s>=4?1:0];
+  const msg=roundEnd(s);
   $('#task').innerHTML=`<div class="done"><span class="kind">${T('round_done')}</span>${progHTML()}<p class="stars" aria-label="${s} ★">${'★'.repeat(s)||'☆'}</p><div class="fb good" style="width:100%"><svg class="owl sm" aria-hidden="true"><use href="#owl"/></svg><div class="bubble"><b>${T('round_res',s)}</b> ${msg}</div></div><button class="main" id="again">${T('new_round')}</button></div>`;
   $('#again').onclick=newRound;
 }
@@ -1449,11 +1502,11 @@ function wireRiddle(r,x){
     const marks=ins.map(i=>Number.isInteger(+i.dataset.ans)?parseNum(i.value)===+i.dataset.ans:Math.abs(parseDec(i.value)-(+i.dataset.ans))<1e-6);
     ins.forEach((i,k)=>{i.classList.remove('good','bad');i.classList.add(marks[k]?'good':'bad');});
     if(marks.every(Boolean)){
-      if(tries===0)earnStar(worth);
+      if(tries===0)earnStar(worth);FX.ok();FX.praise();if(worth===2&&tries===0)FX.confetti();
       record(d=>{d.riddles.push({t:Date.now(),l:LESSON.id,id:x.id,name:x.title,ok:true,first:tries===0});});
       msg('good',tries>0?T('rd_kept'):worth===2?T('rd_star2'):T('rd_star1'));
-      r.querySelector('.answer').hidden=false;finish();
-    }else{tries++;
+      r.querySelector('.answer').hidden=false;r.querySelector('.answer').classList.add('ok');finish();
+    }else{tries++;if(tries===1)FX.oops();
       if(tries===1){r.querySelector('.hint').hidden=false;msg('bad',T('rd_try1'));}else msg('bad',T('rd_try2'));}
   });
   ins.forEach(i=>{i.enterKeyHint='go';i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();chk.click();}});});
@@ -1462,7 +1515,7 @@ $('#newRiddles').onclick=buildRiddles;
 /* ---------- legal pages (Impressum + privacy) ---------- */
 /* Impressum data: full name + address lines exactly as the Impressum service gives them,
    e.g. addr:['c/o Online-Impressum.de #12345','Europaring 90','53757 Sankt Augustin'] */
-const OPERATOR={name:'Koen Gits',addr:[],mail:'info@mathecraft.de'};
+const OPERATOR={name:'Koen Gits',addr:['c/o Online-Impressum.de #97838','Europaring 90','53757 Sankt Augustin'],mail:'info@mathecraft.de'};
 const hasOperator=()=>!!(OPERATOR.name&&OPERATOR.addr.length>=2);
 function renderFootLinks(){$('#ftImpressum').hidden=!hasOperator();}
 function openLegal(kind){
@@ -3251,7 +3304,7 @@ function dur2(m){return `${Math.floor(m/60)} h ${m%60} min`;}
 
 function renderLesson(){
   const d=CUR(),meta=LESSONS.find(l=>l.id===LESSON.id)||LESSONS[0];
-  $('#lCrumb').textContent=T('grade')+' · '+T('areas')[meta.area];$('#lH1').innerHTML=d.h1();$('#lIntro').innerHTML=d.intro();
+  $('#lCrumb').textContent=T('grade')+' · '+T('areas')[meta.area]+(meta.t?' · '+T('terms')[meta.t-1].s:'');$('#lH1').innerHTML=d.h1();$('#lIntro').innerHTML=d.intro();
   showStep();renderRemember();buildQuiz();renderFilters();newRound();buildRiddles();
 }
 function openLesson(id){if(!LDEF[id])return;if(LESSON.id!==id){LESSON.id=id;step=0;filter='mix';}renderLesson();show('lesson');}
@@ -3325,9 +3378,9 @@ function trCheck(){
     TRS.streak=star?TRS.streak+1:0;
     let html=`${pick(T('praise'))} ${star?T('star1'):''}<div class="sol">${chunksHTML(TRS.lang,TRS.n)}</div>`;
     if(r.accentOnly){html=`${T('tr_accent')}<div class="sol">${chunksHTML(TRS.lang,TRS.n)}</div>`;TRS.err.accent=(TRS.err.accent||0)+1;}
-    say('good',html,fbEl);trToNext();return;
+    say('good',html,fbEl);FX.ok();FX.praise(TRS.streak);trToNext();return;
   }
-  TRS.tries++;TRS.streak=0;
+  TRS.tries++;TRS.streak=0;if(TRS.tries===1)FX.oops();
   r.tips.forEach(k=>{TRS.err[k]=(TRS.err[k]||0)+1;});
   const tipList=r.tips.length?`<ul class="tiplist">${r.tips.map(k=>`<li>${T('tips')[k]}</li>`).join('')}</ul>`:'';
   if(TRS.tries===1){
@@ -3346,7 +3399,7 @@ function trFinish(){
   record(d=>{d.rounds.push({t:Date.now(),l:'zahlwort',f:'zw',s,m:8,lang,lvl,err});});
   let up='';
   if(s>=7&&TRS.lvl<3){TRS.lvl++;saveTrainerPrefs();up=`<p class="qtext">${T('tr_up',T('tr_lv',fmt(TR_LEVELS[TRS.lvl])))}</p>`;}
-  const msg=s<4?T('tr_low'):T('round_msg')[s===8?3:s>=6?2:1];
+  const msg=s<4?(roundEnd(s),T('tr_low')):roundEnd(s);
   $('#trTask').innerHTML=`<div class="done"><span class="kind">${T('round_done')}</span>${trProg()}<p class="stars" aria-label="${s} ★">${'★'.repeat(s)||'☆'}</p><div class="fb good" style="width:100%"><svg class="owl sm" aria-hidden="true"><use href="#owl"/></svg><div class="bubble"><b>${T('round_res',s)}</b> ${msg}</div></div>${up}<button class="main" id="trAgain">${T('new_round')}</button></div>`;
   $('#trAgain').onclick=()=>renderTrainer();
 }
@@ -3357,14 +3410,19 @@ function trFinish(){
 const LESSON={id:'million'};
 /* our own curriculum structure, grouped by maths areas */
 const LESSONS=[
-  {id:'million',area:'num',open:true},{id:'bigcalc',area:'num'},{id:'numline',area:'num'},{id:'patterns',area:'num'},{id:'rounding',area:'num'},{id:'mult',area:'num'},{id:'div',area:'num'},
-  {id:'angles',area:'geo'},{id:'quads',area:'geo'},{id:'tiles',area:'geo'},{id:'area',area:'geo'},{id:'cubes',area:'geo'},
-  {id:'weights',area:'meas'},{id:'lengths',area:'meas'},{id:'volume',area:'meas'},{id:'time',area:'meas'},{id:'convert',area:'meas'},
-  {id:'charts',area:'data'},{id:'chance',area:'data'}];
+  /* t = part of the school year (1 autumn, 2 winter, 3 spring, 4 summer) */
+  {id:'div',area:'num',t:1},{id:'area',area:'geo',t:1},{id:'weights',area:'meas',t:1},{id:'volume',area:'meas',t:1},{id:'time',area:'meas',t:1},
+  {id:'million',area:'num',open:true,t:2},{id:'bigcalc',area:'num',t:2},{id:'numline',area:'num',t:2},{id:'patterns',area:'num',t:2},{id:'rounding',area:'num',t:2},{id:'mult',area:'num',t:2},
+  {id:'angles',area:'geo',t:2},{id:'quads',area:'geo',t:2},{id:'tiles',area:'geo',t:2},{id:'cubes',area:'geo',t:2},
+  {id:'lengths',area:'meas',t:2},{id:'convert',area:'meas',t:2},
+  {id:'charts',area:'data',t:2},{id:'chance',area:'data',t:2}];
+const TERM_COL=['#e8862a','#3d8bfd','#2eb365','#e0a800'];
+/* which part of the school year is it? parent setting, else by month */
+function curTerm(){const v=+(Store.settings.term||0);if(v>=1&&v<=4)return v;const mo=new Date().getMonth()+1;return mo>=8&&mo<=10?1:(mo>=11||mo<=1)?2:mo<=4?3:4;}
 const LEGACY_IDS={};
 function normalizeIds(){allDays().forEach(d=>['rounds','quizzes','riddles'].forEach(k=>(d[k]||[]).forEach(x=>{if(LEGACY_IDS[x.l])x.l=LEGACY_IDS[x.l];})));}
 const TROPHIES=[{n:10,c:'g',d:[1,1,1],s:14},{n:25,c:'b',d:[10,1,1],s:4},{n:50,c:'r',d:[10,10,1],s:3},{n:100,c:'g',d:[10,10,10],s:2.6},{n:250,c:'b',d:[10,1,1],s:4},{n:500,c:'r',d:[10,10,10],s:2.6}];
-const DEFAULTS={name:'',cost:10,playMin:3,gameOn:true,pin:'',minTasks:10};
+const DEFAULTS={name:'',cost:10,playMin:3,gameOn:true,pin:'',minTasks:10,sound:true,voice:true,term:0};
 const Store={db:null,days:{},settings:{...DEFAULTS},ready:false,queue:Promise.resolve(),pending:[]};
 const pad2=n=>String(n).padStart(2,'0');
 const dayKey=(d=new Date())=>d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
@@ -3420,7 +3478,7 @@ async function reload(){
 }
 
 /* ---------- language ---------- */
-function applyStatic(){
+function applyStatic(){syncSndBtn();
   try{const ib=document.getElementById('ideaBtn');if(ib)ib.href='mailto:info@mathecraft.de?subject='+encodeURIComponent(T('idea_subj'))+'&body='+encodeURIComponent(T('idea_body'));}catch(e){}
   document.documentElement.lang=LANG;
   document.querySelectorAll('[data-i18n]').forEach(el=>{const [k,i]=el.dataset.i18n.split('.');let v=L[LANG][k]??L.de[k];if(i!==undefined)v=v[+i];if(typeof v==='string')el.innerHTML=v;});
@@ -3453,7 +3511,8 @@ function renderGate(state){
     el.className='gatebar'+(state==='blocked'?' blocked':'');
     el.innerHTML=`<span>${state==='blocked'?T('gate_blocked',m-GATE.done):T('gate_progress',GATE.done,m)}</span><div class="meter" role="img" aria-label="${GATE.done} / ${m}"><i style="width:${Math.round(100*GATE.done/m)}%"></i></div>`;
   });
-  document.querySelectorAll('.back').forEach(b=>b.classList.toggle('locked',GATE.active));
+  const lk=GATE.active&&!unlocked; /* same look and behaviour for every 'Mein Bereich' button */
+  document.querySelectorAll('.back,.tabs [data-go="home"]').forEach(b=>{b.classList.toggle('locked',lk);b.setAttribute('aria-disabled',String(lk));});
 }
 function blockGate(){renderGate('blocked');const el=document.querySelector('#v-'+view+' .gatebar');if(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}}
 function show(v){
@@ -3477,6 +3536,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b
 function refreshStars(){$('#totalStars').textContent=totals().balance;}
 
 /* ---------- kid area ---------- */
+function termBarHTML(){const c=curTerm();return `<li class="yearbar"><div class="yh"><b>${T('year_h')}</b><span class="muted">${T('year_p')}</span></div><div class="ybar">`+T('terms').map((tm,k)=>`<a href="#term-${k+1}" class="yseg${k+1===c?' now':''}${k+1<c?' past':''}" style="--tc:${TERM_COL[k]}">${k+1===c?`<svg class="owl sm ymark" aria-hidden="true"><use href="#owl"/></svg>`:''}<b>${tm.s}</b><span>${tm.m}</span></a>`).join('')+`</div></li>`;}
 function renderHome(){
   const t=totals(),s=Store.settings,td=Store.days[dayKey()]||blankDay(dayKey());
   $('#homeHello').innerHTML=T('hello',s.name?escapeHTML(s.name):'');
@@ -3494,19 +3554,21 @@ function renderHome(){
   const rounds=allDays().flatMap(d=>d.rounds||[]);
   const tr=rounds.filter(x=>x.l==='zahlwort');
   $('#lessonList').innerHTML=`<li class="open"><span><span class="pg">${T('always')}</span><br><b>${T('trainer_name')}</b><br><span class="muted" style="font-size:.85rem">${T('trainer_sub')}${tr.length?' · '+T('lesson_stats',tr.length,tr.reduce((m,x)=>Math.max(m,x.s),0)):''}</span></span><button class="main" data-go="trainer">${T('open')}</button></li>`+
-    ['num','geo','meas','data'].map(a=>`<li class="area">${T('areas')[a]}</li>`+LESSONS.filter(l=>l.area===a).map(l=>{
-      const title=T('lessons')[l.id];
+    termBarHTML()+[1,2,3,4].map(tn=>{const tm=T('terms')[tn-1],now=tn===curTerm(),ls=['num','geo','meas','data'].flatMap(a=>LESSONS.filter(l=>l.t===tn&&l.area===a));
+      return `<li class="term${now?' now':''}" id="term-${tn}" style="--tc:${TERM_COL[tn-1]}"><span class="tdot"></span><span><b>${tm.n} · ${tm.s}</b> <span class="tmon">${tm.m}</span></span>${now?`<span class="nowpill">${T('term_now')}</span>`:''}</li>`+
+      (ls.length?ls.map(l=>{
+      const title=T('lessons')[l.id],ar=`<span class="atag">${T('areas')[l.area]}</span>`;
       if(!LDEF[l.id])return `<li><span>${title}</span><span class="soon">${T('soon')}</span></li>`;
       const r=rounds.filter(x=>x.l===l.id),best=r.reduce((m,x)=>Math.max(m,x.s),0);
-      return `<li class="open"><span><b>${title}</b><br><span class="muted" style="font-size:.85rem">${r.length?T('lesson_stats',r.length,best):T('not_practised')}</span></span><button class="main" data-lesson="${l.id}">${T('open')}</button></li>`;
-    }).join('')).join('');
+      return `<li class="open"><span>${ar}<br><b>${title}</b><br><span class="muted" style="font-size:.85rem">${r.length?T('lesson_stats',r.length,best):T('not_practised')}</span></span><button class="main" data-lesson="${l.id}">${T('open')}</button></li>`;
+    }).join(''):`<li class="tsoon"><svg class="owl sm" aria-hidden="true"><use href="#owl"/></svg><span>${T('term_soon')}</span></li>`);}).join('');
   const names=T('trophies'),ni=TROPHIES.findIndex(x=>t.earned<x.n);
   $('#trophies').innerHTML=TROPHIES.map((x,i)=>`<div class="trophy${t.earned>=x.n?'':' locked'}"><span class="disc">${isoBox(...x.d,x.s,x.c)}</span>${names[i]}<span class="muted">${x.n} ★</span></div>`).join('')+
     (ni>=0?`<p class="muted" style="flex-basis:100%">${T('trophy_next',TROPHIES[ni].n-t.earned,names[ni])}</p>`:'');
 }
 
 /* ---------- parent area ---------- */
-let unlocked=false;
+var unlocked=false;
 function openParent(){
   $('#pLock').hidden=unlocked;$('#pDash').hidden=!unlocked;
   const first=!Store.settings.pin;
@@ -3523,15 +3585,15 @@ $('#pinForm').addEventListener('submit',e=>{
     if(a!==$('#pinIn2').value.trim()){$('#pinMsg').textContent=T('p_mismatch');return;}
     Store.settings.pin=a;persistSettings();
   }else if(a!==String(Store.settings.pin)){$('#pinMsg').textContent=T('p_wrong');$('#pinIn').value='';return;}
-  unlocked=true;openParent();
+  unlocked=true;renderGate();openParent();
 });
-$('#pLockBtn').onclick=()=>{unlocked=false;openParent();};
+$('#pLockBtn').onclick=()=>{unlocked=false;renderGate();openParent();};
 document.querySelectorAll('[data-bonus]').forEach(b=>b.onclick=()=>{const n=+b.dataset.bonus;record(d=>{d.bonus+=n;});$('#bonusMsg').textContent=T('bonus_given',n);renderParent(true);});
 $('#setForm').addEventListener('submit',e=>{
   e.preventDefault();
   const s=Store.settings,pin=$('#setPin').value.trim();
   if(pin&&!/^\d{4,6}$/.test(pin)){$('#setMsg').textContent=T('pin_need');return;}
-  s.name=$('#setName').value.trim();s.gameOn=$('#setOn').checked;
+  s.name=$('#setName').value.trim();s.gameOn=$('#setOn').checked;s.sound=$('#setSound').checked;s.term=+$('#setTerm').value||0;s.voice=$('#setVoice').checked;
   s.cost=Math.min(200,Math.max(1,parseInt($('#setCost').value)||DEFAULTS.cost));
   s.playMin=Math.min(30,Math.max(1,parseInt($('#setMin').value)||DEFAULTS.playMin));
   {const v=parseInt($('#setTasks').value);s.minTasks=isNaN(v)?DEFAULTS.minTasks:Math.min(50,Math.max(0,v));}
@@ -3594,7 +3656,7 @@ async function renderParent(skipReload){
   });
   ev.sort((a,b)=>b[0]-a[0]);
   $('#pLog').innerHTML=ev.length?ev.slice(0,15).map(([tt,a,b])=>`<li><span class="when">${fmtWhen(tt)}</span><span>${a}</span><span class="res">${b}</span></li>`).join(''):`<li><span>${T('p_log_none')}</span></li>`;
-  $('#setName').value=s.name||'';$('#setOn').checked=!!s.gameOn;$('#setCost').value=s.cost;$('#setMin').value=s.playMin;$('#setTasks').value=minTasks();
+  $('#setName').value=s.name||'';$('#setTerm').innerHTML=`<option value="0">${T('term_auto')}</option>`+T('terms').map((tm,k)=>`<option value="${k+1}">${tm.n} · ${tm.s} (${tm.m})</option>`).join('');$('#setTerm').value=String(s.term||0);$('#setOn').checked=!!s.gameOn;$('#setSound').checked=s.sound!==false;$('#setVoice').checked=s.voice!==false;$('#setCost').value=s.cost;$('#setMin').value=s.playMin;$('#setTasks').value=minTasks();
   $('#storeNote').textContent=Store.db?T('store_online'):T('store_local');
   $('#testGames').innerHTML=['jump','fly','space','maze'].map(m=>`<button data-test="${m}">${T('game_names')[m]}</button>`).join('');
   $('#testGames').querySelectorAll('[data-test]').forEach(b=>b.onclick=()=>startSession(b.dataset.test,true));

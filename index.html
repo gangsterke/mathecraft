@@ -309,6 +309,10 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;max-width:60ch;marg
 .yseg.now{background:var(--tc);border-color:var(--tc);color:#fff}.yseg.now span{color:#fff}
 .yseg.past{opacity:.75}
 .yseg .ymark{position:absolute;top:-18px;width:36px;height:36px}
+.listenbox{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.listenbtn{font-size:1.1rem;padding:12px 22px}
+.listenbtn::before{content:"";display:inline-block;width:20px;height:20px;margin-right:8px;vertical-align:-3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9z'/%3E%3Cpath d='M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9z'/%3E%3Cpath d='M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12'/%3E%3C/svg%3E") center/contain no-repeat}
+.listenfall{margin:0;font-weight:800;font-size:1.1rem}
 .lessonlist .soon{font-size:.8rem;font-weight:800;color:var(--muted);border:2px dashed var(--grid);border-radius:999px;padding:2px 10px}
 .trophies{display:flex;flex-wrap:wrap;gap:10px}
 .trophy{display:grid;justify-items:center;gap:4px;width:84px;text-align:center;font-size:.75rem;font-weight:800}
@@ -626,6 +630,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <a href="mailto:info@mathecraft.de" data-i18n="ft_contact"></a>
   <button type="button" class="linkbtn" id="ftImpressum" data-legal="imp" data-i18n="ft_imp"></button>
   <button type="button" class="linkbtn" data-legal="dsg" data-i18n="ft_dsg"></button>
+  <span class="ver" style="flex-basis:100%;text-align:center;font-size:.75rem;color:var(--muted)">Version 24.10.2026 c</span>
 </nav>
 </div>
 <dialog id="legalDlg" aria-labelledby="legalTitle">
@@ -670,7 +675,7 @@ de:{
   grade:'Klasse 4',crumb:'Klasse 4 · Zahlen und Rechnen',h1:'Die <span>Million</span> bauen',
   intro:'Hallo, ich bin <b>Leo</b>! Heute bauen wir zusammen eine Million. Wir fangen mit einem kleinen Würfel an.',
   toc:['Verstehen','Merken','Testen','Üben','Knobeln'],
-  btn_back:'Zurück',btn_next:'Weiter',btn_next_last:'Weiter zu Merken',btn_read:'Vorlesen',
+  btn_back:'Zurück',btn_next:'Weiter',btn_next_last:'Weiter zu Merken',btn_read:'Vorlesen',listen_again:'Nochmal hören',
   s2_h:'Merk dir das',s2_p:'Eine Zahl kannst du auf verschiedene Arten aufschreiben. Hier ist dieselbe Zahl viermal:',
   way_blocks:'Mit Bausteinen',way_table:'In der Stellenwerttafel',way_plus:'Als Plusaufgabe',way_word:'Als Zahlwort',
   way_note:'Die 0 bei den Zehnern ist wichtig. Ohne sie wäre es eine ganz andere Zahl.',
@@ -767,7 +772,7 @@ sup_h:'Gefällt euch MatheCraft?',sup_p:'MatheCraft ist kostenlos und ohne Werbu
   p_log_h:'Letzte Aktivitäten',p_log_none:'Noch keine Aktivitäten.',
   log_round:l=>`Übungsrunde${l?' ('+l+')':''}`,log_quiz:'Schnelltest',log_riddle:n=>`Rätsel: ${n}`,
   log_rd:{first:'gelöst, 1. Versuch',ok:'gelöst',seen:'Lösung angesehen'},log_game:(n,m)=>`${n} (${m} Min)`,log_game_res:(c,s)=>`−${c} ★ · ${s} Punkte`,log_trainer:l=>`Zahlwort-Trainer (${l})`,
-  p_set_h:'Einstellungen',set_name:'Name des Kindes',set_on:'Spiele erlaubt',set_sound:'Töne bei Antworten',set_voice:'Leo lobt mit Stimme',snd_aria:'Töne an oder aus',cheer:['Spitze!','Super!','Klasse!','Toll gemacht!','Stark!','Prima!','Genau so!','Wunderbar!','Bravo!','Sensationell!','Mega!','Richtig gut!','Volltreffer!','Ausgezeichnet!','Weltklasse!','Der Hammer!','Ganz genau!','Fantastisch!','Du bist ein Ass!','Sauber gerechnet!','Spitzenklasse!','Wow, super!'],cheer_name:[n=>`Spitze, ${n}!`,n=>`Super, ${n}!`,n=>`Klasse gemacht, ${n}!`,n=>`Bravo, ${n}!`,n=>`${n}, du bist ein Ass!`],streak:{3:['Drei richtig hintereinander! Spitze!','Drei am Stück! Du bist heute richtig gut drauf!'],5:['Fünf richtig hintereinander! Du bist nicht zu bremsen!','Fünf am Stück! Leo ist begeistert!'],8:['Acht von acht! Unglaublich!']},oops:['Fast! Probier es noch einmal.','Nicht schlimm, du schaffst das!','Noch nicht ganz. Schau dir den Tipp an.','Kein Problem, versuch es nochmal!','Hmm, rechne noch einmal nach.'],end_msg:[['Gut, dass du drangeblieben bist! Schau dir Teil 1 noch einmal an, dann klappt es bestimmt besser.','Das war eine schwere Runde. Leo glaubt an dich! Versuch es gleich noch einmal.','Nicht aufgeben! Auch Profis haben mal klein angefangen.'],['Gut gemacht! Jede Runde macht dich ein Stück stärker.','Weiter so! Fehler sind zum Lernen da, und du lernst gerade ganz viel.','Prima gekämpft! Probier gleich noch eine Runde.'],['Sehr stark! Fast alles richtig. Darauf kannst du stolz sein!','Super Runde! Noch ein bisschen üben, dann schaffst du alle 8.','Klasse! Dein Kopf hat heute richtig gut gearbeitet.'],['Wow, alle 8 beim ersten Versuch! Du bist ein echter Mathe-Profi!','Perfekt! Leo macht einen Freudensprung für dich!','8 von 8! Das war Weltklasse!']],set_cost:'Ein Spiel kostet (Sterne)',set_min:'Spielzeit (Minuten)',set_tasks:'Pflichtaufgaben pro Besuch (0 = aus)',gate_progress:(d,m)=>`Pflichtaufgaben: ${d} von ${m}. Danach darfst du zurück.`,gate_done:'Geschafft! Du darfst jetzt zurück oder weiterüben.',gate_blocked:n=>`Noch ${n} ${n===1?'Aufgabe':'Aufgaben'}, dann darfst du zurück.`,set_pin:'Neue PIN (leer = bleibt)',
+  p_set_h:'Einstellungen',set_name:'Name des Kindes',set_on:'Spiele erlaubt',set_sound:'Töne bei Antworten',set_voice:'Leo lobt mit Stimme',snd_aria:'Töne an oder aus',cheer:['Spitze!','Super!','Klasse!','Toll gemacht!','Stark!','Prima!','Genau so!','Wunderbar!','Bravo!','Sensationell!','Mega!','Richtig gut!','Volltreffer!','Ausgezeichnet!','Weltklasse!','Der Hammer!','Ganz genau!','Fantastisch!','Du bist ein Mathe-Star!','Sauber gerechnet!','Spitzenklasse!','Wow, super!'],cheer_name:[n=>`Spitze, ${n}!`,n=>`Super, ${n}!`,n=>`Klasse gemacht, ${n}!`,n=>`Bravo, ${n}!`,n=>`${n}, du bist ein Mathe-Star!`],streak:{3:['Drei richtig hintereinander! Spitze!','Drei am Stück! Du bist heute richtig gut drauf!'],5:['Fünf richtig hintereinander! Du bist nicht zu bremsen!','Fünf am Stück! Leo ist begeistert!'],8:['Acht von acht! Unglaublich!']},oops:['Fast! Probier es noch einmal.','Nicht schlimm, du schaffst das!','Noch nicht ganz. Schau dir den Tipp an.','Kein Problem, versuch es nochmal!','Hmm, rechne noch einmal nach.'],end_msg:[['Gut, dass du drangeblieben bist! Schau dir Teil 1 noch einmal an, dann klappt es bestimmt besser.','Das war eine schwere Runde. Leo glaubt an dich! Versuch es gleich noch einmal.','Nicht aufgeben! Auch Profis haben mal klein angefangen.'],['Gut gemacht! Jede Runde macht dich ein Stück stärker.','Weiter so! Fehler sind zum Lernen da, und du lernst gerade ganz viel.','Prima gekämpft! Probier gleich noch eine Runde.'],['Sehr stark! Fast alles richtig. Darauf kannst du stolz sein!','Super Runde! Noch ein bisschen üben, dann schaffst du alle 8.','Klasse! Dein Kopf hat heute richtig gut gearbeitet.'],['Wow, alle 8 beim ersten Versuch! Du bist ein echter Mathe-Profi!','Perfekt! Leo macht einen Freudensprung für dich!','8 von 8! Das war Weltklasse!']],set_cost:'Ein Spiel kostet (Sterne)',set_min:'Spielzeit (Minuten)',set_tasks:'Pflichtaufgaben pro Besuch (0 = aus)',gate_progress:(d,m)=>`Pflichtaufgaben: ${d} von ${m}. Danach darfst du zurück.`,gate_done:'Geschafft! Du darfst jetzt zurück oder weiterüben.',gate_blocked:n=>`Noch ${n} ${n===1?'Aufgabe':'Aufgaben'}, dann darfst du zurück.`,set_pin:'Neue PIN (leer = bleibt)',
   save:'Speichern',saved:'Gespeichert',pin_need:'Die PIN braucht 4 bis 6 Ziffern.',bonus:'Bonus-Sterne schenken:',bonus_given:n=>`+${n} ★ geschenkt`,
   store_online:'Der Fortschritt wird online gespeichert. Du siehst ihn auf jedem Gerät, auf dem du mit deinem Claude-Konto angemeldet bist.',store_local:'Der Fortschritt wird nur auf diesem Gerät gespeichert.',
   /* trainer */
@@ -815,7 +820,7 @@ en:{
   grade:'Grade 4',crumb:'Grade 4 · Numbers and calculating',h1:'Building a <span>million</span>',
   intro:`Hi, I'm <b>Leo</b>! Today we'll build a million together. We start with one small cube.`,
   toc:['Understand','Remember','Test','Practise','Puzzles'],
-  btn_back:'Back',btn_next:'Next',btn_next_last:'On to Remember',btn_read:'Read aloud',
+  btn_back:'Back',btn_next:'Next',btn_next_last:'On to Remember',btn_read:'Read aloud',listen_again:'Hear again',
   s2_h:'Remember this',s2_p:'You can write a number in different ways. Here is the same number four times:',
   way_blocks:'With blocks',way_table:'In the place value chart',way_plus:'As an addition',way_word:'In words',
   way_note:'The 0 in the tens place matters. Without it, it would be a completely different number.',
@@ -953,7 +958,7 @@ es:{
   grade:'4.º de primaria',crumb:'4.º de primaria · Números y cálculo',h1:'Construir un <span>millón</span>',
   intro:'¡Hola, soy <b>Leo</b>! Hoy construimos juntos un millón. Empezamos con un cubito.',
   toc:['Entender','Recordar','Comprobar','Practicar','Acertijos'],
-  btn_back:'Atrás',btn_next:'Siguiente',btn_next_last:'Ir a Recordar',btn_read:'Leer en voz alta',
+  btn_back:'Atrás',btn_next:'Siguiente',btn_next_last:'Ir a Recordar',btn_read:'Leer en voz alta',listen_again:'Escuchar otra vez',
   s2_h:'Recuerda',s2_p:'Puedes escribir un número de distintas formas. Aquí está el mismo número cuatro veces:',
   way_blocks:'Con bloques',way_table:'En la tabla de valor posicional',way_plus:'Como suma',way_word:'Con letras',
   way_note:'El 0 en las decenas es importante. Sin él sería un número totalmente distinto.',
@@ -1357,7 +1362,7 @@ function buildQuiz(){
   });
 }
 function quizStarTestsToday(){const d=Store.days[dayKey()];return d?(d.quizzes||[]).filter(q=>q.star!==false).length:0;}
-$('#newQuiz').onclick=buildQuiz;
+$('#newQuiz').onclick=()=>{buildQuiz();const c=$('#testen');if(c)c.scrollIntoView({behavior:'smooth',block:'start'});};
 
 /* =========================================================
    4 PRACTICE
@@ -1423,6 +1428,12 @@ function renderTask(){
   });
   $('#hintBtn').onclick=()=>say('bad',t.hint);
   $('#checkBtn').onclick=onCheck;
+  if(t.listen){ /* listening task: read the question aloud, button to hear it again */
+    const lb=body.querySelector('.listenbtn'),fall=body.querySelector('.listenfall');
+    if(!canSpeak){lb.hidden=true;fall.hidden=false;}
+    else{const play=()=>{speak(t.listen,LANG,lb,1.1);lb.textContent=T('listen_again');};lb.onclick=()=>{play();const i=body.querySelector('input');if(i)i.focus();};
+      if(R.listenAuto!==R.i+'|'+t.listen){R.listenAuto=R.i+'|'+t.listen;try{play();}catch(e){}}}
+  }
 }
 function say(kind,html,el){(el||$('#fb')).innerHTML=`<div class="fb ${kind}"><svg class="owl sm" aria-hidden="true"><use href="#owl"/></svg><div class="bubble">${html}</div></div>`;}
 function onCheck(){
@@ -3300,6 +3311,88 @@ defLesson('convert',{
   ]
 });
 function dur2(m){return `${Math.floor(m/60)} h ${m%60} min`;}
+}
+
+
+/* =========================================================
+   LISTENING TASKS ("Zuhören")
+   The question is read aloud and not shown, so the child has to
+   listen and keep the numbers in mind. Speech uses plain digits
+   (no thousands spaces) so every voice reads them correctly.
+   ========================================================= */
+{
+const LISTEN_L=t3('Zuhören','Listen','Escuchar');
+const LQ=()=>tx(t3('Hör gut zu und schreib die Antwort auf.','Listen carefully and write down the answer.','Escucha bien y escribe la respuesta.'));
+/* say = spoken text, show = the same question written (shown in the solution, or when the device cannot speak) */
+function listenTask(say,show,ans,unit,hint){
+  const sayT=tx(say),showT=tx(show);
+  return {q:LQ(),listen:sayT,listenShow:showT,
+    body:`<div class="listenbox"><button type="button" class="main listenbtn">${tx(t3('Vorlesen','Read aloud','Escuchar'))}</button><p class="listenfall" hidden>${showT}</p></div>`+(unit?unitIn(unit):numIn()),
+    check:v=>parseNum(v[0])===ans,
+    sol:`${showT}<br><b>${fmt(ans)}${unit?' '+unit:''}</b>`,
+    hint:tx(t3('Tippe auf „Nochmal hören“. ','Tap “Hear again”. ','Toca «Escuchar otra vez». '))+(tx(hint)||''),
+    a:[String(ans)]};
+}
+function addListen(id,key,f){const d=LDEF[id];if(!d)return;d.gen[key]=f;const old=d.label;d.label=k=>k===key?tx(LISTEN_L):old(k);}
+const L3=(de,en,es)=>t3(de,en,es);
+const nz=n=>String(n);   /* spoken number */
+
+addListen('million','mi_hoer',()=>{const n=pick([rnd(1,9)*100000+rnd(0,9)*1000,rnd(10,99)*10000+rnd(1,9)*100,rnd(100,999)*1000+rnd(1,99),rnd(1,9)*100000+rnd(1,9)*10+rnd(1,9)]);
+  return listenTask(L3(`Schreibe die Zahl mit Ziffern: ${nz(n)}.`,`Write the number in digits: ${nz(n)}.`,`Escribe el número con cifras: ${nz(n)}.`),
+    L3(`Schreibe die Zahl ${fmt(n)}.`,`Write the number ${fmt(n)}.`,`Escribe el número ${fmt(n)}.`),n,null,
+    L3('Denk an die Nullen bei leeren Stellen.','Remember the zeros for empty places.','Acuérdate de los ceros en los huecos.'));});
+
+addListen('bigcalc','bc_hoer',()=>{const plus=Math.random()<.5,a=rnd(2,9)*1000+rnd(1,9)*100,b=rnd(1,5)*1000+rnd(1,9)*100,A=plus?a:a+b;
+  return plus?listenTask(L3(`Rechne im Kopf: ${nz(A)} plus ${nz(b)}.`,`Work it out in your head: ${nz(A)} plus ${nz(b)}.`,`Calcula de cabeza: ${nz(A)} más ${nz(b)}.`),`${fmt(A)} + ${fmt(b)}`,A+b,null,L3('Erst die Tausender, dann die Hunderter.','First the thousands, then the hundreds.','Primero los millares, luego las centenas.'))
+    :listenTask(L3(`Rechne im Kopf: ${nz(A)} minus ${nz(b)}.`,`Work it out in your head: ${nz(A)} minus ${nz(b)}.`,`Calcula de cabeza: ${nz(A)} menos ${nz(b)}.`),`${fmt(A)} − ${fmt(b)}`,A-b,null,L3('Erst die Tausender, dann die Hunderter.','First the thousands, then the hundreds.','Primero los millares, luego las centenas.'));});
+
+addListen('numline','nl_hoer',()=>{const st=pick([100,1000,10000]),a=rnd(1,9)*st*(st===10000?1:pick([1,10])),b=a+st*2,m=a+st;
+  return listenTask(L3(`Welche Zahl liegt genau in der Mitte zwischen ${nz(a)} und ${nz(b)}?`,`Which number is exactly halfway between ${nz(a)} and ${nz(b)}?`,`¿Qué número está justo en medio entre ${nz(a)} y ${nz(b)}?`),
+    L3(`Mitte zwischen ${fmt(a)} und ${fmt(b)}?`,`Halfway between ${fmt(a)} and ${fmt(b)}?`,`¿En medio entre ${fmt(a)} y ${fmt(b)}?`),m,null,L3('Wie groß ist der Abstand? Die Hälfte davon kommt dazu.','How big is the gap? Add half of it.','¿Qué distancia hay? Suma la mitad.'));});
+
+addListen('patterns','pt_hoer',()=>{const st=pick([25,50,250,500,2500]),s0=rnd(1,8)*st,seq=[s0,s0+st,s0+2*st],nx=s0+3*st;
+  return listenTask(L3(`Zähle weiter: ${seq.map(nz).join(', ')}. Welche Zahl kommt als Nächstes?`,`Keep counting: ${seq.map(nz).join(', ')}. Which number comes next?`,`Sigue contando: ${seq.map(nz).join(', ')}. ¿Qué número viene ahora?`),
+    `${seq.map(fmt).join(', ')}, …`,nx,null,L3('Wie groß ist jeder Sprung?','How big is each jump?','¿De cuánto es cada salto?'));});
+
+addListen('rounding','rd_hoer',()=>{const k=pick([10,100,1000]),n=rnd(1000,9999);const r=Math.round(n/k)*k;const kn={10:t3('Zehner','tens','decenas'),100:t3('Hunderter','hundreds','centenas'),1000:t3('Tausender','thousands','millares')}[k];
+  return listenTask(L3(`Runde ${nz(n)} auf ${tx(kn)}.`,`Round ${nz(n)} to the nearest ${tx(kn).replace(/s$/,'')}.`,`Redondea ${nz(n)} a las ${tx(kn)}.`),
+    L3(`Runde ${fmt(n)} auf ${tx(kn)}.`,`Round ${fmt(n)} to the nearest ${tx(kn).replace(/s$/,'')}.`,`Redondea ${fmt(n)} a las ${tx(kn)}.`),r,null,L3('Schau auf die Ziffer rechts daneben: ab 5 aufrunden.','Look at the digit to the right: 5 or more rounds up.','Mira la cifra de la derecha: desde 5 se redondea hacia arriba.'));});
+
+addListen('mult','mu_hoer',()=>{const v=rnd(0,2);let a,b;if(v===0){a=rnd(3,9);b=rnd(2,9)*10;}else if(v===1){a=rnd(11,19);b=rnd(2,5);}else{a=rnd(2,9);b=rnd(2,9)*100;}
+  return listenTask(L3(`Wie viel ist ${nz(a)} mal ${nz(b)}?`,`What is ${nz(a)} times ${nz(b)}?`,`¿Cuánto es ${nz(a)} por ${nz(b)}?`),`${fmt(a)} · ${fmt(b)}`,a*b,null,L3('Rechne erst ohne die Nullen und häng sie dann an.','Work it out without the zeros first, then add them back.','Calcula primero sin los ceros y luego añádelos.'));});
+
+addListen('div','dv_hoer',()=>{const d=rnd(2,9),q=rnd(2,9)*pick([1,10,100]),n=d*q;
+  return listenTask(L3(`Wie viel ist ${nz(n)} geteilt durch ${nz(d)}?`,`What is ${nz(n)} divided by ${nz(d)}?`,`¿Cuánto es ${nz(n)} entre ${nz(d)}?`),`${fmt(n)} : ${d}`,q,null,L3('Denk an das Einmaleins und an die Nullen.','Think of your times tables and the zeros.','Piensa en las tablas y en los ceros.'));});
+
+addListen('area','ar_hoer',()=>{const w=rnd(2,8),l=w+rnd(1,6),um=Math.random()<.5;
+  return um?listenTask(L3(`Ein Rechteck ist ${nz(l)} Zentimeter lang und ${nz(w)} Zentimeter breit. Wie lang ist der Umfang?`,`A rectangle is ${nz(l)} centimetres long and ${nz(w)} centimetres wide. How long is the perimeter?`,`Un rectángulo mide ${nz(l)} centímetros de largo y ${nz(w)} de ancho. ¿Cuánto mide el perímetro?`),
+      L3(`Rechteck ${l} cm × ${w} cm: Umfang?`,`Rectangle ${l} cm × ${w} cm: perimeter?`,`Rectángulo ${l} cm × ${w} cm: ¿perímetro?`),2*(l+w),'cm',L3('Einmal ganz außen herum: zwei Längen und zwei Breiten.','All the way round: two lengths and two widths.','Toda la vuelta: dos largos y dos anchos.'))
+    :listenTask(L3(`Ein Rechteck ist ${nz(l)} Zentimeter lang und ${nz(w)} Zentimeter breit. Wie viele Quadratzentimeter ist es groß?`,`A rectangle is ${nz(l)} centimetres long and ${nz(w)} centimetres wide. How many square centimetres is it?`,`Un rectángulo mide ${nz(l)} centímetros de largo y ${nz(w)} de ancho. ¿Cuántos centímetros cuadrados mide?`),
+      L3(`Rechteck ${l} cm × ${w} cm: Fläche?`,`Rectangle ${l} cm × ${w} cm: area?`,`Rectángulo ${l} cm × ${w} cm: ¿área?`),l*w,'cm²',L3('Fläche: Länge mal Breite.','Area: length times width.','Área: largo por ancho.'));});
+
+addListen('cubes','wf_hoer',()=>{const a=rnd(2,6),b=rnd(2,5),c=rnd(2,4);
+  return listenTask(L3(`Ein Quader ist ${nz(a)} Würfel lang, ${nz(b)} Würfel breit und ${nz(c)} Würfel hoch. Aus wie vielen Würfeln besteht er?`,`A cuboid is ${nz(a)} cubes long, ${nz(b)} cubes wide and ${nz(c)} cubes high. How many cubes is it made of?`,`Un prisma mide ${nz(a)} cubitos de largo, ${nz(b)} de ancho y ${nz(c)} de alto. ¿Cuántos cubitos tiene?`),
+    `${a} · ${b} · ${c}`,a*b*c,null,L3('Erst eine Schicht, dann mal die Höhe.','First one layer, then times the height.','Primero una capa, luego por la altura.'));});
+
+addListen('lengths','lg_hoer',()=>{const v=rnd(0,1);
+  if(v===0){const k=rnd(1,9),m=rnd(1,9)*50;return listenTask(L3(`Wie viele Meter sind ${nz(k)} Kilometer und ${nz(m)} Meter?`,`How many metres are ${nz(k)} kilometres and ${nz(m)} metres?`,`¿Cuántos metros son ${nz(k)} kilómetros y ${nz(m)} metros?`),`${k} km ${m} m = ? m`,k*1000+m,'m',L3('1 Kilometer sind 1000 Meter.','1 kilometre is 1000 metres.','1 kilómetro son 1000 metros.'));}
+  const m=rnd(1,9),c=rnd(1,99);return listenTask(L3(`Wie viele Zentimeter sind ${nz(m)} Meter und ${nz(c)} Zentimeter?`,`How many centimetres are ${nz(m)} metres and ${nz(c)} centimetres?`,`¿Cuántos centímetros son ${nz(m)} metros y ${nz(c)} centímetros?`),`${m} m ${c} cm = ? cm`,m*100+c,'cm',L3('1 Meter sind 100 Zentimeter.','1 metre is 100 centimetres.','1 metro son 100 centímetros.'));});
+
+addListen('weights','gw_hoer',()=>{const k=rnd(1,9),g=rnd(1,19)*50;
+  return listenTask(L3(`Wie viele Gramm sind ${nz(k)} Kilogramm und ${nz(g)} Gramm?`,`How many grams are ${nz(k)} kilograms and ${nz(g)} grams?`,`¿Cuántos gramos son ${nz(k)} kilos y ${nz(g)} gramos?`),`${k} kg ${g} g = ? g`,k*1000+g,'g',L3('1 Kilogramm sind 1000 Gramm.','1 kilogram is 1000 grams.','1 kilo son 1000 gramos.'));});
+
+addListen('volume','lt_hoer',()=>{const fr=pick([[t3('ein halber Liter','half a litre','medio litro'),'½ l',500],[t3('ein Viertelliter','a quarter of a litre','un cuarto de litro'),'¼ l',250],[t3('ein Dreiviertelliter','three quarters of a litre','tres cuartos de litro'),'¾ l',750],[t3('ein Achtelliter','an eighth of a litre','un octavo de litro'),'⅛ l',125]]),w=rnd(0,3);
+  const sayW=w?L3(`${nz(w)} Liter und `,`${nz(w)} ${w>1?'litres':'litre'} and `,`${nz(w)} ${w>1?'litros':'litro'} y `):L3('','','');
+  return listenTask(L3(`Wie viele Milliliter sind ${tx(sayW)}${tx(fr[0])}?`,`How many millilitres are ${tx(sayW)}${tx(fr[0])}?`,`¿Cuántos mililitros son ${tx(sayW)}${tx(fr[0])}?`),`${w?w+' l + ':''}${fr[1]} = ? ml`,w*1000+fr[2],'ml',L3('1 Liter sind 1000 Milliliter.','1 litre is 1000 millilitres.','1 litro son 1000 mililitros.'));});
+
+addListen('time','zt_hoer',()=>{const v=rnd(0,1);
+  if(v===0){const h=rnd(1,4),m=pick([10,15,20,30,45]);return listenTask(L3(`Wie viele Minuten sind ${nz(h)} Stunden und ${nz(m)} Minuten?`,`How many minutes are ${nz(h)} hours and ${nz(m)} minutes?`,`¿Cuántos minutos son ${nz(h)} horas y ${nz(m)} minutos?`),`${h} h ${m} min = ? min`,h*60+m,'min',L3('1 Stunde hat 60 Minuten.','1 hour has 60 minutes.','1 hora tiene 60 minutos.'));}
+  const sh=rnd(8,17),d=pick([20,25,35,40,45,50,70,90]),e=sh*60+d;
+  return listenTask(L3(`Ein Film beginnt um ${nz(sh)} Uhr und endet um ${nz(Math.floor(e/60))} Uhr ${nz(e%60)}. Wie viele Minuten dauert er?`,`A film starts at ${(sh%12)||12}:00 and ends at ${(Math.floor(e/60)%12)||12}:${String(e%60).padStart(2,'0')}. How many minutes does it last?`,`Una película empieza a las ${nz(sh)} y termina a las ${nz(Math.floor(e/60))} y ${nz(e%60)}. ¿Cuántos minutos dura?`),
+    `${sh}:00 → ${Math.floor(e/60)}:${String(e%60).padStart(2,'0')}`,d,'min',L3('Spring erst bis zur vollen Stunde.','Jump to the full hour first.','Salta primero a la hora en punto.'));});
+
+addListen('convert','gu_hoer',()=>{const e=rnd(1,9),c=pick([rnd(1,9),rnd(10,95)]);
+  return listenTask(L3(`Wie viele Cent sind ${nz(e)} Euro und ${nz(c)} Cent?`,`How many cents are ${nz(e)} euros and ${nz(c)} cents?`,`¿Cuántos céntimos son ${nz(e)} euros y ${nz(c)} céntimos?`),`${e} € ${c} ct = ? ct`,e*100+c,'ct',L3('1 Euro sind 100 Cent. Achte auf die Stellen!','1 euro is 100 cents. Mind the places!','1 euro son 100 céntimos. ¡Cuidado con las cifras!'));});
 }
 
 function renderLesson(){

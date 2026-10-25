@@ -313,6 +313,10 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;max-width:60ch;marg
 .listenbtn{font-size:1.1rem;padding:12px 22px}
 .listenbtn::before{content:"";display:inline-block;width:20px;height:20px;margin-right:8px;vertical-align:-3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9z'/%3E%3Cpath d='M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9z'/%3E%3Cpath d='M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12'/%3E%3C/svg%3E") center/contain no-repeat}
 .listenfall{margin:0;font-weight:800;font-size:1.1rem}
+.rlevel{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 4px}
+.rlevel b{background:var(--accent);color:#fff;border-radius:999px;padding:2px 12px;font-size:.9rem}
+.rdots{display:inline-flex;gap:4px}.rdots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--accent)}.rdots i.on{background:var(--accent)}
+.rlevel .muted{font-size:.85rem}
 .lessonlist .soon{font-size:.8rem;font-weight:800;color:var(--muted);border:2px dashed var(--grid);border-radius:999px;padding:2px 10px}
 .trophies{display:flex;flex-wrap:wrap;gap:10px}
 .trophy{display:grid;justify-items:center;gap:4px;width:84px;text-align:center;font-size:.75rem;font-weight:800}
@@ -510,6 +514,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <section class="card" id="knobeln">
   <div class="sh"><span class="no">5</span><h2 data-i18n="s5_h"></h2></div>
   <p class="muted" data-i18n="s5_p"></p>
+  <p class="rlevel" id="rLevel"></p>
   <div class="riddles" id="riddles"></div>
   <div class="btns"><button id="newRiddles" data-i18n="new_riddles"></button></div>
 </section>
@@ -630,7 +635,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <a href="mailto:info@mathecraft.de" data-i18n="ft_contact"></a>
   <button type="button" class="linkbtn" id="ftImpressum" data-legal="imp" data-i18n="ft_imp"></button>
   <button type="button" class="linkbtn" data-legal="dsg" data-i18n="ft_dsg"></button>
-  <span class="ver" style="flex-basis:100%;text-align:center;font-size:.75rem;color:var(--muted)">Version 24.10.2026 c</span>
+  <span class="ver" style="flex-basis:100%;text-align:center;font-size:.75rem;color:var(--muted)">Version 25.10.2026</span>
 </nav>
 </div>
 <dialog id="legalDlg" aria-labelledby="legalTitle">
@@ -736,7 +741,7 @@ sup_h:'Gefällt euch MatheCraft?',sup_p:'MatheCraft ist kostenlos und ohne Werbu
   /* riddles */
   pro_pill:'Profi · 2 ★',label_iam:'Ich bin',
   rd_sol_seen:'Schau dir die Lösung genau an. Beim nächsten Rätsel klappt es!',rd_kept:'Richtig! Gut, dass du drangeblieben bist.',
-  rd_star2:'Richtig! Du bekommst 2 Sterne.',rd_star1:'Richtig! Du bekommst einen Stern.',
+  rd_star2:'Richtig! Du bekommst 2 Sterne.',rd_star1:'Richtig! Du bekommst einen Stern.',rl_level:n=>`Stufe ${n}`,rl_next:(k,n)=>`Noch ${k} richtige Rätsel bis Stufe ${n}`,rl_max:'Höchste Stufe erreicht!',rl_up:n=>`Super! Die Rätsel werden jetzt etwas schwieriger: Stufe ${n}. Tippe auf „Neue Rätsel“.`,
   rd_try1:'Noch nicht. Lies den Tipp und probier es nochmal.',rd_try2:'Noch nicht. Probier weiter oder schau dir die Lösung an.',
   r_mitte:{t:'Genau in der Mitte',x:(a,b)=>`Ich liege genau in der Mitte zwischen ${a} und ${b}. Wer bin ich?`,h:(a,b,s,hf)=>`Von ${a} bis ${b} sind es ${s}. Die Hälfte davon ist ${hf}.`},
   r_gleich:{t:'Lauter gleiche Ziffern',x:(lo,hi)=>`Ich habe 6 Stellen und alle meine Ziffern sind gleich. Ich bin größer als ${lo} und kleiner als ${hi}. Wer bin ich?`,h:'Die erste Ziffer kannst du an den beiden Zahlen ablesen. Alle anderen Ziffern sind genauso.',e:d=>`Die erste Ziffer ist ${d}, also lauter ${d}er.`},
@@ -877,7 +882,7 @@ sup_h:'Enjoying MatheCraft?',sup_p:'MatheCraft is free and has no ads. If your c
   qz_limit:n=>` You've already had ${n} tests with stars today. Practising still earns stars!`,right_pre:'Right! ',again_pre:'Look again: ',
   pro_pill:'Pro · 2 ★',label_iam:'I am',
   rd_sol_seen:`Look closely at the solution. You'll get the next one!`,rd_kept:'Right! Well done for sticking with it.',
-  rd_star2:'Right! You get 2 stars.',rd_star1:'Right! You get a star.',
+  rd_star2:'Right! You get 2 stars.',rd_star1:'Right! You get a star.',rl_level:n=>`Level ${n}`,rl_next:(k,n)=>`${k} more correct puzzles to level ${n}`,rl_max:'Top level reached!',rl_up:n=>`Great! The puzzles get a bit harder now: level ${n}. Tap “New puzzles”.`,
   rd_try1:'Not yet. Read the hint and try again.',rd_try2:'Not yet. Keep trying or look at the solution.',
   r_mitte:{t:'Right in the middle',x:(a,b)=>`I am exactly halfway between ${a} and ${b}. Who am I?`,h:(a,b,s,hf)=>`From ${a} to ${b} is ${s}. Half of that is ${hf}.`},
   r_gleich:{t:'All the same digits',x:(lo,hi)=>`I have 6 digits and they are all the same. I am bigger than ${lo} and smaller than ${hi}. Who am I?`,h:'You can read the first digit from the two numbers. All the other digits are the same.',e:d=>`The first digit is ${d}, so it is all ${d}s.`},
@@ -1015,7 +1020,7 @@ sup_h:'¿Os gusta MatheCraft?',sup_p:'MatheCraft es gratis y sin anuncios. Si a 
   qz_limit:n=>` Hoy ya hubo ${n} tests con estrellas. ¡Practicando sigues ganando estrellas!`,right_pre:'¡Correcto! ',again_pre:'Mira otra vez: ',
   pro_pill:'Pro · 2 ★',label_iam:'Soy',
   rd_sol_seen:'Mira bien la solución. ¡El próximo te saldrá!',rd_kept:'¡Correcto! Bien hecho por no rendirte.',
-  rd_star2:'¡Correcto! Ganas 2 estrellas.',rd_star1:'¡Correcto! Ganas una estrella.',
+  rd_star2:'¡Correcto! Ganas 2 estrellas.',rd_star1:'¡Correcto! Ganas una estrella.',rl_level:n=>`Nivel ${n}`,rl_next:(k,n)=>`Faltan ${k} acertijos correctos para el nivel ${n}`,rl_max:'¡Has llegado al nivel más alto!',rl_up:n=>`¡Genial! Los acertijos serán un poco más difíciles: nivel ${n}. Toca «Nuevos acertijos».`,
   rd_try1:'Todavía no. Lee la pista e inténtalo otra vez.',rd_try2:'Todavía no. Sigue intentándolo o mira la solución.',
   r_mitte:{t:'Justo en el medio',x:(a,b)=>`Estoy justo en el medio entre ${a} y ${b}. ¿Quién soy?`,h:(a,b,s,hf)=>`De ${a} a ${b} hay ${s}. La mitad es ${hf}.`},
   r_gleich:{t:'Todas las cifras iguales',x:(lo,hi)=>`Tengo 6 cifras y todas son iguales. Soy mayor que ${lo} y menor que ${hi}. ¿Quién soy?`,h:'La primera cifra la puedes ver en los dos números. Las demás son iguales.',e:d=>`La primera cifra es ${d}, así que todas son ${d}.`},
@@ -1485,9 +1490,23 @@ const PROFI=[
   ()=>{const r=T('p_days');return {title:r.t,text:r.x(fmt(86400)),f:[[r.f,12]],hint:r.h(fmt(864000)),ans:'12',expl:r.e(fmt(950400),fmt(1036800))};}
 ];
 let ridSeq=0;
+function renderRLevel(){const st=RLV.of(LESSON.id),el=$('#rLevel');if(!el)return;const n=st.lv+1;
+  el.innerHTML=`<b>${T('rl_level',n)}</b> <span class="rdots">${[0,1,2,3].map(k=>`<i class="${k<st.good?'on':''}"></i>`).join('')}</span> <span class="muted">${st.lv>=3?T('rl_max'):T('rl_next',4-st.good,n+1)}</span>`;}
 function buildRiddles(){
-  const RG=CUR().riddles,set=shuffle(Object.keys(RG)).slice(0,3).map(k=>({...RG[k](),id:k,pro:false}));
-  set.push({...pick(CUR().pro)(),id:'profi',pro:true});
+  const id=LESSON.id,lv=RLV.of(id).lv,seen=RSEEN[id]=RSEEN[id]||[],RG=CUR().riddles;
+  const fam=(RMAP[id]||[]).map(([fn,arg])=>({id:'f_'+fn,fam:1,f:L=>RFAM[fn](L,arg)}));
+  const own=Object.keys(RG).map(k=>({id:k,f:()=>RG[k]()}));
+  const prosOwn=(CUR().pro||[]).map((f,k)=>({id:'profi'+k,f:()=>f()}));
+  /* fresh puzzles only: never the same text again during this visit; at higher levels the levelled families come first */
+  const choose=(cands,n,L)=>{const out=[];const ord=lv>0?[...shuffle(cands.filter(c=>c.fam)),...shuffle(cands.filter(c=>!c.fam))]:shuffle(cands);
+    for(const c of ord){if(out.length>=n)break;for(let t=0;t<25;t++){const x=c.f(L);if(!seen.includes(x.text)&&!out.some(o=>o.text===x.text)){out.push({...x,id:c.id});break;}}}
+    for(let g=0;out.length<n&&g<80;g++){const c=pick(cands),x=c.f(L);if(!seen.includes(x.text)&&!out.some(o=>o.text===x.text))out.push({...x,id:c.id});}
+    for(let g=0;out.length<n&&g<10;g++){const c=pick(cands);out.push({...c.f(L),id:c.id});}
+    return out;};
+  const set=choose([...own,...fam],3,lv).map(x=>({...x,pro:false}));
+  set.push(...choose([...prosOwn,...fam],1,Math.min(3,lv+1)).map(x=>({...x,id:'profi',pro:true,title:x.title})));
+  set.forEach(x=>seen.push(x.text));while(seen.length>80)seen.shift();
+  renderRLevel();
   $('#riddles').innerHTML=set.map(x=>{const n=++ridSeq;return `<article class="riddle${x.pro?' pro':''}">
       <h3>${x.title}${x.pro?` <span class="pill practice">${T('pro_pill')}</span>`:''}</h3>
       <p>${x.text}</p>
@@ -1516,6 +1535,7 @@ function wireRiddle(r,x){
       if(tries===0)earnStar(worth);FX.ok();FX.praise();if(worth===2&&tries===0)FX.confetti();
       record(d=>{d.riddles.push({t:Date.now(),l:LESSON.id,id:x.id,name:x.title,ok:true,first:tries===0});});
       msg('good',tries>0?T('rd_kept'):worth===2?T('rd_star2'):T('rd_star1'));
+      {const st=RLV.of(LESSON.id);st.good++;if(st.good>=4&&st.lv<3){st.lv++;st.good=0;RLV.set(LESSON.id,st);fb.textContent+=' '+T('rl_up',st.lv+1);FX.confetti();}else{if(st.lv>=3)st.good=Math.min(st.good,4);RLV.set(LESSON.id,st);}renderRLevel();}
       r.querySelector('.answer').hidden=false;r.querySelector('.answer').classList.add('ok');finish();
     }else{tries++;if(tries===1)FX.oops();
       if(tries===1){r.querySelector('.hint').hidden=false;msg('bad',T('rd_try1'));}else msg('bad',T('rd_try2'));}
@@ -3394,6 +3414,156 @@ addListen('time','zt_hoer',()=>{const v=rnd(0,1);
 addListen('convert','gu_hoer',()=>{const e=rnd(1,9),c=pick([rnd(1,9),rnd(10,95)]);
   return listenTask(L3(`Wie viele Cent sind ${nz(e)} Euro und ${nz(c)} Cent?`,`How many cents are ${nz(e)} euros and ${nz(c)} cents?`,`¿Cuántos céntimos son ${nz(e)} euros y ${nz(c)} céntimos?`),`${e} € ${c} ct = ? ct`,e*100+c,'ct',L3('1 Euro sind 100 Cent. Achte auf die Stellen!','1 euro is 100 cents. Mind the places!','1 euro son 100 céntimos. ¡Cuidado con las cifras!'));});
 }
+
+
+/* =========================================================
+   PUZZLE FACTORY: levelled puzzle families (lv 0..3)
+   Every family invents a fresh puzzle each time. After 4 correct
+   puzzles in a lesson the level goes up by one (max. level 4).
+   ========================================================= */
+const W=(de,en,es)=>tx(t3(de,en,es));
+const ANS=()=>W('Antwort','Answer','Respuesta');
+const RFAM={
+/* 1 think of a number */
+denk(lv){let x,a,b,c,txt,h,e;
+  if(lv===0){x=rnd(2,12);a=rnd(2,9);c=x*a;txt=W(`Ich denke mir eine Zahl und nehme sie mal ${a}. Heraus kommt ${fmt(c)}. Wie heißt meine Zahl?`,`I think of a number and multiply it by ${a}. The result is ${fmt(c)}. What is my number?`,`Pienso un número y lo multiplico por ${a}. Sale ${fmt(c)}. ¿Qué número es?`);e=`${fmt(c)} : ${a} = ${x}`;}
+  else if(lv===1){x=rnd(3,20);a=rnd(3,9);b=rnd(5,50);c=x*a+b;txt=W(`Ich denke mir eine Zahl, nehme sie mal ${a} und rechne dann plus ${b}. Heraus kommt ${fmt(c)}. Wie heißt meine Zahl?`,`I think of a number, multiply it by ${a} and then add ${b}. The result is ${fmt(c)}. What is my number?`,`Pienso un número, lo multiplico por ${a} y luego sumo ${b}. Sale ${fmt(c)}. ¿Qué número es?`);e=`(${fmt(c)} − ${b}) : ${a} = ${x}`;}
+  else if(lv===2){x=rnd(10,60);a=rnd(3,9);b=rnd(10,90);c=(x+b)*a;txt=W(`Ich denke mir eine Zahl, rechne plus ${b} und nehme das Ergebnis mal ${a}. Heraus kommt ${fmt(c)}. Wie heißt meine Zahl?`,`I think of a number, add ${b} and multiply the result by ${a}. I get ${fmt(c)}. What is my number?`,`Pienso un número, le sumo ${b} y multiplico el resultado por ${a}. Sale ${fmt(c)}. ¿Qué número es?`);e=`${fmt(c)} : ${a} − ${b} = ${x}`;}
+  else{x=rnd(20,99);a=rnd(6,12);b=rnd(50,400);const d=rnd(2,5);c=(x*a-b)*d;txt=W(`Ich denke mir eine Zahl. Ich nehme sie mal ${a}, ziehe ${b} ab und nehme das Ergebnis mal ${d}. Heraus kommt ${fmt(c)}. Wie heißt meine Zahl?`,`I think of a number. I multiply it by ${a}, subtract ${b} and then multiply the result by ${d}. I get ${fmt(c)}. What is my number?`,`Pienso un número. Lo multiplico por ${a}, le resto ${b} y multiplico el resultado por ${d}. Sale ${fmt(c)}. ¿Qué número es?`);
+    e=`(${fmt(c)} : ${d} + ${b}) : ${a} = ${x}`;}
+  h=W('Rechne rückwärts: Mach jeden Schritt von hinten nach vorne rückgängig.','Work backwards: undo every step, starting from the end.','Calcula hacia atrás: deshaz cada paso empezando por el final.');
+  return {title:W('Meine Geheimzahl','My secret number','Mi número secreto'),text:txt,f:[[ANS(),x]],hint:h,ans:fmt(x),expl:e};},
+/* 2 sequences */
+folge(lv,big){const k=big?1000:1;let s,seq,nx,e;
+  if(lv===0){s=pick([5,25,50,100])*k;const a=rnd(1,9)*s;seq=[0,1,2,3].map(i=>a+i*s);nx=a+4*s;e=`+${fmt(s)}`;}
+  else if(lv===1){s=pick([25,50,250,500])*k;const a=rnd(10,30)*s;seq=[0,1,2,3].map(i=>a-i*s);nx=a-4*s;e=`−${fmt(s)}`;}
+  else if(lv===2){const p=pick([30,50,200])*k,m=pick([10,20,50])*k;let v=rnd(5,20)*m;seq=[v];for(let i=0;i<4;i++){v+=i%2?-m:p;seq.push(v);}nx=seq[4]+p;seq=seq.slice(0,5);e=`+${fmt(p)}, −${fmt(m)}`;}
+  else{s=pick([2,5,10,100])*k;let v=rnd(1,9)*s;seq=[v];for(let i=1;i<5;i++){v+=i*s;seq.push(v);}nx=v+5*s;e=`+${fmt(s)}, +${fmt(2*s)}, +${fmt(3*s)}, …`;}
+  return {title:W('Wie geht es weiter?','What comes next?','¿Cómo sigue?'),text:W(`Finde die Regel und schreib die nächste Zahl: ${seq.map(fmt).join(', ')}, …`,`Find the rule and write the next number: ${seq.map(fmt).join(', ')}, …`,`Encuentra la regla y escribe el siguiente número: ${seq.map(fmt).join(', ')}, …`),
+    f:[[ANS(),nx]],hint:W('Schau dir die Abstände zwischen den Zahlen an. Bleiben sie gleich oder ändern sie sich?','Look at the gaps between the numbers. Do they stay the same or change?','Mira las distancias entre los números. ¿Son iguales o cambian?'),ans:fmt(nx),expl:e};},
+/* 3 digit cards */
+ziffern(lv){const n=[4,5,6,6][lv];let ds=shuffle([1,2,3,4,5,6,7,8,9]).slice(0,lv>=1?n-1:n);if(lv>=1)ds.push(0);ds=shuffle(ds);
+  const perms=a=>a.length<=1?[a]:a.flatMap((d,i)=>perms(a.slice(0,i).concat(a.slice(i+1))).map(p=>[d,...p]));
+  const all=perms(ds).filter(p=>p[0]!==0).map(p=>+p.join(''));let q,v,tgt;
+  if(lv===0){v=Math.max(...all);q=W('die größte Zahl','the biggest number','el número más grande');}
+  else if(lv===1){v=Math.min(...all);q=W('die kleinste Zahl','the smallest number','el número más pequeño');}
+  else if(lv===2){const ev=all.filter(x=>x%2===0);v=Math.max(...ev);q=W('die größte gerade Zahl','the biggest even number','el número par más grande');}
+  else{tgt=rnd(3,7)*100000;v=all.reduce((b,x)=>Math.abs(x-tgt)<Math.abs(b-tgt)?x:b,all[0]);q=W(`die Zahl, die am nächsten an ${fmt(tgt)} liegt`,`the number closest to ${fmt(tgt)}`,`el número más cercano a ${fmt(tgt)}`);}
+  return {title:W('Ziffernkarten','Digit cards','Tarjetas de cifras'),text:W(`Du hast die Ziffernkarten ${ds.join(', ')}. Benutze jede Karte genau einmal. Bilde ${q}.`,`You have the digit cards ${ds.join(', ')}. Use every card exactly once. Make ${q}.`,`Tienes las tarjetas ${ds.join(', ')}. Usa cada tarjeta una sola vez. Forma ${q}.`),
+    f:[[ANS(),v]],hint:W(lv===3?'Fang vorne mit der Ziffer an, die am besten passt, und probiere dann weiter.':'Die wichtigste Stelle ist ganz vorne. Eine 0 darf nicht vorne stehen.',lv===3?'Start at the front with the digit that fits best, then keep trying.':'The most important place is at the front. A 0 cannot go first.',lv===3?'Empieza por delante con la cifra que mejor encaje y sigue probando.':'La posición más importante es la primera. Un 0 no puede ir delante.'),ans:fmt(v),expl:fmt(v)};},
+/* 4 rounding limits */
+rundzahl(lv){let R,v,txt,e;
+  if(lv===0){R=rnd(10,99)*10;v=R-5;txt=W(`Welches ist die kleinste Zahl, die auf Zehner gerundet ${fmt(R)} ergibt?`,`What is the smallest number that rounds to ${fmt(R)} (nearest ten)?`,`¿Cuál es el número más pequeño que redondeado a las decenas da ${fmt(R)}?`);e=`${fmt(R)} − 5 = ${fmt(v)}`;}
+  else if(lv===1){R=rnd(10,99)*100;v=R+49;txt=W(`Welches ist die größte Zahl, die auf Hunderter gerundet ${fmt(R)} ergibt?`,`What is the biggest number that rounds to ${fmt(R)} (nearest hundred)?`,`¿Cuál es el número más grande que redondeado a las centenas da ${fmt(R)}?`);e=`${fmt(R)} + 49 = ${fmt(v)}`;}
+  else if(lv===2){R=rnd(10,99)*100;v=100;txt=W(`Wie viele ganze Zahlen ergeben auf Hunderter gerundet ${fmt(R)}?`,`How many whole numbers round to ${fmt(R)} (nearest hundred)?`,`¿Cuántos números enteros dan ${fmt(R)} redondeados a las centenas?`);e=`${fmt(R-50)} … ${fmt(R+49)} → 100`;}
+  else{R=rnd(10,99)*1000;v=R-500;txt=W(`Ich bin die kleinste Zahl, die auf Tausender gerundet ${fmt(R)} ergibt. Wer bin ich?`,`I am the smallest number that rounds to ${fmt(R)} (nearest thousand). Who am I?`,`Soy el número más pequeño que redondeado a los millares da ${fmt(R)}. ¿Quién soy?`);e=`${fmt(R)} − 500 = ${fmt(v)}`;}
+  return {title:W('Runden-Detektiv','Rounding detective','Detective del redondeo'),text:txt,f:[[ANS(),v]],hint:W('Ab der 5 wird aufgerundet, darunter abgerundet.','From 5 upwards you round up, below 5 you round down.','Desde 5 se redondea hacia arriba; por debajo, hacia abajo.'),ans:fmt(v),expl:e};},
+/* 5 shopping */
+geld(lv){const IT=[[t3('ein Heft','an exercise book','un cuaderno'),[90,120,150]],[t3('ein Stift','a pen','un bolígrafo'),[75,95,130]],[t3('ein Buch','a book','un libro'),[699,850,1290]],[t3('ein Ball','a ball','una pelota'),[499,750,999]],[t3('ein Saft','a juice','un zumo'),[89,119,135]]];
+  const [i1,i2,i3]=shuffle(IT);const p1=pick(i1[1]),p2=pick(i2[1]),p3=pick(i3[1]),n1=rnd(2,5),n2=rnd(2,4),n3=rnd(2,3);let tot,txt,e,v;
+  if(lv===0){const p=rnd(2,9)*100;v=n1*p;txt=W(`${tx(i1[0]).replace(/^./,c=>c.toUpperCase())} kostet ${euro(p)}. Leo kauft ${n1} Stück. Wie viel muss er bezahlen?`,`${tx(i1[0]).replace(/^./,c=>c.toUpperCase())} costs ${euro(p)}. Leo buys ${n1}. How much does he pay?`,`${tx(i1[0]).replace(/^./,c=>c.toUpperCase())} cuesta ${euro(p)}. Leo compra ${n1}. ¿Cuánto paga?`);e=`${n1} · ${euro(p)} = ${euro(v)}`;}
+  else if(lv===1){v=n1*p1+p2;txt=W(`Leo kauft ${n1}-mal ${tx(i1[0]).replace(/^ein /,'').replace(/^eine /,'')} zu je ${euro(p1)} und ${tx(i2[0])} für ${euro(p2)}. Wie viel kostet alles zusammen?`,`Leo buys ${n1} × ${tx(i1[0]).replace(/^an? /,'')} at ${euro(p1)} each and ${tx(i2[0])} for ${euro(p2)}. How much is it altogether?`,`Leo compra ${n1} × ${tx(i1[0]).replace(/^una? /,'')} a ${euro(p1)} cada uno y ${tx(i2[0])} por ${euro(p2)}. ¿Cuánto es en total?`);e=`${n1} · ${euro(p1)} + ${euro(p2)} = ${euro(v)}`;}
+  else{const nn=lv===2?[n1,n2]:[n1,n2,n3],ps=lv===2?[p1,p2]:[p1,p2,p3],its=lv===2?[i1,i2]:[i1,i2,i3];tot=nn.reduce((s,n,k)=>s+n*ps[k],0);const note=[1000,2000,5000,10000,20000].find(x=>x>tot)||20000;v=note-tot;
+    const list=its.map((it,k)=>`${nn[k]} × ${tx(it[0]).replace(/^(ein|eine|an?|una?) /,'')} (${euro(ps[k])})`).join(', ');
+    txt=W(`Leo kauft: ${list}. Er bezahlt mit einem ${euro(note)}-Schein. Wie viel Rückgeld bekommt er?`,`Leo buys: ${list}. He pays with a ${euro(note)} note. How much change does he get?`,`Leo compra: ${list}. Paga con un billete de ${euro(note)}. ¿Cuánto le devuelven?`);e=`${euro(note)} − ${euro(tot)} = ${euro(v)}`;}
+  return {title:W('Im Laden','At the shop','En la tienda'),text:txt,f:[['€',Math.floor(v/100)],['ct',v%100]],hint:W('Rechne alles in Cent, dann ist es leichter. 1 € = 100 ct.','Work in cents, it is easier. 1 € = 100 ct.','Calcula en céntimos, es más fácil. 1 € = 100 ct.'),ans:euro(v),expl:e};},
+/* 6 time */
+zeit(lv){const p2=n=>String(n).padStart(2,'0'),hm=x=>`${Math.floor(x/60)}:${p2(x%60)}`;let s=rnd(7,15)*60+rnd(0,11)*5,ds,txt,e,v;
+  const acts=[t3('Hausaufgaben','homework','deberes'),t3('Fußball','football','fútbol'),t3('Lesen','reading','leer'),t3('Klavier','piano','piano'),t3('Schwimmen','swimming','natación')];
+  if(lv<=1){ds=lv===0?[rnd(3,11)*5]:[rnd(4,12)*5,rnd(3,10)*5];v=s+ds.reduce((a,b)=>a+b,0);
+    txt=lv===0?W(`Leo beginnt um ${hm(s)} Uhr mit ${tx(acts[0])}. Er braucht ${ds[0]} Minuten. Wann ist er fertig?`,`Leo starts ${tx(acts[0])} at ${hm(s)}. It takes ${ds[0]} minutes. When does he finish?`,`Leo empieza los ${tx(acts[0])} a las ${hm(s)}. Tarda ${ds[0]} minutos. ¿A qué hora termina?`)
+      :W(`Leo beginnt um ${hm(s)} Uhr. Erst ${ds[0]} Minuten ${tx(acts[1])}, dann ${ds[1]} Minuten ${tx(acts[2])}. Wann ist er fertig?`,`Leo starts at ${hm(s)}. First ${ds[0]} minutes of ${tx(acts[1])}, then ${ds[1]} minutes of ${tx(acts[2])}. When does he finish?`,`Leo empieza a las ${hm(s)}. Primero ${ds[0]} minutos de ${tx(acts[1])} y luego ${ds[1]} minutos de ${tx(acts[2])}. ¿A qué hora termina?`);
+    e=`${hm(s)} + ${ds.join(' + ')} min = ${hm(v)}`;return {title:W('Leos Nachmittag','Leo’s afternoon','La tarde de Leo'),text:txt,f:[[W('Stunde','Hour','Hora'),Math.floor(v/60)],['min',v%60]],hint:W('Spring bis zur vollen Stunde, dann weiter.','Jump to the full hour, then on.','Salta hasta la hora en punto y sigue.'),ans:hm(v),expl:e};}
+  if(lv===2){const en=s+rnd(70,200);v=en-s;txt=W(`Ein Ausflug beginnt um ${hm(s)} Uhr und endet um ${hm(en)} Uhr. Wie lange dauert er?`,`A trip starts at ${hm(s)} and ends at ${hm(en)}. How long does it last?`,`Una excursión empieza a las ${hm(s)} y termina a las ${hm(en)}. ¿Cuánto dura?`);e=`${Math.floor(v/60)} h ${v%60} min`;
+    return {title:W('Der Ausflug','The trip','La excursión'),text:txt,f:[['h',Math.floor(v/60)],['min',v%60]],hint:W('Erst bis zur vollen Stunde, dann ganze Stunden, dann der Rest.','First to the full hour, then whole hours, then the rest.','Primero hasta la hora en punto, luego horas enteras y el resto.'),ans:e,expl:`${hm(s)} → ${hm(en)}`};}
+  ds=[rnd(4,12)*5,rnd(3,10)*5,rnd(4,15)*5];const en=rnd(16,19)*60+rnd(0,11)*5;v=en-ds.reduce((a,b)=>a+b,0);
+  txt=W(`Leo muss um ${hm(en)} Uhr fertig sein. Er macht ${ds[0]} Minuten ${tx(acts[0])}, ${ds[1]} Minuten ${tx(acts[3])} und ${ds[2]} Minuten ${tx(acts[4])}, ohne Pause. Wann muss er spätestens anfangen?`,`Leo must be done by ${hm(en)}. He does ${ds[0]} minutes of ${tx(acts[0])}, ${ds[1]} minutes of ${tx(acts[3])} and ${ds[2]} minutes of ${tx(acts[4])}, with no break. When must he start at the latest?`,`Leo tiene que terminar a las ${hm(en)}. Hace ${ds[0]} minutos de ${tx(acts[0])}, ${ds[1]} de ${tx(acts[3])} y ${ds[2]} de ${tx(acts[4])}, sin pausa. ¿A qué hora tiene que empezar como muy tarde?`);
+  return {title:W('Rückwärts planen','Planning backwards','Planear hacia atrás'),text:txt,f:[[W('Stunde','Hour','Hora'),Math.floor(v/60)],['min',v%60]],hint:W('Zähle alle Minuten zusammen und rechne von der Endzeit zurück.','Add up all the minutes and count back from the end time.','Suma todos los minutos y cuenta hacia atrás desde la hora final.'),ans:hm(v),expl:`${hm(en)} − ${ds.reduce((a,b)=>a+b,0)} min = ${hm(v)}`};},
+/* 7 distances */
+strecke(lv){let v,txt,e;
+  if(lv===0){const a=rnd(12,60)*10,b=rnd(12,60)*10;v=a+b;txt=W(`Leo läuft ${a} m zum Bäcker und dann ${b} m zur Schule. Wie weit ist das zusammen?`,`Leo walks ${a} m to the bakery and then ${b} m to school. How far is that altogether?`,`Leo camina ${a} m hasta la panadería y luego ${b} m hasta el cole. ¿Cuánto es en total?`);e=`${a} + ${b} = ${v} m`;return {title:W('Der Schulweg','The way to school','El camino al cole'),text:txt,f:[['m',v]],hint:W('Zähle beide Strecken zusammen.','Add both distances.','Suma las dos distancias.'),ans:v+' m',expl:e};}
+  if(lv===1){const k=rnd(1,5),m=rnd(1,9)*100+rnd(0,9)*10,c=rnd(150,900);v=k*1000+m+c;txt=W(`Eine Radtour: erst ${k} km ${m} m, dann noch ${c} m. Wie viele Meter sind das?`,`A bike ride: first ${k} km ${m} m, then another ${c} m. How many metres is that?`,`Una ruta en bici: primero ${k} km ${m} m y luego ${c} m más. ¿Cuántos metros son?`);e=`${fmt(k*1000+m)} + ${c} = ${fmt(v)} m`;return {title:W('Die Radtour','The bike ride','La ruta en bici'),text:txt,f:[['m',v]],hint:'1 km = 1 000 m'.replace('1 000',fmt(1000)),ans:fmt(v)+' m',expl:e};}
+  const r=pick([250,300,350,400,450]),n=lv===2?rnd(3,9):rnd(2,4),d=lv===3?rnd(3,5):1,t=lv===3?2*r*n*d:r*n;v=t;
+  txt=lv===2?W(`Eine Runde um den Sportplatz ist ${r} m lang. Leo läuft ${n} Runden. Wie weit ist er gelaufen?`,`One lap of the sports field is ${r} m. Leo runs ${n} laps. How far did he run?`,`Una vuelta al campo mide ${r} m. Leo da ${n} vueltas. ¿Cuánto ha corrido?`)
+    :W(`Leos Schulweg ist ${fmt(r*n)} m lang. Er geht hin und zurück, ${d} Tage lang. Wie weit ist das insgesamt?`,`Leo’s way to school is ${fmt(r*n)} m. He walks there and back on ${d} days. How far is that altogether?`,`El camino de Leo al cole mide ${fmt(r*n)} m. Va y vuelve durante ${d} días. ¿Cuánto es en total?`);
+  e=`${fmt(v)} m = ${Math.floor(v/1000)} km ${v%1000} m`;
+  return {title:W('Weite Wege','Long distances','Largas distancias'),text:txt,f:[['km',Math.floor(v/1000)],['m',v%1000]],hint:W('Rechne erst alles in Metern, dann mach km und m daraus.','First work in metres, then turn it into km and m.','Calcula primero en metros y luego pásalo a km y m.'),ans:`${Math.floor(v/1000)} km ${v%1000} m`,expl:e};},
+/* 8 weights */
+gewicht(lv){let v,txt,e,f;
+  if(lv===0){const n=rnd(3,9),g=rnd(2,9)*50;v=n*g;txt=W(`Ein Apfel wiegt etwa ${g} g. Wie viel wiegen ${n} Äpfel?`,`An apple weighs about ${g} g. How much do ${n} apples weigh?`,`Una manzana pesa unos ${g} g. ¿Cuánto pesan ${n} manzanas?`);f=[['g',v]];e=`${n} · ${g} = ${fmt(v)} g`;}
+  else if(lv===1){const n=rnd(4,12),g=rnd(3,9)*50,b=rnd(2,6)*100;v=n*g+b;txt=W(`In einem Karton (${b} g) liegen ${n} Bücher zu je ${g} g. Wie schwer ist das Paket?`,`A box (${b} g) holds ${n} books of ${g} g each. How heavy is the parcel?`,`En una caja (${b} g) hay ${n} libros de ${g} g cada uno. ¿Cuánto pesa el paquete?`);f=[['kg',Math.floor(v/1000)],['g',v%1000]];e=`${n} · ${g} + ${b} = ${fmt(v)} g`;}
+  else if(lv===2){const cap=pick([2,3,4,5])*1000,k=pick([12,15,18,25]);v=Math.floor(cap/k);txt=W(`Ein Aufzug darf ${cap/1000} t tragen. Eine Kiste wiegt ${k} kg. Wie viele Kisten passen höchstens hinein?`,`A lift may carry ${cap/1000} t. A crate weighs ${k} kg. How many crates can it take at most?`,`Un ascensor puede llevar ${cap/1000} t. Una caja pesa ${k} kg. ¿Cuántas cajas caben como máximo?`);f=[[W('Kisten','Crates','Cajas'),v]];e=`${fmt(cap)} : ${k} = ${v}${cap%k?` ${W('Rest','R','resto')} ${cap%k}`:''}`;}
+  else{const a=rnd(2,5),b=rnd(1,9)*100+50,c=rnd(3,9)*100+25,n=rnd(2,4);v=(a*1000+b-c)*n;txt=W(`Ein Sack Mehl wiegt ${a} kg ${b} g. Oma nimmt ${c} g heraus. Dann kauft sie noch ${n-1} solche angebrochenen Säcke dazu. Wie viel Mehl hat sie jetzt in Gramm?`,`A sack of flour weighs ${a} kg ${b} g. Grandma takes out ${c} g. Then she buys ${n-1} more sacks just like it. How many grams of flour does she have now?`,`Un saco de harina pesa ${a} kg ${b} g. La abuela saca ${c} g. Luego compra ${n-1} sacos más iguales. ¿Cuántos gramos de harina tiene ahora?`);f=[['g',v]];e=`(${fmt(a*1000+b)} − ${c}) · ${n} = ${fmt(v)} g`;}
+  return {title:W('Auf der Waage','On the scales','En la báscula'),text:txt,f,hint:W('1 kg = 1 000 g. Rechne alles in Gramm.','1 kg = 1,000 g. Work everything out in grams.','1 kg = 1 000 g. Calcula todo en gramos.'),ans:f.map(x=>fmt(x[1])+' '+x[0]).join(' '),expl:e};},
+/* 9 litres */
+liter(lv){let v,txt,e,f;
+  if(lv===0){const n=rnd(3,9),g=pick([150,200,250,300]);v=n*g;txt=W(`Leo gießt ${n} Gläser mit je ${g} ml ein. Wie viele Milliliter sind das?`,`Leo pours ${n} glasses of ${g} ml each. How many millilitres is that?`,`Leo llena ${n} vasos de ${g} ml. ¿Cuántos mililitros son?`);f=[['ml',v]];e=`${n} · ${g} = ${fmt(v)} ml`;}
+  else if(lv===1){const l=rnd(1,5),g=pick([100,125,200,250,500]);v=l*1000/g;txt=W(`Wie viele Gläser zu ${g} ml kann man aus ${l} l Saft füllen?`,`How many ${g} ml glasses can you fill from ${l} l of juice?`,`¿Cuántos vasos de ${g} ml se llenan con ${l} l de zumo?`);f=[[W('Gläser','Glasses','Vasos'),v]];e=`${fmt(l*1000)} : ${g} = ${v}`;}
+  else if(lv===2){const k=rnd(3,9),x=pick([330,500,750,1500]);v=k*x;txt=W(`Für ein Fest kauft Papa ${k} Flaschen mit je ${fmt(x)} ml. Wie viel ist das zusammen?`,`For a party Dad buys ${k} bottles of ${fmt(x)} ml each. How much is that altogether?`,`Para una fiesta papá compra ${k} botellas de ${fmt(x)} ml. ¿Cuánto es en total?`);f=[['l',Math.floor(v/1000)],['ml',v%1000]];e=`${k} · ${fmt(x)} = ${fmt(v)} ml`;}
+  else{const T=pick([60,80,120,150]),r=pick([4,5,6,8]);txt=W(`Ein Planschbecken fasst ${T} l. Aus dem Schlauch kommen ${r} l pro Minute. Wie viele Minuten dauert es, bis es voll ist?`,`A paddling pool holds ${T} l. The hose gives ${r} l per minute. How many minutes until it is full?`,`Una piscina hinchable tiene ${T} l. La manguera echa ${r} l por minuto. ¿Cuántos minutos tarda en llenarse?`);v=Math.ceil(T/r);f=[['min',v]];e=`${T} : ${r} = ${T%r?Math.floor(T/r)+' '+W('Rest','R','resto')+' '+T%r+' → '+v:v}`;}
+  return {title:W('Flüssig gedacht','Liquid thinking','Pensar en líquido'),text:txt,f,hint:W('1 l = 1 000 ml.','1 l = 1,000 ml.','1 l = 1 000 ml.'),ans:f.map(x=>fmt(x[1])+' '+x[0]).join(' '),expl:e};},
+/* 10 area & perimeter */
+flaeche(lv){let v,txt,e,u='cm²';
+  if(lv===0){const a=rnd(3,12),b=rnd(2,9);v=a*b;txt=W(`Ein Beet ist ${a} m lang und ${b} m breit. Wie viele Quadratmeter hat es?`,`A flower bed is ${a} m long and ${b} m wide. How many square metres is it?`,`Un parterre mide ${a} m de largo y ${b} m de ancho. ¿Cuántos metros cuadrados tiene?`);e=`${a} · ${b} = ${v} m²`;u='m²';}
+  else if(lv===1){const a=rnd(4,12),b=rnd(2,a-1),P=2*(a+b);v=a*b;txt=W(`Ein Rechteck hat den Umfang ${P} cm. Eine Seite ist ${a} cm lang. Wie groß ist seine Fläche?`,`A rectangle has a perimeter of ${P} cm. One side is ${a} cm. What is its area?`,`Un rectángulo tiene ${P} cm de perímetro. Un lado mide ${a} cm. ¿Cuál es su área?`);e=`${P} : 2 − ${a} = ${b}; ${a} · ${b} = ${v} cm²`;}
+  else if(lv===2){const s=rnd(3,16),P=4*s;v=s*s;txt=W(`Ein Quadrat hat den Umfang ${P} cm. Wie groß ist seine Fläche?`,`A square has a perimeter of ${P} cm. What is its area?`,`Un cuadrado tiene ${P} cm de perímetro. ¿Cuál es su área?`);e=`${P} : 4 = ${s}; ${s} · ${s} = ${v} cm²`;}
+  else{const A=rnd(8,14),B=rnd(6,10),c=rnd(2,A-4),d=rnd(2,B-3);v=A*B-c*d;txt=W(`Aus einem Rechteck (${A} cm × ${B} cm) wird an einer Ecke ein Stück (${c} cm × ${d} cm) ausgeschnitten. Wie groß ist die Fläche, die übrig bleibt?`,`A piece (${c} cm × ${d} cm) is cut from one corner of a rectangle (${A} cm × ${B} cm). What area is left?`,`De un rectángulo (${A} cm × ${B} cm) se recorta en una esquina un trozo (${c} cm × ${d} cm). ¿Qué área queda?`);e=`${A} · ${B} − ${c} · ${d} = ${v} cm²`;}
+  return {title:W('Flächen-Profi','Area pro','Experto en áreas'),text:txt,f:[[u,v]],hint:W('Fläche = Länge mal Breite. Umfang = zweimal Länge plus zweimal Breite.','Area = length times width. Perimeter = 2 lengths plus 2 widths.','Área = largo por ancho. Perímetro = 2 largos más 2 anchos.'),ans:`${v} ${u}`,expl:e};},
+/* 11 cubes */
+wuerfel(lv){let v,txt,e;
+  if(lv===0){const a=rnd(2,6),b=rnd(2,5),c=rnd(2,5);v=a*b*c;txt=W(`Ein Quader ist ${a} Würfel lang, ${b} breit und ${c} hoch. Wie viele Würfel sind es?`,`A cuboid is ${a} cubes long, ${b} wide and ${c} high. How many cubes is that?`,`Un prisma mide ${a} cubitos de largo, ${b} de ancho y ${c} de alto. ¿Cuántos cubitos son?`);e=`${a} · ${b} · ${c} = ${v}`;}
+  else if(lv===1){const a=rnd(3,8),b=rnd(2,6),c=rnd(2,7);v=c;txt=W(`Ein Quader aus ${a*b*c} Würfeln ist ${a} lang und ${b} breit. Wie hoch ist er?`,`A cuboid made of ${a*b*c} cubes is ${a} long and ${b} wide. How high is it?`,`Un prisma de ${a*b*c} cubitos mide ${a} de largo y ${b} de ancho. ¿Qué altura tiene?`);e=`${a*b*c} : ${a*b} = ${c}`;}
+  else if(lv===2&&Math.random()<.5){const n=rnd(3,7);v=(n-2)**3;txt=W(`Ein großer Würfel aus ${n}·${n}·${n} kleinen Würfeln wird außen angemalt. Wie viele kleine Würfel haben gar keine Farbe?`,`A big cube made of ${n}·${n}·${n} small cubes is painted on the outside. How many small cubes have no paint at all?`,`Un cubo grande de ${n}·${n}·${n} cubitos se pinta por fuera. ¿Cuántos cubitos no tienen nada de pintura?`);e=`${n-2} · ${n-2} · ${n-2} = ${v}`;}
+  else if(lv===2){const n=rnd(3,7);v=6*(n-2)*(n-2);txt=W(`Ein großer Würfel aus ${n}·${n}·${n} kleinen Würfeln wird außen angemalt. Wie viele kleine Würfel haben genau 1 bunte Seite?`,`A big cube made of ${n}·${n}·${n} small cubes is painted on the outside. How many small cubes have exactly 1 painted face?`,`Un cubo grande de ${n}·${n}·${n} cubitos se pinta por fuera. ¿Cuántos cubitos tienen exactamente 1 cara pintada?`);e=`6 · ${n-2} · ${n-2} = ${v}`;}
+  else if(Math.random()<.5){const n=rnd(3,8);v=n**3-(n-2)**3;txt=W(`Ein großer Würfel aus ${n}·${n}·${n} kleinen Würfeln wird außen angemalt. Wie viele kleine Würfel haben mindestens eine bunte Seite?`,`A big cube made of ${n}·${n}·${n} small cubes is painted on the outside. How many small cubes have at least one painted face?`,`Un cubo grande de ${n}·${n}·${n} cubitos se pinta por fuera. ¿Cuántos cubitos tienen al menos una cara pintada?`);e=`${n**3} − ${(n-2)**3} = ${v}`;}
+  else{const n=rnd(4,9);v=12*(n-2);txt=W(`Ein großer Würfel aus ${n}·${n}·${n} kleinen Würfeln wird außen angemalt. Wie viele kleine Würfel haben genau 2 bunte Seiten?`,`A big cube made of ${n}·${n}·${n} small cubes is painted on the outside. How many small cubes have exactly 2 painted faces?`,`Un cubo grande de ${n}·${n}·${n} cubitos se pinta por fuera. ¿Cuántos cubitos tienen exactamente 2 caras pintadas?`);e=`12 · ${n-2} = ${v}`;}
+  return {title:W('Würfel-Rätsel','Cube puzzle','Acertijo de cubos'),text:txt,f:[[ANS(),v]],hint:W(lv>=2?'1 bunte Seite: auf den Flächen, ohne Rand. 2 bunte Seiten: an den Kanten, ohne Ecken.':'Eine Schicht: Länge mal Breite.',lv>=2?'1 painted face: on the faces, not the edges. 2 painted faces: along the edges, not the corners.':'One layer: length times width.',lv>=2?'1 cara pintada: en las caras, sin bordes. 2 caras: en las aristas, sin esquinas.':'Una capa: largo por ancho.'),ans:fmt(v),expl:e};},
+/* 12 sharing */
+teilen(lv){let v,txt,e,f;
+  if(lv===0){const k=rnd(3,9),q=rnd(4,12);v=q;txt=W(`${k*q} Sticker werden gerecht an ${k} Kinder verteilt. Wie viele bekommt jedes Kind?`,`${k*q} stickers are shared fairly between ${k} children. How many does each child get?`,`${k*q} pegatinas se reparten a partes iguales entre ${k} niños. ¿Cuántas recibe cada uno?`);f=[[ANS(),v]];e=`${k*q} : ${k} = ${q}`;}
+  else if(lv===1){const k=rnd(3,9),q=rnd(5,15),r=rnd(1,k-1),N=k*q+r;txt=W(`${N} Murmeln werden gerecht an ${k} Kinder verteilt. Wie viele bekommt jedes Kind, und wie viele bleiben übrig?`,`${N} marbles are shared fairly between ${k} children. How many does each get, and how many are left over?`,`${N} canicas se reparten entre ${k} niños. ¿Cuántas recibe cada uno y cuántas sobran?`);f=[[W('jedes','each','cada uno'),q],[W('übrig','left','sobran'),r]];v=q;e=`${N} : ${k} = ${q} ${W('Rest','R','resto')} ${r}`;}
+  else if(lv===2){const s=pick([24,28,32,45,50]),N=rnd(2,6)*s+rnd(1,s-1);v=Math.ceil(N/s);txt=W(`${N} Kinder fahren auf Klassenfahrt. In einen Bus passen ${s} Kinder. Wie viele Busse braucht man mindestens?`,`${N} children go on a school trip. A bus holds ${s} children. How many buses are needed at least?`,`${N} niños van de excursión. En un autobús caben ${s}. ¿Cuántos autobuses hacen falta como mínimo?`);f=[[W('Busse','Buses','Autobuses'),v]];e=`${N} : ${s} = ${Math.floor(N/s)} ${W('Rest','R','resto')} ${N%s} → ${v}`;}
+  else{const a=pick([3,4,6]),b=pick([5,7,9]),A=rnd(100,600);const l=a*b/(function g(x,y){return y?g(y,x%y):x;})(a,b);v=Math.ceil((A+1)/l)*l;txt=W(`Welches ist die kleinste Zahl größer als ${A}, die durch ${a} und durch ${b} teilbar ist?`,`What is the smallest number bigger than ${A} that can be divided by ${a} and by ${b}?`,`¿Cuál es el número más pequeño mayor que ${A} que se puede dividir entre ${a} y entre ${b}?`);f=[[ANS(),v]];e=`${v} : ${a} = ${v/a}; ${v} : ${b} = ${v/b}`;}
+  return {title:W('Gerecht teilen','Fair sharing','Repartir justo'),text:txt,f,hint:W('Denk ans Einmaleins. Was übrig bleibt, ist der Rest.','Think of your times tables. What is left over is the remainder.','Piensa en las tablas. Lo que sobra es el resto.'),ans:f.map(x=>fmt(x[1])).join(' / '),expl:e};},
+/* 13 count squares */
+quadrate(lv){const sz=[[[2,2],[3,1],[3,2],[2,1]],[[3,3],[4,2],[3,2],[4,1]],[[4,4],[4,3],[5,2],[5,3]],[[5,5],[5,4],[6,3],[6,4]]][lv],[n,m]=pick(sz);let v=0;for(let k=1;k<=Math.min(n,m);k++)v+=(n-k+1)*(m-k+1);
+  const cs=22,svg=`<svg viewBox="0 0 ${n*cs+4} ${m*cs+4}" width="${n*cs+4}" height="${m*cs+4}" style="display:block;margin:6px 0" aria-hidden="true">${Array.from({length:n*m},(_,i)=>`<rect x="${2+(i%n)*cs}" y="${2+Math.floor(i/n)*cs}" width="${cs}" height="${cs}" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>`).join('')}</svg>`;
+  return {title:W('Wie viele Quadrate?','How many squares?','¿Cuántos cuadrados?'),text:W(`Wie viele Quadrate findest du in diesem Gitter (${n} × ${m})? Auch die großen zählen, die aus mehreren Kästchen bestehen!`,`How many squares can you find in this grid (${n} × ${m})? The big ones made of several boxes count too!`,`¿Cuántos cuadrados encuentras en esta cuadrícula (${n} × ${m})? ¡También cuentan los grandes!`)+svg,
+    f:[[ANS(),v]],hint:W('Zähle erst die kleinen, dann die 2×2-Quadrate, dann die 3×3 …','Count the small ones first, then the 2×2 squares, then 3×3 …','Cuenta primero los pequeños, luego los de 2×2, luego 3×3 …'),ans:String(v),expl:Array.from({length:Math.min(n,m)},(_,k)=>(n-k)*(m-k)).join(' + ')+' = '+v};},
+/* 14 survey */
+umfrage(lv){let v,txt,e;const N=rnd(20,32);
+  if(lv===0){const a=rnd(5,10),b=rnd(4,9);v=N-a-b;txt=W(`In der Klasse sind ${N} Kinder. ${a} mögen am liebsten Äpfel, ${b} Bananen, der Rest Erdbeeren. Wie viele mögen Erdbeeren?`,`There are ${N} children in the class. ${a} like apples best, ${b} bananas, the rest strawberries. How many like strawberries?`,`En la clase hay ${N} niños. A ${a} les gustan más las manzanas, a ${b} los plátanos y al resto las fresas. ¿A cuántos les gustan las fresas?`);e=`${N} − ${a} − ${b} = ${v}`;}
+  else if(lv===1){let a,b;do{a=rnd(5,11);b=rnd(3,7);}while(N-a-b<=b);v=(N-a-b)-b;txt=W(`${N} Kinder stimmen ab: ${a} für Zoo, ${b} für Kino, der Rest für Schwimmbad. Wie viele Stimmen hat das Schwimmbad mehr als das Kino?`,`${N} children vote: ${a} for the zoo, ${b} for the cinema, the rest for the pool. How many more votes does the pool get than the cinema?`,`${N} niños votan: ${a} por el zoo, ${b} por el cine y el resto por la piscina. ¿Cuántos votos más tiene la piscina que el cine?`);e=`${N} − ${a} − ${b} = ${N-a-b}; ${N-a-b} − ${b} = ${v}`;}
+  else if(lv===2){const M=rnd(4,12)*4;v=M-M/2-M/4;txt=W(`Von ${M} Kindern kommt die Hälfte mit dem Rad, ein Viertel mit dem Bus, der Rest zu Fuß. Wie viele kommen zu Fuß?`,`Of ${M} children, half come by bike, a quarter by bus and the rest on foot. How many walk?`,`De ${M} niños, la mitad viene en bici, un cuarto en autobús y el resto a pie. ¿Cuántos vienen a pie?`);e=`${M} − ${M/2} − ${M/4} = ${v}`;}
+  else{const M=rnd(3,20)*6;const r1=M/3,rest=M-r1;v=rest/2;txt=W(`${M} Kinder: Ein Drittel spielt Fußball. Vom Rest spielt die Hälfte Basketball. Wie viele spielen Basketball?`,`${M} children: a third play football. Half of the rest play basketball. How many play basketball?`,`${M} niños: un tercio juega al fútbol. De los demás, la mitad juega al baloncesto. ¿Cuántos juegan al baloncesto?`);e=`${M} : 3 = ${r1}; ${M} − ${r1} = ${rest}; ${rest} : 2 = ${v}`;}
+  return {title:W('Die Umfrage','The survey','La encuesta'),text:txt,f:[[W('Kinder','Children','Niños'),v]],hint:W('Rechne Schritt für Schritt und schreib dir die Zwischenergebnisse auf.','Work step by step and write down the in-between results.','Calcula paso a paso y apunta los resultados intermedios.'),ans:String(v),expl:e};},
+/* 15 drawing from a bag */
+ziehen(lv){const r=rnd(3,9),b=rnd(3,9),g=rnd(2,7);let v,txt,e;
+  const bag=lv>=2?W(`${r} rote, ${b} blaue und ${g} grüne Kugeln`,`${r} red, ${b} blue and ${g} green marbles`,`${r} canicas rojas, ${b} azules y ${g} verdes`):W(`${r} rote und ${b} blaue Kugeln`,`${r} red and ${b} blue marbles`,`${r} canicas rojas y ${b} azules`);
+  if(lv===0){v=3;txt=W(`In einem Säckchen sind ${bag}. Du ziehst ohne hinzuschauen. Wie viele musst du mindestens ziehen, damit sicher 2 die gleiche Farbe haben?`,`A bag holds ${bag}. You draw without looking. How many must you draw at least to be sure of 2 of the same colour?`,`En una bolsa hay ${bag}. Sacas sin mirar. ¿Cuántas tienes que sacar como mínimo para tener seguro 2 del mismo color?`);e='2 + 1 = 3';}
+  else if(lv===1){v=b+1;txt=W(`In einem Säckchen sind ${bag}. Wie viele musst du mindestens ziehen, damit sicher eine rote dabei ist?`,`A bag holds ${bag}. How many must you draw at least to be sure of getting a red one?`,`En una bolsa hay ${bag}. ¿Cuántas tienes que sacar como mínimo para tener seguro una roja?`);e=`${b} + 1 = ${v}`;}
+  else if(lv===2){v=b+g+2;txt=W(`In einem Säckchen sind ${bag}. Wie viele musst du mindestens ziehen, damit sicher 2 rote dabei sind?`,`A bag holds ${bag}. How many must you draw at least to be sure of 2 red ones?`,`En una bolsa hay ${bag}. ¿Cuántas tienes que sacar como mínimo para tener seguro 2 rojas?`);e=`${b} + ${g} + 2 = ${v}`;}
+  else{const s=[r,b,g].sort((x,y)=>y-x);v=s[0]+s[1]+1;txt=W(`In einem Säckchen sind ${bag}. Wie viele musst du mindestens ziehen, damit sicher von jeder Farbe eine dabei ist?`,`A bag holds ${bag}. How many must you draw at least to be sure of one of every colour?`,`En una bolsa hay ${bag}. ¿Cuántas tienes que sacar como mínimo para tener seguro una de cada color?`);e=`${s[0]} + ${s[1]} + 1 = ${v}`;}
+  return {title:W('Das Pech-Spiel','The bad-luck game','El juego de la mala suerte'),text:txt,f:[[W('Kugeln','Marbles','Canicas'),v]],hint:W('Stell dir vor, du hast so viel Pech wie möglich. Was ziehst du dann zuerst?','Imagine you have as much bad luck as possible. What would you draw first?','Imagina que tienes la peor suerte posible. ¿Qué sacarías primero?'),ans:String(v),expl:e};},
+/* 16 cinema */
+kino(lv){const R=rnd(8,24),S=rnd(12,25);let v,txt,e;
+  if(lv===0){v=R*S;txt=W(`Ein Kino hat ${R} Reihen mit je ${S} Plätzen. Wie viele Plätze sind es?`,`A cinema has ${R} rows of ${S} seats. How many seats is that?`,`Un cine tiene ${R} filas de ${S} butacas. ¿Cuántas butacas son?`);e=`${R} · ${S} = ${v}`;}
+  else if(lv===1){const o=rnd(R*S/3|0,R*S-20);v=R*S-o;txt=W(`Ein Kino hat ${R} Reihen mit je ${S} Plätzen. ${o} Plätze sind besetzt. Wie viele sind noch frei?`,`A cinema has ${R} rows of ${S} seats. ${o} seats are taken. How many are still free?`,`Un cine tiene ${R} filas de ${S} butacas. ${o} están ocupadas. ¿Cuántas quedan libres?`);e=`${R*S} − ${o} = ${v}`;}
+  else if(lv===2){const p=rnd(5,9);v=R*S*p;txt=W(`Ein Kino mit ${R} Reihen zu je ${S} Plätzen ist ausverkauft. Eine Karte kostet ${p} €. Wie viel Geld kommt zusammen?`,`A cinema with ${R} rows of ${S} seats is sold out. A ticket costs ${p} €. How much money is that?`,`Un cine con ${R} filas de ${S} butacas está lleno. La entrada cuesta ${p} €. ¿Cuánto dinero se recauda?`);e=`${R} · ${S} · ${p} = ${fmt(v)} €`;}
+  else{const R2=rnd(6,15),S2=rnd(10,18),sh=rnd(3,5);v=(R*S+R2*S2)*sh;txt=W(`Ein Kino hat zwei Säle: ${R} × ${S} Plätze und ${R2} × ${S2} Plätze. An einem Tag laufen ${sh} Vorstellungen, alle ausverkauft. Wie viele Karten wurden verkauft?`,`A cinema has two halls: ${R} × ${S} seats and ${R2} × ${S2} seats. There are ${sh} shows in one day, all sold out. How many tickets were sold?`,`Un cine tiene dos salas: ${R} × ${S} y ${R2} × ${S2} butacas. Hay ${sh} sesiones en un día, todas llenas. ¿Cuántas entradas se vendieron?`);e=`(${R*S} + ${R2*S2}) · ${sh} = ${fmt(v)}`;}
+  return {title:W('Im Kino','At the cinema','En el cine'),text:txt,f:[[ANS(),v]],hint:W('Reihen mal Plätze. Dann Schritt für Schritt weiter.','Rows times seats. Then step by step.','Filas por butacas. Luego paso a paso.'),ans:fmt(v),expl:e};}
+};
+/* which families fit which lesson */
+const RMAP={million:[['ziffern'],['folge',true]],bigcalc:[['denk'],['geld']],numline:[['folge'],['ziffern']],patterns:[['folge'],['denk']],rounding:[['rundzahl'],['ziffern']],
+  charts:[['umfrage'],['kino']],angles:[['quadrate'],['flaeche']],quads:[['quadrate'],['flaeche']],tiles:[['flaeche'],['quadrate']],lengths:[['strecke'],['flaeche']],
+  mult:[['denk'],['kino']],chance:[['ziehen'],['umfrage']],div:[['teilen'],['denk']],area:[['flaeche'],['quadrate']],weights:[['gewicht'],['geld']],
+  volume:[['liter'],['gewicht']],time:[['zeit'],['denk']],cubes:[['wuerfel'],['flaeche']],convert:[['geld'],['strecke']]};
+/* per-lesson puzzle level, remembered on this device */
+const RLV={get(){try{return JSON.parse(localStorage.getItem('mathecraft.rlv')||'{}');}catch(e){return {};}},
+  save(o){try{localStorage.setItem('mathecraft.rlv',JSON.stringify(o));}catch(e){}},
+  of(id){const o=this.get();return o[id]||{lv:0,good:0};},
+  set(id,v){const o=this.get();o[id]=v;this.save(o);}};
+const RSEEN={};   /* texts shown recently, per lesson (this visit) */
 
 function renderLesson(){
   const d=CUR(),meta=LESSONS.find(l=>l.id===LESSON.id)||LESSONS[0];
